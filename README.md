@@ -24,7 +24,7 @@ That's why I'm making this project.
 ## More information:
 
 
-Code of conduct
+[Code of conduct](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/blob/master/CODE_OF_CONDUCT.md)
 
-How to contribute
+[How to contribute](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/blob/master/CONTRIBUTING.md)
 
