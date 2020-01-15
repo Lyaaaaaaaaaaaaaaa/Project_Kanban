@@ -1,0 +1,7 @@
+data/Lyaaaaa.Project.Kanban.desktop.in
+data/Lyaaaaa.Project.Kanban.appdata.xml.in
+data/Lyaaaaa.Project.Kanban.gschema.xml
+src/window.ui
+src/main.py
+src/window.py
+

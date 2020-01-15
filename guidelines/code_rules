@@ -1,0 +1,59 @@
+Indentation     : 2 spaces
+Max line length : 80 characters
+
+Variables  : variable_name
+Parameters : P_Parameter_Name
+Classes    : Class_Name
+Objects    : Object_Name
+functions  : Function_Name
+
+align statements like this (exemple taken from Ada style guide.):
+  -- are comments
+
+Default_String : constant String :=
+      "This is the long string returned by"
+      " default. It is broken into multiple"
+      " Ada source lines for convenience.";
+
+type Signed_Whole_16 is range -2**15 .. 2**15 - 1;
+type Address_Area    is array (Natural range ) of Signed_Whole_16;
+
+Register : Address_Area (16#7FF0# .. 16#7FFF#);
+Memory   : Address_Area (0 .. 16#7FEC#);
+
+Register (Pc) := Register (A);
+
+X := Signed_Whole_16 (Radius * Sin(Angle) );
+
+Register (Index) := Memory (Base_Address + Index * Element_Length);
+
+Get (Value = Sensor);
+
+Error_Term := 1.0 - (Cos(Theta)**2 + Sin(Theta)**2);
+
+Z      := X**3;
+Y      := C * X + B;
+Volume := Length * Width * Height;
+
+----------------------------------
+
+if Slot_A = Slot_B then
+   Temporary := Slot_A;
+   Slot_A    := Slot_B;
+   Slot_B    := Temporary;
+end if;
+
+----------------------------------------------------------------
+Numerator   := B**2 - 4.0 * A * C;
+Denominator := 2.0 * A;
+Solution_1 := (B + Square_Root(Numerator)) / Denominator;
+Solution_2 := (B - Square_Root(Numerator)) / Denominator;
+----------------------------------------------------------------
+X := A * B +
+     C * D +
+     E * F;
+Y := (A * B + C) + (2.0 * D - E) - -- basic equation
+     3.5;                          -- account for error factor
+
+
+
