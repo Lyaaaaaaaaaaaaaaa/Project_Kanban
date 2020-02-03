@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------
-#-- Copyright (C) 2019 Lyaaaaaaaaaaaaaaa
+#-- Copyright (c) 2020 Lyaaaaaaaaaaaaaaa
 #--
 #-- Auteur : Lyaaaaaaaaaaaaaaa
 #--
@@ -19,6 +19,11 @@
 #--   15/01/2020 Lyaaaaa
 #--     - Made Columns attribut into a list.
 #--     - Added Add_Column method.
+#--
+#--   03/02/2020 Lyaaaaa
+#--     - Edited __init__, Added P_Title parameter with "Project's name" as
+#--         default value
+#--     - Edited Add_Column to pass a parameter to directly set its name.
 #---------------------------------------------------------------------------
 
 from column import Column
@@ -44,8 +49,8 @@ class Kanban():
 #--  - Make Columns an array of column.
 #---------------------------------------------------------------------------
 
-  def __init__(self):
-    self.title   = "Project's name"
+  def __init__(self, P_Title = "Project's name"):
+    self.title   = P_Title
     self.Columns = []
 
   #---------------------------------
@@ -158,7 +163,9 @@ class Kanban():
 #--  - TODO Control the creation of the column
 #---------------------------------------------------------------------------
 
-  def Add_Column(self):
-    New_Column = Column()
+  def Add_Column(self, P_Title = "Column's title"):
+    New_Column = Column(P_Title)
     self.Columns.append(New_Column)
     return True
+
+

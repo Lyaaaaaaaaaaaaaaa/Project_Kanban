@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------
-#-- Copyright (C) 2019 Lyaaaaaaaaaaaaaaa
+#-- Copyright (c) 2020 Lyaaaaaaaaaaaaaaa
 #--
 #-- Auteur : Lyaaaaaaaaaaaaaaa
 #--
@@ -20,6 +20,11 @@
 #--     - Added Add_Card method.
 #--     - Implemented Update_Cards_Number method.
 #--     - Made Cards attribut a list
+#--
+#--   03/02/2020 Lyaaaaa
+#--     - Edited __init__, Added P_Title parameter with "Column's title" as
+#--         default value
+#--     - Edited Add_Card to add parameters to pass title and description
 #---------------------------------------------------------------------------
 
 from card import Card
@@ -45,8 +50,8 @@ class Column():
 #--  - Make Cards an array of cards.
 #---------------------------------------------------------------------------
 
-  def __init__(self):
-    self.title        = "Column's title"
+  def __init__(self, P_Title = "Column's title"):
+    self.title        = P_Title
     self.cards_number = 0
     self.Cards        = []
 
@@ -196,8 +201,11 @@ class Column():
 #--  - TODO Control the creation of the Card
 #---------------------------------------------------------------------------
 
-  def Add_Card(self):
-    New_Card = Card()
+  def Add_Card(self,
+               P_Title = "Card's title",
+               P_Description = "Card's description"):
+
+    New_Card = Card(P_Title, P_Description)
 
     self.Cards.append(New_Card)
     self.Update_Cards_Number()

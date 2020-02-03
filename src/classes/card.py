@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------
-#-- Copyright (C) 2019 Lyaaaaaaaaaaaaaaa
+#-- Copyright (c) 2020 Lyaaaaaaaaaaaaaaa
 #--
 #-- Auteur : Lyaaaaaaaaaaaaaaa
 #--
@@ -12,6 +12,10 @@
 #-- Changelog:
 #--   10/12/2019 Lyaaaaa
 #--     - Created file.
+#--
+#--   03/02/2020 Lyaaaaa
+#--     - Edited __init__, Added P_Title parameter with "Card's title" as
+#--         default value and P_Description with "Card's description"
 #---------------------------------------------------------------------------
 
 class Card():
@@ -31,9 +35,11 @@ class Card():
 #--  - Possibility to add an end date attribut
 #---------------------------------------------------------------------------
 
-  def __init__(self):
-    self.title       = "Card's title"
-    self.description = "Card's description"
+  def __init__(self,
+               P_Title = "Card's title",
+               P_Description = "Card's description"):
+    self.title       = P_Title
+    self.description = P_Description
 
 
   #---------------------------------

@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------
-#-- Copyright (C) 2019 Lyaaaaaaaaaaaaaaa
+#-- Copyright (c) 2020 Lyaaaaaaaaaaaaaaa
 #--
 #-- Auteur : Lyaaaaaaaaaaaaaaa
 #--
@@ -13,6 +13,10 @@
 #--   30/12/2019 Lyaaaaa
 #--     - Created file.
 #--     - Added Create_File method (which create a directory too).
+#--
+#--   03/02/2020 Lyaaaa
+#--     - Edited __init__ to add a P_Name parameter to change the name
+#--         of the file when it's created
 #---------------------------------------------------------------------------
 
 import os
@@ -30,12 +34,13 @@ class File():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  -
+#--  - TODO Name the file after the kanban. Exemple: Kanban's name is Shipping50
+#--      the save's name would be Shipping50_save.yaml
 #---------------------------------------------------------------------------
 
-  def __init__(self):
+  def __init__(self, P_Name = "save"):
     self.path = "saves/"
-    self.name = "save"
+    self.name = P_Name + ".yaml"
 
   #---------------------------------
   #--       Functions Set         --
@@ -73,6 +78,7 @@ class File():
 #---------------------------------------------------------------------------
 
   def Set_Name(self, P_Name):
+    P_Name = P_Name + ".yaml"
     self.name = P_Name
     return True
 

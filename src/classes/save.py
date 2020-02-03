@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------
-#-- Copyright (C) 2019 Lyaaaaaaaaaaaaaaa
+#-- Copyright (c) 2020 Lyaaaaaaaaaaaaaaa
 #--
 #-- Auteur : Lyaaaaaaaaaaaaaaa
 #--
@@ -16,9 +16,17 @@
 #--       and save file before to try writing anything.
 #--     - Save becomes Write_Save.
 #--     - Created Read_Save method
+#--
+#--   03/02/2020 Lyaaaaa
+#--     - Added yaml import
+#--     - Edited Write_Save
+#--         - Added P_Kanban parameter. This is the kanban the class will save
+#--         - Added a file header to the save files.
+#--         - Now successfully export a kanban object and all it's attributs!
 #---------------------------------------------------------------------------
 
 from file import File
+import yaml
 
 class Save():
   """Represent the save actions"""
@@ -97,16 +105,25 @@ class Save():
 #--  -
 #---------------------------------------------------------------------------
 
-  def Write_Save(self):
+  def Write_Save(self, P_Kanban):
     self.File.Create_File()
 
     path        =        self.File.Get_Path()
     path        = path + self.File.Get_Name()
     opened_file = open(path, "w")
 
-    opened_file.write("Project MSOA") #TODO Write useful data with good format
-    return True
+    opened_file.write("#" + "-----" * 15 + "\n")
+    opened_file.write("#-- Copyright (c) 2020 Lyaaaaaaaaaaaaaaa \n")
+    opened_file.write("#-- Project Kanban \n")
+    opened_file.write("#" + "-----" * 15 + "\n")
+    opened_file.write("\n \n")
 
+    try:
+      opened_file.write(yaml.dump(P_Kanban))
+      return True
+    except yaml.YAMLError as exc:
+      print(exc)
+      return False
 #---------------------------------------------------------------------------
 #-- Read_Save
 #--
