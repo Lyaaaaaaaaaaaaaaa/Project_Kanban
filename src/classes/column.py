@@ -25,6 +25,11 @@
 #--     - Edited __init__, Added P_Title parameter with "Column's title" as
 #--         default value
 #--     - Edited Add_Card to add parameters to pass title and description
+#--
+#--   04/02/2020 Lyaaaaa
+#--     - Edited Delete_Card, it now receives a title instead of a card and
+#--         check if within its Cards the title match with one, if it does, it
+#--         deletes the matching card.
 #---------------------------------------------------------------------------
 
 from card import Card
@@ -184,9 +189,14 @@ class Column():
 #      deleting it. Make sure P_Card's type id Card
 #---------------------------------------------------------------------------
 
-  def Delete_Card(self, P_Card):
-    del P_Card
-    return True
+  def Delete_Card(self, P_Title):
+    i = 0
+
+    for Card in self.Cards:
+      if (Card.Get_Title() == P_Title):
+        del self.Cards[i]
+      i = i + 1
+
 
 #---------------------------------------------------------------------------
 #-- Add_Card

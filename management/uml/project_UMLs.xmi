@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI timestamp="2020-02-04T11:57:37" xmi.version="1.2" verified="false" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+<XMI timestamp="2020-02-04T12:21:15" xmi.version="1.2" verified="false" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -138,9 +138,8 @@
         </UML:Operation>
         <UML:Operation isQuery="false" isLeaf="false" visibility="public" isInline="false" isSpecification="false" xmi.id="uBQsLfSf3kAO0" isOverride="false" isRoot="false" isVirtual="false" isAbstract="false" name="Delete_Card">
          <UML:BehavioralFeature.parameter>
-          <UML:Parameter type="u4wpnzYE6cHcE" xmi.id="uxwwfDogBpmkk" kind="return"/>
           <UML:Parameter type="uykhP98ads4I1" visibility="private" isSpecification="false" xmi.id="uaSru1kkbPrVw" value="" name="self"/>
-          <UML:Parameter type="u5TkvRqvJylDv" visibility="private" isSpecification="false" xmi.id="u7fYRQY4Ha6En" value="" name="P_Card"/>
+          <UML:Parameter type="u3HS5qbnpqjcp" visibility="private" isSpecification="false" xmi.id="up3S7MQlQzVOw" value="" name="P_Title"/>
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
        </UML:Classifier.feature>
@@ -474,7 +473,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings documentation="" uniqueid="uwBocv3V8iGgs" viewid="uh75vIRmwL4G0"/>
+  <docsettings documentation="" uniqueid="up3S7MQlQzVOw" viewid="uh75vIRmwL4G0"/>
   <listview>
    <listitem id="Views" type="800" open="1">
     <listitem id="Entity_Relationship_Model" type="836" open="1"/>
