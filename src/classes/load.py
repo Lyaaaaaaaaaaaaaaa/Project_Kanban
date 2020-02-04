@@ -10,14 +10,22 @@
 #--  -
 #--
 #-- Changelog:
-#--   3/2/2020 Lyaaaaa
+#--   03/02/2020 Lyaaaaa
 #--     - Created file.
 #--
+#--   04/02/2020 Lyaaaa
+#--     - Added a new method: Yaml_Object_Constructor to create Python objects
+#--         from the save file
+#--     - Added yaml package in imports
+#--     - Renamed Load method into Load_Save_File to avoid confusing with the
+#--         class' name
+#--     - Implemented Load_Save_File method
 #---------------------------------------------------------------------------
 
 from kanban import Kanban
 from file   import File
 
+import yaml
 import os
 
 class Load():
@@ -41,7 +49,7 @@ class Load():
     self.Scan_Saves()
 
 #---------------------------------------------------------------------------
-#-- Load
+#-- Load_Save_File
 #--
 #-- Portability Issues:
 #--  -
@@ -50,11 +58,24 @@ class Load():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - TODO Create a kanban from the file.
+#--  -
 #---------------------------------------------------------------------------
 
-  def Load(self, P_File_Name):
-    pass
+  def Load_Save_File(self, P_File_Name):
+    yaml.add_constructor(u'tag:yaml.org,2002:python/object:kanban.Kanban',
+                         self.Yaml_Object_Constructor)
+
+    with open("saves/" + P_File_Name, 'r') as stream:
+      try:
+        value         = (yaml.load(stream, Loader=yaml.Loader))
+        Loaded_Kanban = Kanban(value['title'])
+
+        Loaded_Kanban.Set_Columns(value['Columns'])
+        return Loaded_Kanban
+
+      except yaml.YAMLError as error_message:
+        print(error_message)
+        return False
 
 #---------------------------------------------------------------------------
 #-- Scan_Saves
@@ -89,3 +110,21 @@ class Load():
 
   def Get_Files_Names(self):
     return self.Files_Names
+
+#---------------------------------------------------------------------------
+#-- Yaml_Object_Constructor
+#--
+#-- Portability Issues:
+#--  - Heavy dependancy on the yaml package
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Yaml_Object_Constructor(self, P_Loader, P_Node):
+    value = P_Loader.construct_mapping(P_Node)
+    return value
+    
