@@ -23,6 +23,12 @@
 #--         - Added P_Kanban parameter. This is the kanban the class will save
 #--         - Added a file header to the save files.
 #--         - Now successfully export a kanban object and all it's attributs!
+#--
+#--   04/02/2020 Lyaaaaa
+#--     - Made Write_Save a private method "__Write_Save"
+#--     - Added a new method, Write_Save (replaced the former one) which cannot
+#--         overwrite a save (Except if you specifically ask it to overwrite).
+#--         this method, then call __Write_Save if everything alright.
 #---------------------------------------------------------------------------
 
 from file import File
@@ -93,19 +99,19 @@ class Save():
   #-----------------------------
 
 #---------------------------------------------------------------------------
-#-- Save
+#-- Write_Save
 #--
 #-- Portability Issues:
 #--  -
 #--
 #-- Implementation Notes:
-#--  -
+#--  - It's recommended not to use this classe directly. Instead, use Write_Save
 #--
 #-- Anticipated Changes:
 #--  -
 #---------------------------------------------------------------------------
 
-  def Write_Save(self, P_Kanban):
+  def __Write_Save(self, P_Kanban):
     self.File.Create_File()
 
     path        =        self.File.Get_Path()
@@ -124,6 +130,34 @@ class Save():
     except yaml.YAMLError as exc:
       print(exc)
       return False
+
+#---------------------------------------------------------------------------
+#-- Write_Safe_Save
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Safeguard for __Write_Save to avoid erasing existing save!
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Write_Save(self, P_Kanban, P_Overwrite = False):
+
+    if P_Overwrite == True:
+      self.__Write_Save(P_Kanban)
+
+    elif P_Overwrite == False:
+
+      if self.File.Create_File() == False:
+        print("Can't erase existing file : " + self.File.Get_Name())
+        return False
+
+      elif self.File.Create_File() == True:
+        self.__Write_Save(P_Kanban)
+
 #---------------------------------------------------------------------------
 #-- Read_Save
 #--
