@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkAboutDialog" id="About_Dialog">
+    <property name="can_focus">False</property>
+    <property name="type_hint">dialog</property>
+    <property name="program_name">Project Kanban</property>
+    <property name="version">X.X.X</property>
+    <property name="copyright" translatable="yes">Copyright (c) 2020 Lyaaaaaaaaaaaaaaa</property>
+    <property name="website">https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban</property>
+    <property name="authors">Lyaaaaa</property>
+    <property name="logo">ui_ressources/about.jpg</property>
+    <property name="license_type">mit-x11</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkImage" id="Image_Add">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -130,6 +171,72 @@
         </child>
         <child>
           <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkTextBuffer" id="overwrite_dialog_buffer">
+    <property name="text" translatable="yes">Are you sure you want to overwrite this element? There is no coming back.</property>
+  </object>
+  <object class="GtkDialog" id="overwrite_dialog">
+    <property name="can_focus">False</property>
+    <property name="type_hint">dialog</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="cancel_dailog_button">
+                <property name="label" translatable="yes">Yes</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="overwrite_dialog_button">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkTextView">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="buffer">overwrite_dialog_buffer</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
         </child>
       </object>
     </child>
