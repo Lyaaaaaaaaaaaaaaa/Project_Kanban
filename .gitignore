@@ -6,3 +6,7 @@
 /src/classes/test.py
 /src/classes/saves/*
 /src/classes/saves/
+/src/classes/ui_tester.py
+/src/window_test.ui
+/src/window.ui
+
