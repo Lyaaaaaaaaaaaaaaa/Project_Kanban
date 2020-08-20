@@ -43,10 +43,271 @@
       </object>
     </child>
   </object>
+  <object class="GtkDialog" id="Delete_Dialog">
+    <property name="can_focus">False</property>
+    <property name="default_width">320</property>
+    <property name="type_hint">dialog</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="Delete_Dialog_Yes_Button">
+                <property name="label" translatable="yes">Yes</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="Delete_Dialog_Cancel_Button">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="Delete_Dialog_Label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Are you sure you want to delete this element?</property>
+            <property name="justify">center</property>
+            <attributes>
+              <attribute name="weight" value="bold"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkTextBuffer" id="Edit_Card_Dialog_Description_Buffer"/>
+  <object class="GtkTextBuffer" id="Edit_Card_Dialog_Title_Buffer"/>
+  <object class="GtkDialog" id="Edit_Card_Dialog">
+    <property name="can_focus">False</property>
+    <property name="default_width">400</property>
+    <property name="default_height">300</property>
+    <property name="type_hint">dialog</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">15</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="Edit_Card_Dialog_Save_Button">
+                <property name="label" translatable="yes">Save</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="Edit_Card_Dialog_Cancel_Button">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="activate" handler="gtk_widget_hide" object="Edit_Card_Dialog" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">6</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="Edit_Card_Dialog_Title_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Card's title</property>
+                <property name="xalign">0</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkTextView" id="Edit_Card_Dialog_Title_Text_View">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="buffer">Edit_Card_Dialog_Title_Buffer</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Edit_Card_Dialog_Description_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">12</property>
+                <property name="label" translatable="yes">Card's description</property>
+                <property name="xalign">0</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkTextView" id="Edit_Card_Dialog_Description_Text_View">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="buffer">Edit_Card_Dialog_Description_Buffer</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkImage" id="Image_Add">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-add</property>
+  </object>
+  <object class="GtkDialog" id="Overwrite_Dialog">
+    <property name="can_focus">False</property>
+    <property name="type_hint">dialog</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="Overwrite_Dailog_Cancel_Button">
+                <property name="label" translatable="yes">Yes</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="Overwrite_Dialog_Yes_Button">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="Overwrite_Dialog_Label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Are you sure you want to overwrite this element? There is no coming back.</property>
+            <property name="justify">center</property>
+            <attributes>
+              <attribute name="weight" value="bold"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
   </object>
   <object class="GtkPopover" id="Popover_Menu">
     <property name="can_focus">False</property>
@@ -101,7 +362,7 @@
       </object>
     </child>
   </object>
-  <object class="GtkApplicationWindow" id="Application_Windows">
+  <object class="GtkApplicationWindow" id="Application_Window">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Project Kanban</property>
     <property name="default_width">600</property>
@@ -175,11 +436,10 @@
       </object>
     </child>
   </object>
-  <object class="GtkTextBuffer" id="overwrite_dialog_buffer">
-    <property name="text" translatable="yes">Are you sure you want to overwrite this element? There is no coming back.</property>
-  </object>
-  <object class="GtkDialog" id="overwrite_dialog">
+  <object class="GtkTextBuffer" id="Rename_Buffer"/>
+  <object class="GtkDialog" id="Rename_Dialog">
     <property name="can_focus">False</property>
+    <property name="default_width">320</property>
     <property name="type_hint">dialog</property>
     <child type="titlebar">
       <placeholder/>
@@ -188,14 +448,14 @@
       <object class="GtkBox">
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
+        <property name="spacing">15</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="cancel_dailog_button">
-                <property name="label" translatable="yes">Yes</property>
+              <object class="GtkButton" id="Rename_Dialog_Save_Button">
+                <property name="label" translatable="yes">Save</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -207,7 +467,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="overwrite_dialog_button">
+              <object class="GtkButton" id="Rename_Dialog_Cancel_Button">
                 <property name="label" translatable="yes">Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -227,13 +487,44 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTextView">
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="buffer">overwrite_dialog_buffer</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">6</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="Rename_Dialog_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Title</property>
+                <property name="xalign">0</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkTextView" id="Rename_Dialog_Text_View">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="buffer">Rename_Buffer</property>
+                <property name="accepts_tab">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="padding">1</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
-            <property name="expand">True</property>
+            <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
