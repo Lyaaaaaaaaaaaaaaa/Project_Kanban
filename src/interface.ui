@@ -5,6 +5,7 @@
   <object class="GtkAboutDialog" id="About_Dialog">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
     <property name="program_name">Project Kanban</property>
     <property name="version">X.X.X</property>
     <property name="copyright" translatable="yes">Copyright (c) 2020 Lyaaaaaaaaaaaaaaa</property>
@@ -28,7 +29,18 @@
               <placeholder/>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkButton" id="About_Dialog_Close_Button">
+                <property name="label" translatable="yes">Close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="On_About_Dialog_Close_Button_Clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -47,6 +59,7 @@
     <property name="can_focus">False</property>
     <property name="default_width">320</property>
     <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
     <child type="titlebar">
       <placeholder/>
     </child>
@@ -65,6 +78,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="On_Delete_Dialog_Yes_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -78,6 +92,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="On_Delete_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -118,6 +133,7 @@
     <property name="default_width">400</property>
     <property name="default_height">300</property>
     <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
     <child type="titlebar">
       <placeholder/>
     </child>
@@ -136,6 +152,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="On_Edit_Card_Dialog_Save_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -149,7 +166,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="activate" handler="gtk_widget_hide" object="Edit_Card_Dialog" swapped="no"/>
+                <signal name="clicked" handler="On_Edit_Card_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -245,6 +262,7 @@
   <object class="GtkDialog" id="Overwrite_Dialog">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
     <child type="titlebar">
       <placeholder/>
     </child>
@@ -258,11 +276,12 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="Overwrite_Dailog_Cancel_Button">
+              <object class="GtkButton" id="Overwrite_Dailog_Yes_Button">
                 <property name="label" translatable="yes">Yes</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="On_Overwrite_Dialog_Yes_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -271,11 +290,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="Overwrite_Dialog_Yes_Button">
+              <object class="GtkButton" id="Overwrite_Dialog_Cancel_Button">
                 <property name="label" translatable="yes">Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="On_Overwrite_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -318,12 +338,13 @@
         <property name="orientation">vertical</property>
         <property name="layout_style">start</property>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="Popover_Menu_Help_Button">
             <property name="label" translatable="yes">Help</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="relief">none</property>
+            <signal name="clicked" handler="On_Popover_Menu_Help_Clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -332,12 +353,13 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="Popover_Menu_Preferences_Button">
             <property name="label" translatable="yes">Preferences</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="relief">none</property>
+            <signal name="clicked" handler="On_Popover_Menu_Preferences_Clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -346,12 +368,13 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="Popover_Menu_About_Button">
             <property name="label" translatable="yes">About</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="relief">none</property>
+            <signal name="clicked" handler="On_Popover_Menu_About_Clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -368,6 +391,7 @@
     <property name="default_width">600</property>
     <property name="default_height">400</property>
     <property name="startup_id">Project Kanban</property>
+    <signal name="destroy" handler="On_Application_Window_Destroy" swapped="no"/>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="Header_Bar">
         <property name="visible">True</property>
@@ -375,12 +399,13 @@
         <property name="title" translatable="yes">Project Kanban</property>
         <property name="show_close_button">True</property>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="Application_Window_Add_Kanban_Button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="image">Image_Add</property>
             <property name="always_show_image">True</property>
+            <signal name="clicked" handler="On_Application_Window_Add_Kanban_Clicked" swapped="no"/>
           </object>
         </child>
         <child>
@@ -441,6 +466,7 @@
     <property name="can_focus">False</property>
     <property name="default_width">320</property>
     <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
     <child type="titlebar">
       <placeholder/>
     </child>
@@ -459,6 +485,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="On_Rename_Dialog_Save_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -472,6 +499,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="On_Rename_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
