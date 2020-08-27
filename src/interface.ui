@@ -409,16 +409,14 @@
           </object>
         </child>
         <child>
-          <object class="GtkComboBoxText">
+          <object class="GtkComboBoxText" id="Kanban_Combo_Box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="active_id">placeholder</property>
             <items>
               <item id="placeholder" translatable="yes">Choose a kanban</item>
-              <item translatable="yes">kanban 1</item>
-              <item translatable="yes">Kanban 2</item>
-              <item translatable="yes">Kanban 3</item>
             </items>
+            <signal name="changed" handler="On_Kanban_Combo_Box_Changed" object="Application_Window" swapped="no"/>
           </object>
           <packing>
             <property name="position">1</property>
