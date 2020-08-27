@@ -17,6 +17,11 @@
 #--     - Implementation of the methods
 #--     - Create an object of Handler and use it to connect the signals
 #--     - Handler class is now imported in Interface (reversed)
+#--
+#--   27/08/2020 Lyaaaaa
+#--     - Removed the debugging print
+#--     - The method Start_Application now calls Handler::Scan_Saves()
+#--         method.
 #---------------------------------------------------------------------------
 
 import gi
@@ -42,7 +47,6 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def __init__(self):
-    print ("init")
     self.Builder = Gtk.Builder()
     self.Handler = Handler(self.Builder)
 
@@ -60,7 +64,6 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def Connect_Interface(self):
-    print ("Connect_Interface")
     self.Builder.add_from_file("../interface.ui")
 
 #---------------------------------------------------------------------------
@@ -77,7 +80,6 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def Connect_Signals(self):
-    print ("Connect_Signals")
     self.Builder.connect_signals(self.Handler)
 
 #---------------------------------------------------------------------------
@@ -94,6 +96,7 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def Start_Application(self):
+    self.Handler.Scan_Saves()
     Application_Window = self.Builder.get_object("Application_Window")
     Application_Window.show_all()
     Gtk.main()
