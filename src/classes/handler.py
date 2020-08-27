@@ -20,6 +20,12 @@
 #--       - On_Popover_Menu_About_Clicked
 #--       - On_About_Dialog_Close_Button_Clicked
 #--       - On_Application_Window_Destroy
+#--
+#--   27/08/2020 Lyaaaaa
+#--     - In On_About_Dialog_Close_Button_Clicked renamed the local variable
+#--         "About_Dialog" into "Dialog".
+#--     - Implemented the *_Dialog_Cancel_Clicked methods.
+#--     - Added todo in the empty methods.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -77,7 +83,7 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Application_Window_Add_Kanban_Clicked(self, *args):
-    pass
+    pass#TODO
 
 #---------------------------------------------------------------------------
 #-- On_About_Dialog_Close_Button_Clicked
@@ -93,8 +99,8 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_About_Dialog_Close_Button_Clicked(self, *args):
-    About_Dialog = self.Builder.get_object("About_Dialog")
-    About_Dialog.hide()
+    Dialog = self.Builder.get_object("About_Dialog")
+    Dialog.hide()
 
 #---------------------------------------------------------------------------
 #-- On_Edit_Card_Dialog_Save_Clicked
@@ -110,7 +116,7 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Edit_Card_Dialog_Save_Clicked(self, *args):
-    pass
+    pass#TODO
 
 
 #---------------------------------------------------------------------------
@@ -127,7 +133,8 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Edit_Card_Dialog_Cancel_Clicked(self, *args):
-    pass
+    Dialog = self.Builder.get_object("Edit_Card_Dialog")
+    Dialog.hide()
 
 
 #---------------------------------------------------------------------------
@@ -144,7 +151,7 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Overwrite_Dialog_Yes_Clicked(self, *args):
-    pass
+    pass#TODO
 
 
 #---------------------------------------------------------------------------
@@ -161,7 +168,8 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Overwrite_Dialog_Cancel_Clicked(self, *args):
-    pass
+    Dialog = self.Builder.get_object("Overwrite_Dialog_Cancel")
+    Dialog.hide()
 
 
 #---------------------------------------------------------------------------
@@ -178,7 +186,8 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Delete_Dialog_Cancel_Clicked(self, *args):
-    pass
+    Dialog = self.Builder.get_object("Delete_Dialog")
+    Dialog.hide()
 
 
 #---------------------------------------------------------------------------
@@ -195,7 +204,7 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Delete_Dialog_Yes_Clicked(self, *args):
-    pass
+    pass#TODO
 
 
 #---------------------------------------------------------------------------
@@ -212,7 +221,7 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Rename_Dialog_Save_Clicked(self, *args):
-    pass
+    pass #TODO
 
 
 #---------------------------------------------------------------------------
@@ -229,7 +238,8 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Rename_Dialog_Cancel_Clicked(self, *args):
-    pass
+    Dialog = self.Builder.get_object("Rename_Dialog")
+    Dialog.hide()
 
 #---------------------------------------------------------------------------
 #-- On_Popover_Menu_Help_Clicked
@@ -245,7 +255,7 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Popover_Menu_Help_Clicked(self, *args):
-    pass
+    pass#TODO
 
 #---------------------------------------------------------------------------
 #-- On_Popover_Menu_Preferences_Clicked
@@ -261,7 +271,7 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Popover_Menu_Preferences_Clicked(self, *args):
-    pass
+    pass#TODO
 
 #---------------------------------------------------------------------------
 #-- On_Popover_Menu_About_Clicked
