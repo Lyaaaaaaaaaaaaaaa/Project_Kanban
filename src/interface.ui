@@ -57,6 +57,7 @@
   </object>
   <object class="GtkDialog" id="Delete_Dialog">
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Delete confirmation</property>
     <property name="default_width">320</property>
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
@@ -130,6 +131,7 @@
   <object class="GtkTextBuffer" id="Edit_Card_Dialog_Title_Buffer"/>
   <object class="GtkDialog" id="Edit_Card_Dialog">
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Edit your card</property>
     <property name="default_width">400</property>
     <property name="default_height">300</property>
     <property name="type_hint">dialog</property>
@@ -261,6 +263,7 @@
   </object>
   <object class="GtkDialog" id="Overwrite_Dialog">
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Overwrite confirmation</property>
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
     <child type="titlebar">
@@ -462,6 +465,7 @@
   <object class="GtkTextBuffer" id="Rename_Buffer"/>
   <object class="GtkDialog" id="Rename_Dialog">
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Choose a name</property>
     <property name="default_width">320</property>
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
