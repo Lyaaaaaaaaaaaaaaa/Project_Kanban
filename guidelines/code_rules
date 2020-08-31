@@ -7,6 +7,8 @@ Classes    : Class_Name
 Objects    : Object_Name
 functions  : Function_Name
 
+After each update of a file, please update the file changelog (in the header)!
+
 align statements like this (exemple taken from Ada style guide.):
   -- are comments
 
