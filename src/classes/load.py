@@ -13,13 +13,20 @@
 #--   03/02/2020 Lyaaaaa
 #--     - Created file.
 #--
-#--   04/02/2020 Lyaaaa
+#--   04/02/2020 Lyaaaaa
 #--     - Added a new method: Yaml_Object_Constructor to create Python objects
 #--         from the save file
 #--     - Added yaml package in imports
 #--     - Renamed Load method into Load_Save_File to avoid confusing with the
 #--         class' name
 #--     - Implemented Load_Save_File method
+#--
+#--   31/08/2020 Lyaaaaa
+#--     - To fix an error appearing when Scan_Saves is called but no saves
+#--         folder exist, I created a new method Create_Directory which call
+#--         a File's method named Create_Directory.
+#--     - Create_Directory is called on the init of the class right before
+#--         Scan_Saves.
 #---------------------------------------------------------------------------
 
 from kanban import Kanban
@@ -46,6 +53,7 @@ class Load():
 
   def __init__(self):
     self.Files_Names = []
+    self.Create_Directory()
     self.Scan_Saves()
 
 #---------------------------------------------------------------------------
@@ -128,3 +136,19 @@ class Load():
     value = P_Loader.construct_mapping(P_Node)
     return value
     
+#---------------------------------------------------------------------------
+#-- Create_Directory
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Create_Directory(self):
+    Temp_File = File()
+    Temp_File.Create_Directory()
