@@ -14,9 +14,13 @@
 #--     - Created file.
 #--     - Added Create_File method (which create a directory too).
 #--
-#--   03/02/2020 Lyaaaa
+#--   03/02/2020 Lyaaaaa
 #--     - Edited __init__ to add a P_Name parameter to change the name
 #--         of the file when it's created
+#--   31/02/2020 Lyaaaaa
+#--     - Splitted Create_File into two functions
+#--       - Create_Directory, which try to create the directory
+#--       - Create_File, which call Create_Directory then try to create the file.
 #---------------------------------------------------------------------------
 
 import os
@@ -126,7 +130,7 @@ class File():
 #-- Create_File
 #--
 #-- Portability Issues:
-#--  - Tries creating a directory, I guess permissions could create problems
+#--  -
 #--
 #-- Implementation Notes:
 #--  -
@@ -138,14 +142,30 @@ class File():
   def Create_File(self):
     path = self.path + self.name
 
-    try:
-      os.mkdir(self.path)
-    except FileExistsError:
-      print("Directory ", self.path , "already exists")
-
+    self.Create_Directory()
     try:
       open(path, "x")
       return True
     except FileExistsError:
       print("File ", self.name , "already exists")
       return False
+
+
+#---------------------------------------------------------------------------
+#-- Create_Directory
+#--
+#-- Portability Issues:
+#--  - Tries creating a directory, I guess permissions could create problems
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Create_Directory(self):
+    try:
+      os.mkdir(self.path)
+    except FileExistsError:
+      print("Directory ", self.path , "already exists")
