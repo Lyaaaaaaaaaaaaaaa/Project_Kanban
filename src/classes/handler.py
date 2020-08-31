@@ -35,11 +35,16 @@
 #--       - Kanban, an instance of the Kanban class,
 #--       - action_flag, a flag used to tell the signals what to do.
 #--     - Added the Create_Kanban method
+#--
+#--   31/08/2020 Lyaaaaa
+#--     - Scan_Saves becomes Display_Saves because it no longer call Scan_Saves
+#--         anymore. Scan_Saves is called on the init of the Load class.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
 
-from load import Load, Kanban
+from load   import Load
+from kanban import Kanban
 
 class Handler():
   """Link the interface with the backbone and manage the whole application"""
@@ -77,10 +82,8 @@ class Handler():
 #--  -
 #---------------------------------------------------------------------------
 
-  def Scan_Saves(self):
-    Combo_Box = self.Builder.get_object("Kanban_Combo_Box")
-
-    self.Load.Scan_Saves()
+  def Display_Saves(self):
+    Combo_Box   = self.Builder.get_object("Kanban_Combo_Box")
     Files_Names = self.Load.Get_Files_Names()
 
     for File_Name in Files_Names:

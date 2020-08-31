@@ -22,6 +22,10 @@
 #--     - Removed the debugging print
 #--     - The method Start_Application now calls Handler::Scan_Saves()
 #--         method.
+#--
+#--   31/08/2020 Lyaaaaa
+#--     - In Start_Application Handler.Scan_Saves becomes Handler.Display_Saves
+#--         because the name of the method changed in the Hlandler class.
 #---------------------------------------------------------------------------
 
 import gi
@@ -96,7 +100,7 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def Start_Application(self):
-    self.Handler.Scan_Saves()
+    self.Handler.Display_Saves()
     Application_Window = self.Builder.get_object("Application_Window")
     Application_Window.show_all()
     Gtk.main()
