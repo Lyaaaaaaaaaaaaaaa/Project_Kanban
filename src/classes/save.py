@@ -37,6 +37,7 @@
 #--       - Corrected an error in Write_Save. The condition for calling
 #--           __Write_Save was wrong and it was never called if P_Overwrite
 #--           wans't set to True.
+#--       - Write_Save now return True if everything is good.
 #--
 #---------------------------------------------------------------------------
 
@@ -76,7 +77,7 @@ class Save():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  -
+#--  - TODO Remove the return True?
 #---------------------------------------------------------------------------
 
   def Set_File(self, P_File):
@@ -161,6 +162,7 @@ class Save():
 
       if self.File.Create_File() == True:
         self.__Write_Save(P_Kanban)
+        return True
 
       else:
         print ("Can't erase existing file : "
