@@ -39,11 +39,21 @@
 #--   31/08/2020 Lyaaaaa
 #--     - Scan_Saves becomes Display_Saves because it no longer call Scan_Saves
 #--         anymore. Scan_Saves is called on the init of the Load class.
+#--
+#--   01/08/2020 Lyaaaaa
+#--     - Added a Save and File object to the class attributs.
+#--     - Implemented Create_Kanban.
+#--     - Updated Display_Saves. It no longer directly edits the combo box but
+#--         calls Add_Combo_Box_Element which does.
+#--     - Created Add_Combo_Box_Element to append element to the combo box.
+#--     - Implemented On_Overwrite_Dialog_Yes_Clicked.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
 
 from load   import Load
+from file   import File
+from save   import Save
 from kanban import Kanban
 
 class Handler():
@@ -65,6 +75,8 @@ class Handler():
   def __init__(self, P_Builder):
     self.Builder     = P_Builder
     self.Load        = Load()
+    self.File        = File()
+    self.Save        = Save(self.File)
     self.Kanban      = Kanban()
     self.action_flag = None
 
@@ -76,18 +88,17 @@ class Handler():
 #--  -
 #--
 #-- Implementation Notes:
-#--  - Scan the saves directory and edit the Kanban_Combo_Box's choices
+#--  - Scan the saves directory.
 #--
 #-- Anticipated Changes:
 #--  -
 #---------------------------------------------------------------------------
 
   def Display_Saves(self):
-    Combo_Box   = self.Builder.get_object("Kanban_Combo_Box")
     Files_Names = self.Load.Get_Files_Names()
 
     for File_Name in Files_Names:
-      Combo_Box.append(File_Name, File_Name)
+      self.Add_Combo_Box_Element(File_Name, File_Name)
 
 
 #---------------------------------------------------------------------------
@@ -100,11 +111,47 @@ class Handler():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Call Save::Write_Save and Handler::Scan_Saves()
+#--  -
 #---------------------------------------------------------------------------
 
   def Create_Kanban(self, P_New_Name):
     self.Kanban = Kanban(P_New_Name)
+
+    self.File.Set_Name(P_New_Name)
+    self.Save.Set_File(self.File)
+
+    if self.Save.Write_Save(self.Kanban) == True:
+      self.Add_Combo_Box_Element(P_New_Name, P_New_Name)
+
+    else:
+      Dialog            = self.Builder.get_object("Overwrite_Dialog")
+      Label             = self.Builder.get_object("Overwrite_Dialog_Label")
+      self.action_flag  = "Overwrite_Kanban"
+
+      Label.set_text("A kanban is already named "
+                     + P_New_Name
+                     + ". Do you want to overwrite it? There is no coming back")
+      Dialog.show()
+
+
+#---------------------------------------------------------------------------
+#-- Add_Combo_Box_Element
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+  def Add_Combo_Box_Element(self, P_Element_Text, P_Element_Id):
+    Combo_Box   = self.Builder.get_object("Kanban_Combo_Box")
+    Combo_Box.append(P_Element_Text, P_Element_Id)
+
+
+
 
   #---------------------------------
   #--          Signals            --
@@ -209,11 +256,16 @@ class Handler():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  -
+#--  - Add other condition to check for future edit (like edit card or column).
 #---------------------------------------------------------------------------
 
   def On_Overwrite_Dialog_Yes_Clicked(self, *args):
-    pass#TODO
+    Dialog = self.Builder.get_object("Overwrite_Dialog")
+
+    if self.action_flag == "Overwrite_Kanban":
+      self.Save.Write_Save(self.Kanban, True)
+      Dialog.hide()
+
 
 
 #---------------------------------------------------------------------------
