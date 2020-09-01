@@ -21,6 +21,13 @@ Otherwise, open source softwares were fine but far too heavy for my humble use. 
 
 That's why I'm making this project.
 
+## How to test it?
+
+In its actual state the project is not testable. The classes are done but there is no interface connected (WIP in Handler branche)
+to use them.
+If you really want to try it I recommend taking a look at [Class' diagram](https://raw.githubusercontent.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/master/management/uml/Class_Diagram.jpeg). 
+The classes are in `src/classes/`.
+
 ## More information:
 
 
