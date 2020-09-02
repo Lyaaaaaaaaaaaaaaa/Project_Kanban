@@ -52,14 +52,20 @@
 #--     - Removed all related statement to "Rename_Buffer" because it no longer
 #--         exist in the interface.
 #--     - Replaced the related statement by using "Rename_Dialog_Entry" instead.
+#--     - Now import Graphical_Kanban class and create an object of it in
+#--         On_Kanban_Combo_Box_Changed.
+#--     - Updated On_Kanban_Combo_Box_Changed to create a graphical kanban by
+#--         creating an object of the Graphical_Kanban's class.
+#--     - Added a Graphical_Kanban attribut to this class (init to None)
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
 
-from load   import Load
-from file   import File
-from save   import Save
-from kanban import Kanban
+from load             import Load
+from file             import File
+from save             import Save
+from kanban           import Kanban
+from Graphical_Kanban import Graphical_Kanban
 
 class Handler():
   """Link the interface with the backbone and manage the whole application"""
@@ -78,12 +84,13 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def __init__(self, P_Builder):
-    self.Builder     = P_Builder
-    self.Load        = Load()
-    self.File        = File()
-    self.Save        = Save(self.File)
-    self.Kanban      = Kanban()
-    self.action_flag = None
+    self.Builder          = P_Builder
+    self.Load             = Load()
+    self.File             = File()
+    self.Save             = Save(self.File)
+    self.Kanban           = Kanban()
+    self.Graphical_Kanban = None
+    self.action_flag      = None
 
 
 #---------------------------------------------------------------------------
@@ -434,9 +441,11 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Kanban_Combo_Box_Changed(self, *args):
-    Combo_Box = self.Builder.get_object("Kanban_Combo_Box")
-    active_id = Combo_Box.get_active_id()
+    Combo_Box   = self.Builder.get_object("Kanban_Combo_Box")
+    Content_Box = self.Builder.get_object("Content_Box")
+    active_id   = Combo_Box.get_active_id()
 
     if active_id != "placeholder":
-      Kanban = self.Load.Load_Save_File(active_id)
-      #TODO Generate the graphicals elements of the kanban
+      del (self.Graphical_Kanban)
+      Kanban                = self.Load.Load_Save_File(active_id)
+      self.Graphical_Kanban = Graphical_Kanban(Kanban, Content_Box)
