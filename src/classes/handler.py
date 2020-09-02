@@ -47,6 +47,11 @@
 #--         calls Add_Combo_Box_Element which does.
 #--     - Created Add_Combo_Box_Element to append element to the combo box.
 #--     - Implemented On_Overwrite_Dialog_Yes_Clicked.
+#--
+#--   02/08/2020 Lyaaaaa
+#--     - Removed all related statement to "Rename_Buffer" because it no longer
+#--         exist in the interface.
+#--     - Replaced the related statement by using "Rename_Dialog_Entry" instead.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -188,9 +193,7 @@ class Handler():
 
   def On_Application_Window_Add_Kanban_Clicked(self, *args):
     Dialog = self.Builder.get_object("Rename_Dialog")
-    Rename_Buffer = self.Builder.get_object("Rename_Buffer")
 
-    Rename_Buffer.set_text(self.Kanban.Get_Title())
     Dialog.show()
     self.action_flag = "Add_Kanban"
 
@@ -338,17 +341,13 @@ class Handler():
   def On_Rename_Dialog_Save_Clicked(self, *args):
 
     Dialog        = self.Builder.get_object("Rename_Dialog")
-    Rename_Buffer = self.Builder.get_object("Rename_Buffer")
-
-    start = Rename_Buffer.get_start_iter()
-    end   = Rename_Buffer.get_end_iter()
-
-    new_name = Rename_Buffer.get_text(start, end, False)
+    Rename_Entry  = self.Builder.get_object("Rename_Dialog_Entry")
+    new_name      = Rename_Entry.get_text()
 
     if self.action_flag == "Add_Kanban":
       self.Create_Kanban(new_name)
 
-    Rename_Buffer.set_text("")
+    Rename_Entry.set_text("")
     Dialog.hide()
 
 #---------------------------------------------------------------------------
@@ -366,9 +365,9 @@ class Handler():
 
   def On_Rename_Dialog_Cancel_Clicked(self, *args):
     Dialog        = self.Builder.get_object("Rename_Dialog")
-    Rename_Buffer = self.Builder.get_object("Rename_Buffer")
+    Rename_Entry  = self.Builder.get_object("Rename_Dialog_Entry")
 
-    Rename_Buffer.set_text("")
+    Rename_Entry.set_text("")
     Dialog.hide()
 
 #---------------------------------------------------------------------------
