@@ -15,9 +15,10 @@
 #--
 #--   03/09/2020 Lyaaaaa
 #--     - Updated Add_Card. The card description now has a wrap mode set to
-#--         character
-#--     - Updated Add_Column. The column box now contain a scrollable window
-#--         and a viewport, then another box inside it for the cards.
+#--         word
+#--     - Updated Add_Column. The column box now contain a grid with a header
+#--         (Gtk.Hbox) to display the column name and buttons and a
+#--         Gtk.ScrolledWindow the display the cards.
 #---------------------------------------------------------------------------
 import gi
 
@@ -145,19 +146,41 @@ class Graphical_Kanban():
 #---------------------------------------------------------------------------
 
   def Add_Column(self, P_Title):
-    Column_Box      = Gtk.VBox()
+
+    Column_Grid     = Gtk.Grid()
+    Column_Header   = Gtk.HBox()
+    Column_Label    = Gtk.Label()
     Scrolled_Window = Gtk.ScrolledWindow()
     Viewport        = Gtk.Viewport()
     Card_Box        = Gtk.VBox()
-    Column_Label    = Gtk.Label(label = P_Title)
+    Edit_Image      = Gtk.Image()
+    Edit_Button     = Gtk.Button()
 
+
+    Edit_Image.set_from_icon_name("gtk-edit", 1)
+    Edit_Button.set_image(Edit_Image)
+    Edit_Button.set_relief(Gtk.ReliefStyle.NONE)
+
+    Card_Box.set_vexpand(True)
+    Viewport.add(Card_Box)
+
+    Scrolled_Window.add(Viewport)
     Scrolled_Window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
-    Viewport.add(Card_Box)
-    Scrolled_Window.add(Viewport)
-    Column_Box.add(Column_Label)
-    Column_Box.add(Scrolled_Window)
-    self.Gtk_Box.add(Column_Box)
+    Column_Label.set_markup("<b> <big>"+ P_Title + "</big> </b>")
+    Column_Header.add(Column_Label)
+    Column_Header.add(Edit_Button)
+
+    Column_Grid.set_column_homogeneous(True)
+    Column_Grid.attach(Column_Header, 0, 0, 1, 1)
+    Column_Grid.attach_next_to (Scrolled_Window,
+                                Column_Header,
+                                Gtk.PositionType.BOTTOM,
+                                1,
+                                1)
+
+
+    self.Gtk_Box.add(Column_Grid)
 
     return Card_Box
 
@@ -173,6 +196,7 @@ class Graphical_Kanban():
 #--
 #-- Anticipated Changes:
 #--  - Add a button to set a color
+#--  - Replace the Gtk.Frame by something else
 #---------------------------------------------------------------------------
 
   def Add_Card(self, P_Title, P_Description):
@@ -187,7 +211,7 @@ class Graphical_Kanban():
     Text_View.set_buffer(Buffer)
     Text_View.set_editable(False)
     Text_View.set_cursor_visible(False)
-    Text_View.set_wrap_mode(Gtk.WrapMode.CHAR)
+    Text_View.set_wrap_mode(Gtk.WrapMode.WORD)
 
     Card_Frame.add(Text_View)
     Card_Frame.set_label_widget(Label)
