@@ -27,6 +27,11 @@
 #--         a File's method named Create_Directory.
 #--     - Create_Directory is called on the init of the class right before
 #--         Scan_Saves.
+#--
+#--   03/09/2020 Lyaaaaa
+#--     - Get_Files_Names now return the names without the .yaml.
+#--     - Load_Save_File now loads the file named after the parameter given but
+#--         manually adds .yaml at the end of the name given.
 #---------------------------------------------------------------------------
 
 from kanban import Kanban
@@ -63,7 +68,7 @@ class Load():
 #--  -
 #--
 #-- Implementation Notes:
-#--  -
+#--  - Load the file named like P_File_Name with a .yaml at the end.
 #--
 #-- Anticipated Changes:
 #--  -
@@ -73,7 +78,7 @@ class Load():
     yaml.add_constructor(u'tag:yaml.org,2002:python/object:kanban.Kanban',
                          self.Yaml_Object_Constructor)
 
-    with open("saves/" + P_File_Name, 'r') as stream:
+    with open("saves/" + P_File_Name + ".yaml", 'r') as stream:
       try:
         value         = (yaml.load(stream, Loader=yaml.Loader))
         Loaded_Kanban = Kanban(value['title'])
@@ -110,14 +115,20 @@ class Load():
 #--  -
 #--
 #-- Implementation Notes:
-#--  -
+#--  - Returns the saves names without the extentions ".yaml"
 #--
 #-- Anticipated Changes:
 #--  -
 #---------------------------------------------------------------------------
 
   def Get_Files_Names(self):
-    return self.Files_Names
+    names = []
+
+    for file_name in self.Files_Names:
+      name = file_name.replace(".yaml", "")
+      names.append(name)
+
+    return names
 
 #---------------------------------------------------------------------------
 #-- Yaml_Object_Constructor
