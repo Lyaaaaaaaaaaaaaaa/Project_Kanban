@@ -12,6 +12,12 @@
 #-- Changelog:
 #--   02/09/2020 Lyaaaaa
 #--     - Created the file and implemented it.
+#--
+#--   03/09/2020 Lyaaaaa
+#--     - Updated Add_Card. The card description now has a wrap mode set to
+#--         character
+#--     - Updated Add_Column. The column box now contain a scrollable window
+#--         and a viewport, then another box inside it for the cards.
 #---------------------------------------------------------------------------
 import gi
 
@@ -139,13 +145,21 @@ class Graphical_Kanban():
 #---------------------------------------------------------------------------
 
   def Add_Column(self, P_Title):
-    Column_Box   = Gtk.VBox()
-    Column_Label = Gtk.Label(label = P_Title)
+    Column_Box      = Gtk.VBox()
+    Scrolled_Window = Gtk.ScrolledWindow()
+    Viewport        = Gtk.Viewport()
+    Card_Box        = Gtk.VBox()
+    Column_Label    = Gtk.Label(label = P_Title)
 
+    Scrolled_Window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+
+    Viewport.add(Card_Box)
+    Scrolled_Window.add(Viewport)
     Column_Box.add(Column_Label)
+    Column_Box.add(Scrolled_Window)
     self.Gtk_Box.add(Column_Box)
 
-    return Column_Box
+    return Card_Box
 
 
 #---------------------------------------------------------------------------
@@ -173,6 +187,7 @@ class Graphical_Kanban():
     Text_View.set_buffer(Buffer)
     Text_View.set_editable(False)
     Text_View.set_cursor_visible(False)
+    Text_View.set_wrap_mode(Gtk.WrapMode.CHAR)
 
     Card_Frame.add(Text_View)
     Card_Frame.set_label_widget(Label)
