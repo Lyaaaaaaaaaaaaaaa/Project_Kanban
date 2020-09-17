@@ -422,7 +422,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="image">Image_Edit</property>
-            <signal name="clicked" handler="On_Application_Window_Edit_Kanban_Button_Clicked" swapped="no"/>
+            <signal name="clicked" handler="On_Application_Window_Edit_Kanban_Clicked" swapped="no"/>
           </object>
           <packing>
             <property name="position">1</property>
