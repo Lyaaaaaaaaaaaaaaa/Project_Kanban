@@ -65,7 +65,7 @@ from load             import Load
 from file             import File
 from save             import Save
 from kanban           import Kanban
-from Graphical_Kanban import Graphical_Kanban
+from graphical_kanban import Graphical_Kanban
 
 class Handler():
   """Link the interface with the backbone and manage the whole application"""
