@@ -6,7 +6,7 @@ Thank you for considering contributing to my humble project! It's very kind. How
 Go in **issues**, then click on **new issue** and select **bug report**
 
 ## How to suggest a new feature?
-Go in **issues**, then click on **new issue** and select **Feature request**. Any suggestion is welcome! Of course, everything isn't possible but giving your opinion or thought about improving this project is good.
+Go in **issues**, then click on **new issue** and select **Feature request**. Any suggestion is welcome! Of course, everything isn't possible, but giving your opinion or thought about improving this project is good.
 
 ## How to set up your environment and run tests?
 You will need Python installed. Otherwise, you can use any text editor. I personally use the Gnome Builder.

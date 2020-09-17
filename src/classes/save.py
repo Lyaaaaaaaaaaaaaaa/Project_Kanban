@@ -29,6 +29,16 @@
 #--     - Added a new method, Write_Save (replaced the former one) which cannot
 #--         overwrite a save (Except if you specifically ask it to overwrite).
 #--         this method, then call __Write_Save if everything alright.
+#--
+#--   01/09/2020 Lyaaaaa
+#--     - Updated Write_Save and __Write_Save.
+#--       - __Write_Save no longer calls Create_File because Write_Save does
+#--           and Write_Save calls __Write_Save. Therefore, it was useless.
+#--       - Corrected an error in Write_Save. The condition for calling
+#--           __Write_Save was wrong and it was never called if P_Overwrite
+#--           wans't set to True.
+#--       - Write_Save now return True if everything is good.
+#--
 #---------------------------------------------------------------------------
 
 from file import File
@@ -67,7 +77,7 @@ class Save():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  -
+#--  - TODO Remove the return True?
 #---------------------------------------------------------------------------
 
   def Set_File(self, P_File):
@@ -112,7 +122,6 @@ class Save():
 #---------------------------------------------------------------------------
 
   def __Write_Save(self, P_Kanban):
-    self.File.Create_File()
 
     path        =        self.File.Get_Path()
     path        = path + self.File.Get_Name()
@@ -151,12 +160,15 @@ class Save():
 
     elif P_Overwrite == False:
 
-      if self.File.Create_File() == False:
-        print("Can't erase existing file : " + self.File.Get_Name())
-        return False
-
-      elif self.File.Create_File() == True:
+      if self.File.Create_File() == True:
         self.__Write_Save(P_Kanban)
+        return True
+
+      else:
+        print ("Can't erase existing file : "
+               + self.File.Get_Name()
+               + ". Overwrite not allowed.")
+        return False
 
 #---------------------------------------------------------------------------
 #-- Read_Save
