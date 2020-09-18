@@ -19,6 +19,10 @@
 #--     - Updated Add_Column. The column box now contain a grid with a header
 #--         (Gtk.Hbox) to display the column name and buttons and a
 #--         Gtk.ScrolledWindow the display the cards.
+#--
+#--   18/09/2020 Lyaaaaa
+#--     - Updated Add_Column.
+#--       - It now has a button to add a new card in it.
 #---------------------------------------------------------------------------
 import gi
 
@@ -138,7 +142,9 @@ class Graphical_Kanban():
 #--  -
 #--
 #-- Implementation Notes:
-#--  -
+#--  - Generate the graphical elements of a column.
+#--      - it's composed of a grid with a header on top with buttons and a title
+#--      - then a scrolled window to display the cards.
 #--
 #-- Anticipated Changes:
 #--  - Add a counter displaying the number of card
@@ -155,11 +161,17 @@ class Graphical_Kanban():
     Card_Box        = Gtk.VBox()
     Edit_Image      = Gtk.Image()
     Edit_Button     = Gtk.Button()
+    Add_Button      = Gtk.Button()
+    Add_Image       = Gtk.Image()
 
 
     Edit_Image.set_from_icon_name("gtk-edit", 1)
     Edit_Button.set_image(Edit_Image)
     Edit_Button.set_relief(Gtk.ReliefStyle.NONE)
+
+    Add_Image.set_from_icon_name("list-add", 1)
+    Add_Button.set_image(Add_Image)
+    Add_Button.set_relief(Gtk.ReliefStyle.NONE)
 
     Card_Box.set_vexpand(True)
     Viewport.add(Card_Box)
@@ -170,6 +182,7 @@ class Graphical_Kanban():
     Column_Label.set_markup("<b> <big>"+ P_Title + "</big> </b>")
     Column_Header.add(Column_Label)
     Column_Header.add(Edit_Button)
+    Column_Header.add(Add_Button)
 
     Column_Grid.set_column_homogeneous(True)
     Column_Grid.attach(Column_Header, 0, 0, 1, 1)
