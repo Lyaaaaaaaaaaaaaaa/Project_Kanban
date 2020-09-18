@@ -57,6 +57,26 @@
 #--     - Updated On_Kanban_Combo_Box_Changed to create a graphical kanban by
 #--         creating an object of the Graphical_Kanban's class.
 #--     - Added a Graphical_Kanban attribut to this class (init to None)
+#--
+#--   18/09/2020 Lyaaaaa
+#--     - Added a Temp_Widget_Reference attribut to this class (init to none).
+#--         It is used to store a specific widget when a signal can't access it.
+#--     - Implemented On_Application_Window_Edit_Kanban_Clicked which is the
+#--         signal for the new button on the application header bar to edit the
+#--         kanban (for now it's only used to renamed it).
+#--     - Implemented On_Edit_Card_Dialog_Save_Clicked when it's used to create
+#--         a new card. It only create the graphical card for now.
+#--         It still need to edit the kanban object and save the new data.
+#--     - Implemented On_Edit_Card_Dialog_Cancel_Clicked.
+#--     - Updated On_Rename_Dialog_Save_Clicked to add the case where it is
+#--         used to renamed a column.
+#--         It still need to edit the kanban object and save the new data.
+#--     - Updated On_Kanban_Combo_Box_Changed to call Connect_Column_Buttons
+#--         for each Column generated.
+#--     - Created and implemented Connect_Column_Buttons.
+#--         It connect the two buttons (edit and add) to a clicked signal.
+#--     - Created and implemented On_Column_Edit_Clicked signal.
+#--     - Created and implemented On_Column_Add_Card_Clicked.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -90,8 +110,9 @@ class Handler():
     self.Save             = Save(self.File)
     self.Kanban           = Kanban()
     self.Graphical_Kanban = None
-    self.action_flag      = None
 
+    self.action_flag           = None
+    self.Temp_Widget_Reference = None
 
 #---------------------------------------------------------------------------
 #-- Scan_Saves
@@ -204,6 +225,28 @@ class Handler():
     Dialog.show()
     self.action_flag = "Add_Kanban"
 
+
+#---------------------------------------------------------------------------
+#-- On_Application_Window_Edit_Kanban_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def On_Application_Window_Edit_Kanban_Clicked(self, *args):
+    Dialog = self.Builder.get_object("Rename_Dialog")
+    Entry   = self.Builder.get_object("Rename_Dialog_Entry")
+
+    Entry.set_text(self.Kanban.Get_Title())
+    Dialog.show()
+    self.action_flag = "Edit_Kanban"
+
 #---------------------------------------------------------------------------
 #-- On_About_Dialog_Close_Button_Clicked
 #--
@@ -221,6 +264,7 @@ class Handler():
     Dialog = self.Builder.get_object("About_Dialog")
     Dialog.hide()
 
+
 #---------------------------------------------------------------------------
 #-- On_Edit_Card_Dialog_Save_Clicked
 #--
@@ -231,11 +275,38 @@ class Handler():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  -
+#--  - Call the methods to edit the Kanban object and save the edited data.
+#--  - Implement the case where we edit an existing card.
 #---------------------------------------------------------------------------
 
   def On_Edit_Card_Dialog_Save_Clicked(self, *args):
-    pass#TODO
+    Dialog      = self.Builder.get_object("Edit_Card_Dialog")
+    Title_Entry = self.Builder.get_object("Edit_Card_Dialog_Title_Entry")
+    Buffer      = self.Builder.get_object ("Edit_Card_Dialog_Description_Buffer")
+    start       = Buffer.get_start_iter()
+    end         = Buffer.get_end_iter()
+
+    Dialog.hide()
+    if self.action_flag == "Add_Card":
+      Column_Box      = self.Temp_Widget_Reference
+      Scrolled_Window = Column_Box.get_children()[0]
+      Viewport        = Scrolled_Window.get_child()
+      Card_Box        = Viewport.get_child()
+
+      Title           = Title_Entry.get_text()
+      Description     = Buffer.get_text(start, end, False)
+
+      Card_Box.add(self.Graphical_Kanban.Add_Card(Title, Description))
+      Card_Box.show_all()
+      #TODO create the card object and save
+
+    elif self.action_flag == "Edit_Card":
+      pass
+      #TODO edit the card object and save
+
+    Buffer.set_text("")
+    Title_Entry.set_text("")
+    del Temp_Widget_Reference
 
 
 #---------------------------------------------------------------------------
@@ -252,7 +323,12 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Edit_Card_Dialog_Cancel_Clicked(self, *args):
-    Dialog = self.Builder.get_object("Edit_Card_Dialog")
+    Dialog      = self.Builder.get_object("Edit_Card_Dialog")
+    Title_Entry = self.Builder.get_object("Edit_Card_Dialog_Title_Entry")
+    Buffer      = self.Builder.get_object ("Edit_Card_Dialog_Description_Buffer")
+
+    Buffer.set_text("")
+    Title_Entry.set_text("")
     Dialog.hide()
 
 
@@ -341,18 +417,27 @@ class Handler():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Call the futur method which will generate the graphical elements of the
-#--      kanban
+#--  - Call the methods to edit the Kanban object and save the edited data.
 #---------------------------------------------------------------------------
 
   def On_Rename_Dialog_Save_Clicked(self, *args):
 
-    Dialog        = self.Builder.get_object("Rename_Dialog")
-    Rename_Entry  = self.Builder.get_object("Rename_Dialog_Entry")
-    new_name      = Rename_Entry.get_text()
+    Dialog       = self.Builder.get_object("Rename_Dialog")
+    Rename_Entry = self.Builder.get_object("Rename_Dialog_Entry")
+    new_name     = Rename_Entry.get_text()
 
-    if self.action_flag == "Add_Kanban":
+    if   self.action_flag == "Add_Kanban":
       self.Create_Kanban(new_name)
+
+    elif self.action_flag == "Rename_Column":
+      Column_Label = self.Temp_Widget_Reference
+      del self.Temp_Widget_Reference
+
+      Column_Label.set_markup(  "<b> <big>"
+                              + Rename_Entry.get_text()
+                              + "</big> </b>")
+      #TODO Edit the column's title from the Kanban object
+      #TODO Add a call to save the data into the file
 
     Rename_Entry.set_text("")
     Dialog.hide()
@@ -434,7 +519,7 @@ class Handler():
 #--  -
 #--
 #-- Implementation Notes:
-#--  -
+#--  - What happens when you select a kanban.
 #--
 #-- Anticipated Changes:
 #--  -
@@ -447,5 +532,80 @@ class Handler():
 
     if active_id != "placeholder":
       del (self.Graphical_Kanban)
-      Kanban                = self.Load.Load_Save_File(active_id)
-      self.Graphical_Kanban = Graphical_Kanban(Kanban, Content_Box)
+      self.Kanban           = self.Load.Load_Save_File(active_id)
+      self.Graphical_Kanban = Graphical_Kanban(self.Kanban, Content_Box)
+
+    for Column_Box in Content_Box.get_children():
+      self.Connect_Column_Buttons(Column_Box)
+
+
+#---------------------------------------------------------------------------
+#-- Connect_Column_Buttons
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Create the signal on_clicked and handler for each column's edit button.
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Connect_Column_Buttons(self, P_Column_Box):
+    Column_Header           = P_Column_Box.get_children()[1]
+    Header_Items            = Column_Header.get_children()
+    Column_Label            = Header_Items[0]
+    Column_Edit_Button      = Header_Items[1]
+    Column_Add_Card_Button  = Header_Items[2]
+
+    Column_Edit_Button.connect    ("clicked",
+                                   self.On_Column_Edit_Clicked,
+                                   Column_Label)
+    Column_Add_Card_Button.connect("clicked",
+                                   self.On_Column_Add_Card_Clicked,
+                                   P_Column_Box)
+
+
+#---------------------------------------------------------------------------
+#-- On_Column_Edit_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Display Rename_Dialog
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def On_Column_Edit_Clicked(self, P_Edit_Button, P_Column_Label):
+    Dialog       = self.Builder.get_object("Rename_Dialog")
+    Rename_Entry = self.Builder.get_object("Rename_Dialog_Entry")
+
+    Rename_Entry.set_text(P_Column_Label.get_text())
+
+    Dialog.show()
+    self.action_flag           = "Rename_Column"
+    self.Temp_Widget_Reference = P_Column_Label
+
+
+#---------------------------------------------------------------------------
+#-- On_Column_Add_Card_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+  def On_Column_Add_Card_Clicked(self, P_Add_Button, P_Column_Box):
+    Dialog = self.Builder.get_object("Edit_Card_Dialog")
+
+    Dialog.show()
+    self.action_flag = "Add_Card"
+    self.Temp_Widget_Reference = P_Column_Box
