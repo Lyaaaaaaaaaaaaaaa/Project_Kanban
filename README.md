@@ -5,13 +5,13 @@
 
 This project is a lightweight user-friendly desktop software to create and manage basic [kanbans boards](#https://en.wikipedia.org/wiki/Kanban) for your personal use.
 
-- Create your kanban in one click.
-- Create your columns.
-- Create your cards.
-- Drag and drop your cards from one column to another.
-- Auto save on your computer.
-- No account.
-- self-sufficient (It only needs GTK, no internet or other softwares needed).
+- [x] Create your kanban in one click.
+- [ ] Create your columns. *Not connected with the interface*
+- [ ] Create your cards. *Not connected with the interface*
+- [ ] Drag and drop your cards from one column to another. *Not connected with the interface*
+- [ ] Auto save on your computer. *Not connected with the interface*
+- [x] No account.
+- [x] self-sufficient (It only needs GTK, no internet or other softwares needed).
 
 ## Why is this project useful?
 
@@ -23,10 +23,24 @@ That's why I'm making this project.
 
 ## How to test it?
 
-In its actual state the project is not testable. The classes are done but there is no interface connected (WIP in Handler branche)
-to use them.
+The classes are done but there is no interface connected (WIP in Handler branch) to use them.
 If you really want to try it I recommend taking a look at [Class' diagram](https://raw.githubusercontent.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/master/management/uml/Class_Diagram.jpeg). 
 The classes are in `src/classes/`.
+
+The Handler branch is advanced enough to test it 
+(it's still WIP! Many signals or features aren't implemented yet!).
+If you want to test it download the project and use the Handler branch,
+then create a main.py in the `src/classes/` folder (the file name is not important)
+and simply write the following lines
+```
+from interface import Interface
+
+Interface = Interface()
+Interface.Connect_Interface()
+Interface.Connect_Signals()
+Interface.Start_Application()
+```
+then run this file. 
 
 ## More information:
 
