@@ -77,6 +77,25 @@
 #--         It connect the two buttons (edit and add) to a clicked signal.
 #--     - Created and implemented On_Column_Edit_Clicked signal.
 #--     - Created and implemented On_Column_Add_Card_Clicked.
+#--
+#--   20/09/2020 Lyaaaaa
+#--     - Added the following methods:
+#--       - Refresh_Interface which simply show all the widgets of the main
+#--           window.
+#--       - Connect_Card_Buttons (does the same than Connect_Column_Buttons)
+#--           but for the card buttons.
+#--       - On_Add_Column_Button_Clicked
+#--       - On_Card_Edit_Clicked
+
+#--     - Updated On_Kanban_Combo_Box_Changed to updated the name of the kanban
+#--         displayed on the new header.
+#--     - Fixed On_Edit_Card_Dialog_Save_Clicked, removed
+#--         del (Temp_Widget_Reference) which was making an error.
+#--     - Updated On_Rename_Dialog_Save_Clicked:
+#--       - Added a case where it edits the kanban's title.
+#--       - Added a case where it adds a new column.
+
+#--     -
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -184,7 +203,22 @@ class Handler():
     Combo_Box.append(P_Element_Text, P_Element_Id)
 
 
+#---------------------------------------------------------------------------
+#-- Refresh_Interface
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
 
+  def Refresh_Interface(self):
+    Interface = self.Builder.get_object("Application_Window")
+    Interface.show_all()
 
   #---------------------------------
   #--          Signals            --
@@ -306,7 +340,6 @@ class Handler():
 
     Buffer.set_text("")
     Title_Entry.set_text("")
-    del Temp_Widget_Reference
 
 
 #---------------------------------------------------------------------------
@@ -424,20 +457,32 @@ class Handler():
 
     Dialog       = self.Builder.get_object("Rename_Dialog")
     Rename_Entry = self.Builder.get_object("Rename_Dialog_Entry")
+    Header_Bar   = self.Builder.get_object("Kanban_Header_Bar")
     new_name     = Rename_Entry.get_text()
 
     if   self.action_flag == "Add_Kanban":
       self.Create_Kanban(new_name)
 
+    elif self.action_flag == "Edit_Kanban":
+      self.Kanban.Set_Title(new_name)
+      Header_Bar.set_title(new_name)
+
     elif self.action_flag == "Rename_Column":
       Column_Label = self.Temp_Widget_Reference
-      del self.Temp_Widget_Reference
 
+      del self.Temp_Widget_Reference
       Column_Label.set_markup(  "<b> <big>"
                               + Rename_Entry.get_text()
                               + "</big> </b>")
       #TODO Edit the column's title from the Kanban object
       #TODO Add a call to save the data into the file
+
+    elif self.action_flag == "Add_Column":
+      Column = self.Graphical_Kanban.Add_Column(new_name)
+
+      self.Kanban.Add_Column(new_name)
+      self.Refresh_Interface()
+      self.Connect_Column_Buttons(Column)
 
     Rename_Entry.set_text("")
     Dialog.hide()
@@ -528,15 +573,18 @@ class Handler():
   def On_Kanban_Combo_Box_Changed(self, *args):
     Combo_Box   = self.Builder.get_object("Kanban_Combo_Box")
     Content_Box = self.Builder.get_object("Content_Box")
+    Header_Bar  = self.Builder.get_object("Kanban_Header_Bar")
     active_id   = Combo_Box.get_active_id()
 
     if active_id != "placeholder":
       del (self.Graphical_Kanban)
       self.Kanban           = self.Load.Load_Save_File(active_id)
       self.Graphical_Kanban = Graphical_Kanban(self.Kanban, Content_Box)
+      Header_Bar.set_title(self.Kanban.Get_Title())
 
     for Column_Box in Content_Box.get_children():
       self.Connect_Column_Buttons(Column_Box)
+      # TODO Call Connect_Card_Buttons method
 
 
 #---------------------------------------------------------------------------
@@ -565,6 +613,27 @@ class Handler():
     Column_Add_Card_Button.connect("clicked",
                                    self.On_Column_Add_Card_Clicked,
                                    P_Column_Box)
+
+
+#---------------------------------------------------------------------------
+#-- Connect_Card_Buttons
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Create the signal on_clicked and handler for each column's edit button.
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+  def Connect_Card_Buttons(self, P_Card_Box):
+    Card_Header      = P_Card_Box.get_children()[0]
+    Card_Edit_Button = Card_Header.get_children()[1]
+
+    Card_Edit_Button.connect("clicked",
+                             self.On_Card_Edit_Clicked,
+                             P_Card_Box)
 
 
 #---------------------------------------------------------------------------
@@ -603,9 +672,50 @@ class Handler():
 #-- Anticipated Changes:
 #--  -
 #---------------------------------------------------------------------------
+
   def On_Column_Add_Card_Clicked(self, P_Add_Button, P_Column_Box):
     Dialog = self.Builder.get_object("Edit_Card_Dialog")
 
     Dialog.show()
     self.action_flag = "Add_Card"
     self.Temp_Widget_Reference = P_Column_Box
+
+
+#---------------------------------------------------------------------------
+#-- On_Add_Column_Button_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  - Check if a kanban is already created or selected
+#---------------------------------------------------------------------------
+
+  def On_Add_Column_Button_Clicked(self, *args):
+    Rename_Dialog    = self.Builder.get_object("Rename_Dialog")
+    self.action_flag = "Add_Column"
+
+    Rename_Dialog.show()
+
+
+#---------------------------------------------------------------------------
+#-- On_Card_Edit_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def On_Card_Edit_Clicked(self, P_Edit_Button, P_Card_Box):
+    Edit_Dialog = self.Builder.get_object("Edit_Card_Dialog")
+
+    self.Temp_Widget_Reference = P_Card_Box
+    Edit_Dialog.show()

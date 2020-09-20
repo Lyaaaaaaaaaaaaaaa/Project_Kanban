@@ -23,6 +23,19 @@
 #--   18/09/2020 Lyaaaaa
 #--     - Updated Add_Column.
 #--       - It now has a button to add a new card in it.
+#--
+#--   20/09/2020 Lyaaaaa
+#--     - Updated Add_Column:
+#--       - to return the column grid instead of the card box
+#--       - Replaced the card box by a list box
+#--       - Set the column grid's name to the column name.
+#--
+#--     - Updated Generate_Columns as a consequence of Add_Column's changes
+#--     - Updated Add_Card:
+#--       - The frame is replaced by a box
+#--       - The card has now a header with the card's title and an edit button
+#--     - Updated Generate_Card as a consequence of all the previously described
+#--         changes.
 #---------------------------------------------------------------------------
 import gi
 
@@ -107,11 +120,14 @@ class Graphical_Kanban():
 
   def Generate_Columns(self, P_Columns):
     for Column in P_Columns:
-      column_title = Column.Get_Title()
-      Cards        = Column.Get_Cards()
-      Column_Box   = self.Add_Column(column_title)
+      column_title    = Column.Get_Title()
+      Cards           = Column.Get_Cards()
+      Column_Box      = self.Add_Column(column_title)
+      Scrolled_Window = Column_Box.get_children()[0]
+      Viewport        = Scrolled_Window.get_child()
+      List_Box        = Viewport.get_child()
 
-      self.Generate_Cards(Cards, Column_Box)
+      self.Generate_Cards(Cards, List_Box)
 
 #---------------------------------------------------------------------------
 #-- Generate_Cards
@@ -127,13 +143,13 @@ class Graphical_Kanban():
 #--  - Return the Column_Box ? Or maybe save it as an attribut?
 #---------------------------------------------------------------------------
 
-  def Generate_Cards(self, P_Cards, P_Column_Box):
+  def Generate_Cards(self, P_Cards, P_List_Box):
     for Card in P_Cards:
       card_title       = Card.Get_Title()
       card_description = Card.Get_Description()
-      Card_Frame       = self.Add_Card(card_title, card_description)
+      Card_Box         = self.Add_Card(card_title, card_description)
 
-      P_Column_Box.add(Card_Frame)
+      P_List_Box.prepend(Card_Box)
 
 #---------------------------------------------------------------------------
 #-- Add_Column
@@ -158,7 +174,7 @@ class Graphical_Kanban():
     Column_Label    = Gtk.Label()
     Scrolled_Window = Gtk.ScrolledWindow()
     Viewport        = Gtk.Viewport()
-    Card_Box        = Gtk.VBox()
+    List_Box        = Gtk.ListBox()
     Edit_Image      = Gtk.Image()
     Edit_Button     = Gtk.Button()
     Add_Button      = Gtk.Button()
@@ -173,8 +189,8 @@ class Graphical_Kanban():
     Add_Button.set_image(Add_Image)
     Add_Button.set_relief(Gtk.ReliefStyle.NONE)
 
-    Card_Box.set_vexpand(True)
-    Viewport.add(Card_Box)
+    List_Box.set_vexpand(True)
+    Viewport.add(List_Box)
 
     Scrolled_Window.add(Viewport)
     Scrolled_Window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -184,6 +200,7 @@ class Graphical_Kanban():
     Column_Header.add(Edit_Button)
     Column_Header.add(Add_Button)
 
+    Column_Grid.set_name(P_Title)
     Column_Grid.set_column_homogeneous(True)
     Column_Grid.attach(Column_Header, 0, 0, 1, 1)
     Column_Grid.attach_next_to (Scrolled_Window,
@@ -195,7 +212,7 @@ class Graphical_Kanban():
 
     self.Gtk_Box.add(Column_Grid)
 
-    return Card_Box
+    return Column_Grid
 
 
 #---------------------------------------------------------------------------
@@ -213,10 +230,17 @@ class Graphical_Kanban():
 #---------------------------------------------------------------------------
 
   def Add_Card(self, P_Title, P_Description):
-    Card_Frame = Gtk.Frame()
-    Buffer     = Gtk.TextBuffer()
-    Text_View  = Gtk.TextView()
-    Label      = Gtk.Label()
+    Card_Box      = Gtk.VBox()
+    Card_Header   = Gtk.HBox()
+    Buffer        = Gtk.TextBuffer()
+    Text_View     = Gtk.TextView()
+    Label         = Gtk.Label()
+    Edit_Image    = Gtk.Image()
+    Edit_Button   = Gtk.Button()
+
+    Edit_Image.set_from_icon_name("gtk-edit", 1)
+    Edit_Button.set_image(Edit_Image)
+    Edit_Button.set_relief(Gtk.ReliefStyle.NONE)
 
     Label.set_markup("<b>" + P_Title + "</b>")
 
@@ -226,9 +250,14 @@ class Graphical_Kanban():
     Text_View.set_cursor_visible(False)
     Text_View.set_wrap_mode(Gtk.WrapMode.WORD)
 
-    Card_Frame.add(Text_View)
-    Card_Frame.set_label_widget(Label)
-    return Card_Frame
+    Card_Header.add(Label)
+    Card_Header.add(Edit_Button)
+
+    Card_Box.add(Card_Header)
+    Card_Box.add(Text_View)
+
+
+    return Card_Box
 
 
 #---------------------------------------------------------------------------
