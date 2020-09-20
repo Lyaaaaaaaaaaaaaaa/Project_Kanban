@@ -406,7 +406,7 @@
     <property name="startup_id">Project Kanban</property>
     <signal name="destroy" handler="On_Application_Window_Destroy" swapped="no"/>
     <child type="titlebar">
-      <object class="GtkHeaderBar" id="Header_Bar">
+      <object class="GtkHeaderBar" id="Window_Header_Bar">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="title" translatable="yes">Project Kanban</property>
@@ -469,42 +469,63 @@
       </object>
     </child>
     <child>
-      <object class="GtkScrolledWindow" id="Scrolled_Window">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="vscrollbar_policy">never</property>
-        <property name="shadow_type">in</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkViewport" id="Scrolled_Window_Viewport">
+          <object class="GtkHeaderBar" id="Kanban_Header_Bar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkBox" id="Content_Box">
+              <object class="GtkButton" id="Add_Column_Button">
+                <property name="label" translatable="yes">Add a column</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="image">Image_Add_Column</property>
+                <property name="always_show_image">True</property>
+                <signal name="clicked" handler="On_Add_Column_Button_Clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="pack_type">end</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="Scrolled_Window">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="vscrollbar_policy">never</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkViewport" id="Scrolled_Window_Viewport">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="homogeneous">True</property>
                 <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <object class="GtkButton" id="Add_Column_Button">
+                  <object class="GtkBox" id="Content_Box">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Click to add a column</property>
-                    <property name="image">Image_Add_Column</property>
-                    <property name="always_show_image">True</property>
-                    <signal name="clicked" handler="On_Add_Column_Button_Clicked" swapped="no"/>
+                    <property name="can_focus">False</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <placeholder/>
+                    </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
                 </child>
               </object>
             </child>
           </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
         </child>
       </object>
     </child>
