@@ -261,6 +261,11 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-add</property>
   </object>
+  <object class="GtkImage" id="Image_Add_Column">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-add</property>
+  </object>
   <object class="GtkImage" id="Image_Edit">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -480,6 +485,22 @@
                 <property name="homogeneous">True</property>
                 <child>
                   <placeholder/>
+                </child>
+                <child>
+                  <object class="GtkButton" id="Add_Column_Button">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Click to add a column</property>
+                    <property name="image">Image_Add_Column</property>
+                    <property name="always_show_image">True</property>
+                    <signal name="clicked" handler="On_Add_Column_Button_Clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
               </object>
             </child>
