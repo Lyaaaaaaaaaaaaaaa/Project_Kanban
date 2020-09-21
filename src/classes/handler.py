@@ -94,8 +94,12 @@
 #--     - Updated On_Rename_Dialog_Save_Clicked:
 #--       - Added a case where it edits the kanban's title.
 #--       - Added a case where it adds a new column.
-
-#--     -
+#--
+#--   21/09/2020 Lyaaaaa
+#--     - Updated On_Card_Edit_Clicked to set the Edit_Card_Dialog label and
+#--         text view set with the actual editing card values.
+#--     - Implemented On_Edit_Card_Dialog_Save_Clicked "Edit_Card" case
+#--
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -319,6 +323,8 @@ class Handler():
     Buffer      = self.Builder.get_object ("Edit_Card_Dialog_Description_Buffer")
     start       = Buffer.get_start_iter()
     end         = Buffer.get_end_iter()
+    title       = Title_Entry.get_text()
+    description = Buffer.get_text(start, end, False)
 
     Dialog.hide()
     if self.action_flag == "Add_Card":
@@ -327,15 +333,18 @@ class Handler():
       Viewport        = Scrolled_Window.get_child()
       Card_Box        = Viewport.get_child()
 
-      Title           = Title_Entry.get_text()
-      Description     = Buffer.get_text(start, end, False)
-
-      Card_Box.add(self.Graphical_Kanban.Add_Card(Title, Description))
+      Card_Box.add(self.Graphical_Kanban.Add_Card(title, description))
       Card_Box.show_all()
       #TODO create the card object and save
 
     elif self.action_flag == "Edit_Card":
-      pass
+      Card_Header    = self.Temp_Widget_Reference.get_children()[0]
+      Card_Label     = Card_Header.get_children()[0]
+      Card_View_Text = self.Temp_Widget_Reference.get_children()[1]
+      Card_Buffer    = Card_View_Text.get_buffer()
+
+      Card_Label.set_text(title)
+      Card_Buffer.set_text(description)
       #TODO edit the card object and save
 
     Buffer.set_text("")
@@ -584,7 +593,14 @@ class Handler():
 
     for Column_Box in Content_Box.get_children():
       self.Connect_Column_Buttons(Column_Box)
-      # TODO Call Connect_Card_Buttons method
+
+      Scrolled_Window = Column_Box.get_children()[0]
+      Viewport        = Scrolled_Window.get_child()
+      List_Box        = Viewport.get_child()
+
+      for List_Row in List_Box.get_children():
+        Card_Box = List_Row.get_child()
+        self.Connect_Card_Buttons(Card_Box)
 
 
 #---------------------------------------------------------------------------
@@ -716,6 +732,20 @@ class Handler():
 
   def On_Card_Edit_Clicked(self, P_Edit_Button, P_Card_Box):
     Edit_Dialog = self.Builder.get_object("Edit_Card_Dialog")
+    Title_Entry = self.Builder.get_object("Edit_Card_Dialog_Title_Entry")
+    Buffer      = self.Builder.get_object ("Edit_Card_Dialog_Description_Buffer")
+
+
+    self.action_flag = "Edit_Card"
+    Card_Header      = P_Card_Box.get_children()[0]
+    Card_Label       = Card_Header.get_children()[0]
+    Card_View_Text   = P_Card_Box.get_children()[1]
+    Card_Buffer      = Card_View_Text.get_buffer()
+    start            = Card_Buffer.get_start_iter()
+    end              = Card_Buffer.get_end_iter()
+
+    Title_Entry.set_text(Card_Label.get_text())
+    Buffer.set_text(Card_Buffer.get_text(start, end, False))
 
     self.Temp_Widget_Reference = P_Card_Box
     Edit_Dialog.show()
