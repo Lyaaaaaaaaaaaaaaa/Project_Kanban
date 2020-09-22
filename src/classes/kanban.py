@@ -24,6 +24,14 @@
 #--     - Edited __init__, Added P_Title parameter with "Project's name" as
 #--         default value
 #--     - Edited Add_Column to pass a parameter to directly set its name.
+#--
+#--   22/09/2020 Lyaaaaa
+#--     - Replaced the Columns list by a dictionnary. Each column use its title
+#--         as a key.
+#--     - Updated Set_Columns, Add_Column and Delete_Column to now use the
+#--         dictionnary.
+#--     - Added the Get_Column method used to return a single column if you
+#--         give it a valid column key (title).
 #---------------------------------------------------------------------------
 
 from column import Column
@@ -51,7 +59,7 @@ class Kanban():
 
   def __init__(self, P_Title = "Project's name"):
     self.title   = P_Title
-    self.Columns = []
+    self.Columns = {}
 
   #---------------------------------
   #--       Functions Set         --
@@ -88,7 +96,10 @@ class Kanban():
 #---------------------------------------------------------------------------
 
   def Set_Columns(self, P_Columns): #TODO
-    self.Columns = P_Columns
+    for Column in P_Columns:
+      key = Column.Get_Title()
+      self.Columns[key] = Column
+
     return True
 
   #---------------------------------
@@ -127,6 +138,24 @@ class Kanban():
   def Get_Columns(self):
     return self.Columns
 
+
+#---------------------------------------------------------------------------
+#-- Get_Column
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Get one column by its key
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Get_Column(self, P_Key):
+    return self.Columns[P_Key]
+
+
   #-----------------------------
   #--       Functions         --
   #-----------------------------
@@ -145,9 +174,11 @@ class Kanban():
 #--    deleting it. Make sure P_Column's type is Column
 #---------------------------------------------------------------------------
 
-  def Delete_Column(self, P_Column):
-    P_Column.Delete_Card()
-    del P_Column
+  def Delete_Column(self, P_Column_Key):
+
+    if P_Column_Key in self.Columns:
+      del self.Columns[P_Column_Key]
+
     return True
 
 #---------------------------------------------------------------------------
@@ -165,7 +196,7 @@ class Kanban():
 
   def Add_Column(self, P_Title = "Column's title"):
     New_Column = Column(P_Title)
-    self.Columns.append(New_Column)
+    self.Columns.update({P_Title : New_Column})
     return True
 
 
