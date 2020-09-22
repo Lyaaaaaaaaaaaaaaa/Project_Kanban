@@ -30,6 +30,13 @@
 #--     - Edited Delete_Card, it now receives a title instead of a card and
 #--         check if within its Cards the title match with one, if it does, it
 #--         deletes the matching card.
+#--
+#--   22/09/2020 Lyaaaaa
+#--     - Replaced the Cards list by a dictionnary. Each card use its title as
+#--         a key.
+#--     - Updated Set_Cards, Delete_Card, Add_Card to now use the dictionnary.
+#--     - Added the Get_Card method used to return a single card if you give
+#--         it a valid key (title)
 #---------------------------------------------------------------------------
 
 from card import Card
@@ -58,7 +65,7 @@ class Column():
   def __init__(self, P_Title = "Column's title"):
     self.title        = P_Title
     self.cards_number = 0
-    self.Cards        = []
+    self.Cards        = {}
 
 
   #---------------------------------
@@ -96,7 +103,10 @@ class Column():
 #---------------------------------------------------------------------------
 
   def Set_Cards(self, P_Cards):
-    self.Cards = P_Cards
+    for Card in P_Cards:
+      key = Card.Get_Title()
+      self.Cards[key] = Card
+
     self.Update_Cards_Number()
     return True
 
@@ -154,6 +164,23 @@ class Column():
     return self.cards_number
 
 
+#---------------------------------------------------------------------------
+#-- Get_Card
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Get one card by its key
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Get_Card(self, P_Key):
+    return self.Cards[P_Key]
+
+
   #-----------------------------
   #--       Functions         --
   #-----------------------------
@@ -189,13 +216,10 @@ class Column():
 #      deleting it. Make sure P_Card's type id Card
 #---------------------------------------------------------------------------
 
-  def Delete_Card(self, P_Title):
-    i = 0
+  def Delete_Card(self, P_Key):
 
-    for Card in self.Cards:
-      if (Card.Get_Title() == P_Title):
-        del self.Cards[i]
-      i = i + 1
+    if P_Key  in self.Cards:
+      del self.Cards[P_Key]
 
 
 #---------------------------------------------------------------------------
@@ -208,7 +232,7 @@ class Column():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - TODO Control the creation of the Card
+#--  - TODO Control the creation of the Card.
 #---------------------------------------------------------------------------
 
   def Add_Card(self,
@@ -217,7 +241,7 @@ class Column():
 
     New_Card = Card(P_Title, P_Description)
 
-    self.Cards.append(New_Card)
+    self.Cards.update({P_Title : New_Card})
     self.Update_Cards_Number()
 
     return True
