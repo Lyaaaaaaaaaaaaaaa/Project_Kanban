@@ -36,6 +36,11 @@
 #--       - The card has now a header with the card's title and an edit button
 #--     - Updated Generate_Card as a consequence of all the previously described
 #--         changes.
+#--
+#--   22/09/2020 Lyaaaaa
+#--     - Updated Generate_Columns to adapt the "for" to the dictionnary.
+#--     - Updated Add_Card to set the name of the Card_Box widget to the
+#--         card's title.
 #---------------------------------------------------------------------------
 import gi
 
@@ -119,7 +124,7 @@ class Graphical_Kanban():
 #---------------------------------------------------------------------------
 
   def Generate_Columns(self, P_Columns):
-    for Column in P_Columns:
+    for Column in P_Columns.values():
       column_title    = Column.Get_Title()
       Cards           = Column.Get_Cards()
       Column_Box      = self.Add_Column(column_title)
@@ -253,6 +258,7 @@ class Graphical_Kanban():
     Card_Header.add(Label)
     Card_Header.add(Edit_Button)
 
+    Card_Box.set_name(P_Title)
     Card_Box.add(Card_Header)
     Card_Box.add(Text_View)
 

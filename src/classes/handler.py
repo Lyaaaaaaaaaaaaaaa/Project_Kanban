@@ -100,6 +100,10 @@
 #--         text view set with the actual editing card values.
 #--     - Implemented On_Edit_Card_Dialog_Save_Clicked "Edit_Card" case
 #--
+#--   22/09/2020 Lyaaaaa
+#--     - Updated On_Edit_Card_Dialog_Save_Clicked in "Add_Card" case to connect
+#--         the edit button of the last created card with the
+#--         On_Card_Edit_Clicked signal.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -314,7 +318,6 @@ class Handler():
 #--
 #-- Anticipated Changes:
 #--  - Call the methods to edit the Kanban object and save the edited data.
-#--  - Implement the case where we edit an existing card.
 #---------------------------------------------------------------------------
 
   def On_Edit_Card_Dialog_Save_Clicked(self, *args):
@@ -331,10 +334,15 @@ class Handler():
       Column_Box      = self.Temp_Widget_Reference
       Scrolled_Window = Column_Box.get_children()[0]
       Viewport        = Scrolled_Window.get_child()
-      Card_Box        = Viewport.get_child()
+      Card_List_Box   = Viewport.get_child()
 
-      Card_Box.add(self.Graphical_Kanban.Add_Card(title, description))
-      Card_Box.show_all()
+      Card_List_Box.add(self.Graphical_Kanban.Add_Card(title, description))
+      Card_List_Box.show_all()
+
+      List_Box_Last_Row = Card_List_Box.get_children()[-1]
+      Card_Box          = List_Box_Last_Row.get_child()
+
+      self.Connect_Card_Buttons(Card_Box)
       #TODO create the card object and save
 
     elif self.action_flag == "Edit_Card":
