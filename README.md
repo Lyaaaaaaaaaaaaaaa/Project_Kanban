@@ -7,7 +7,7 @@ This project is a lightweight user-friendly desktop software to create and manag
 
 - [x] Create your kanban in one click.
 - [x] Create your columns.
-- [ ] Create your cards. *Not connected with the interface*
+- [x] Create your cards.
 - [ ] Drag and drop your cards from one column to another. *Not connected with the interface*
 - [ ] Auto save on your computer. *Not connected with the interface*
 - [x] No account.
