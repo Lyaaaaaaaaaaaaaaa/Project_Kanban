@@ -30,10 +30,11 @@
             </child>
             <child>
               <object class="GtkButton" id="About_Dialog_Close_Button">
-                <property name="label" translatable="yes">Close</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="On_About_Dialog_Close_Button_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -75,10 +76,11 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="Delete_Dialog_Yes_Button">
-                <property name="label" translatable="yes">Yes</property>
+                <property name="label">gtk-yes</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="On_Delete_Dialog_Yes_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -89,10 +91,11 @@
             </child>
             <child>
               <object class="GtkButton" id="Delete_Dialog_Cancel_Button">
-                <property name="label" translatable="yes">Cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="On_Delete_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -149,10 +152,11 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="Edit_Card_Dialog_Save_Button">
-                <property name="label" translatable="yes">Save</property>
+                <property name="label">gtk-save</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="On_Edit_Card_Dialog_Save_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -163,16 +167,32 @@
             </child>
             <child>
               <object class="GtkButton" id="Edit_Card_Dialog_Cancel_Button">
-                <property name="label" translatable="yes">Cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="On_Edit_Card_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="Edit_Card_Dialog_Delete_Button">
+                <property name="label">gtk-delete</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <signal name="clicked" handler="On_Edit_Card_Dialog_Delete_Clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -208,6 +228,7 @@
               <object class="GtkEntry" id="Edit_Card_Dialog_Title_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="tooltip_text" translatable="yes">Enter the name of your card here.</property>
                 <property name="max_length">254</property>
                 <property name="placeholder_text" translatable="yes">Task number 521</property>
               </object>
@@ -238,6 +259,7 @@
               <object class="GtkTextView" id="Edit_Card_Dialog_Description_Text_View">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="tooltip_text" translatable="yes">Type the description of your card here.</property>
                 <property name="buffer">Edit_Card_Dialog_Description_Buffer</property>
               </object>
               <packing>
@@ -290,10 +312,11 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="Overwrite_Dailog_Yes_Button">
-                <property name="label" translatable="yes">Yes</property>
+                <property name="label">gtk-yes</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="On_Overwrite_Dialog_Yes_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -304,10 +327,11 @@
             </child>
             <child>
               <object class="GtkButton" id="Overwrite_Dialog_Cancel_Button">
-                <property name="label" translatable="yes">Cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="On_Overwrite_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -352,11 +376,13 @@
         <property name="layout_style">start</property>
         <child>
           <object class="GtkButton" id="Popover_Menu_Help_Button">
-            <property name="label" translatable="yes">Help</property>
+            <property name="label">gtk-help</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Click to display help.</property>
             <property name="relief">none</property>
+            <property name="use_stock">True</property>
             <signal name="clicked" handler="On_Popover_Menu_Help_Clicked" swapped="no"/>
           </object>
           <packing>
@@ -367,11 +393,13 @@
         </child>
         <child>
           <object class="GtkButton" id="Popover_Menu_Preferences_Button">
-            <property name="label" translatable="yes">Preferences</property>
+            <property name="label">gtk-preferences</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Click to open the preferences menu.</property>
             <property name="relief">none</property>
+            <property name="use_stock">True</property>
             <signal name="clicked" handler="On_Popover_Menu_Preferences_Clicked" swapped="no"/>
           </object>
           <packing>
@@ -382,11 +410,13 @@
         </child>
         <child>
           <object class="GtkButton" id="Popover_Menu_About_Button">
-            <property name="label" translatable="yes">About</property>
+            <property name="label">gtk-about</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Click to open the software informations.</property>
             <property name="relief">none</property>
+            <property name="use_stock">True</property>
             <signal name="clicked" handler="On_Popover_Menu_About_Clicked" swapped="no"/>
           </object>
           <packing>
@@ -416,6 +446,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Click to create a new kanban.</property>
             <property name="image">Image_Add</property>
             <property name="always_show_image">True</property>
             <signal name="clicked" handler="On_Application_Window_Add_Kanban_Clicked" swapped="no"/>
@@ -426,6 +457,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Click to edit the selected kanban.</property>
             <property name="image">Image_Edit</property>
             <signal name="clicked" handler="On_Application_Window_Edit_Kanban_Clicked" swapped="no"/>
           </object>
@@ -437,6 +469,7 @@
           <object class="GtkComboBoxText" id="Kanban_Combo_Box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Click to select a kanban in this menu.</property>
             <property name="active_id">placeholder</property>
             <items>
               <item id="placeholder" translatable="yes">Choose a kanban</item>
@@ -452,6 +485,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Click to open the preferences, help or about menu.</property>
             <property name="popover">Popover_Menu</property>
             <child>
               <object class="GtkImage" id="Image_Menu">
@@ -483,6 +517,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Click to add a new column to your kanban.</property>
                 <property name="image">Image_Add_Column</property>
                 <property name="always_show_image">True</property>
                 <signal name="clicked" handler="On_Add_Column_Button_Clicked" swapped="no"/>
@@ -550,10 +585,11 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="Rename_Dialog_Save_Button">
-                <property name="label" translatable="yes">Save</property>
+                <property name="label">gtk-save</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="On_Rename_Dialog_Save_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -564,16 +600,32 @@
             </child>
             <child>
               <object class="GtkButton" id="Rename_Dialog_Cancel_Button">
-                <property name="label" translatable="yes">Cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="On_Rename_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="Rename_Dialog_Delete_Button">
+                <property name="label">gtk-delete</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <signal name="clicked" handler="On_Rename_Dialog_Delete_Clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -609,6 +661,7 @@
               <object class="GtkEntry" id="Rename_Dialog_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="tooltip_text" translatable="yes">Enter the name of your kanban or column here.</property>
                 <property name="max_length">80</property>
                 <property name="placeholder_text" translatable="yes">My project's name</property>
               </object>
