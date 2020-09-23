@@ -104,6 +104,24 @@
 #--     - Updated On_Edit_Card_Dialog_Save_Clicked in "Add_Card" case to connect
 #--         the edit button of the last created card with the
 #--         On_Card_Edit_Clicked signal.
+#--
+#--   23/09/2020 Lyaaaaa
+#--     - Updated On_Rename_Dialog_Save_Clicked:
+#--       - In "Rename_Column" case, edit the Column_Label.set_markup to remove
+#--           whitespace between <b> and <big> which was creating whitespace
+#--           in the label, therefore making errors later when using the label
+#--           as a key to retrieve the column object.
+#--       - It now saves at the end of this signal.
+#--       - Updated the Rename_Column case to correctly edit all the elements
+#--           related to the column, the object and the graphical elements.
+#--     - Updated On_Edit_Card_Dialog_Save_Clicked to save on each modification
+#--         and implemented the "Add_Card" case.
+#--     - Updated On_Kanban_Combo_Box_Changed to change the name of the file
+#--         when it loads another kanban (to avoid overwriting the wrong one).
+#--     - Updated Connect_Column_Buttons to send a column_box to
+#--         On_Column_Edit_Clicked instead of a column_label.
+#--     - Updated On_Column_Edit_Clicked to use the column_box instead of the
+#--         column_label
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -335,6 +353,7 @@ class Handler():
       Scrolled_Window = Column_Box.get_children()[0]
       Viewport        = Scrolled_Window.get_child()
       Card_List_Box   = Viewport.get_child()
+      Column_Title    = Column_Box.get_name()
 
       Card_List_Box.add(self.Graphical_Kanban.Add_Card(title, description))
       Card_List_Box.show_all()
@@ -343,7 +362,8 @@ class Handler():
       Card_Box          = List_Box_Last_Row.get_child()
 
       self.Connect_Card_Buttons(Card_Box)
-      #TODO create the card object and save
+      Column = self.Kanban.Get_Column(Column_Title)
+      Column.Add_Card(title, description)
 
     elif self.action_flag == "Edit_Card":
       Card_Header    = self.Temp_Widget_Reference.get_children()[0]
@@ -355,6 +375,7 @@ class Handler():
       Card_Buffer.set_text(description)
       #TODO edit the card object and save
 
+    self.Save.Write_Save(self.Kanban, P_Overwrite = True)
     Buffer.set_text("")
     Title_Entry.set_text("")
 
@@ -401,7 +422,6 @@ class Handler():
     if self.action_flag == "Overwrite_Kanban":
       self.Save.Write_Save(self.Kanban, True)
       Dialog.hide()
-
 
 
 #---------------------------------------------------------------------------
@@ -485,14 +505,19 @@ class Handler():
       Header_Bar.set_title(new_name)
 
     elif self.action_flag == "Rename_Column":
-      Column_Label = self.Temp_Widget_Reference
+      Column_Box      = self.Temp_Widget_Reference
+      Column_Header   = Column_Box.get_children()[1]
+      Header_Items    = Column_Header.get_children()
+      Column_Label    = Header_Items[0]
+      column_old_name = Column_Label.get_text()
+      Column          = self.Kanban.Get_Column(column_old_name)
 
       del self.Temp_Widget_Reference
-      Column_Label.set_markup(  "<b> <big>"
+      Column_Label.set_markup(  "<b><big>"
                               + Rename_Entry.get_text()
-                              + "</big> </b>")
-      #TODO Edit the column's title from the Kanban object
-      #TODO Add a call to save the data into the file
+                              + "</big></b>")
+      self.Kanban.Set_Column_Title(column_old_name, new_name)
+      Column_Box.set_name(new_name)
 
     elif self.action_flag == "Add_Column":
       Column = self.Graphical_Kanban.Add_Column(new_name)
@@ -501,6 +526,7 @@ class Handler():
       self.Refresh_Interface()
       self.Connect_Column_Buttons(Column)
 
+    self.Save.Write_Save(self.Kanban, P_Overwrite= True)
     Rename_Entry.set_text("")
     Dialog.hide()
 
@@ -582,6 +608,8 @@ class Handler():
 #--
 #-- Implementation Notes:
 #--  - What happens when you select a kanban.
+#--  - It does change the name of the File (used for the save) so the software
+#--      doesn't write into another save.
 #--
 #-- Anticipated Changes:
 #--  -
@@ -597,8 +625,9 @@ class Handler():
       del (self.Graphical_Kanban)
       self.Kanban           = self.Load.Load_Save_File(active_id)
       self.Graphical_Kanban = Graphical_Kanban(self.Kanban, Content_Box)
-      Header_Bar.set_title(self.Kanban.Get_Title())
 
+      Header_Bar.set_title(self.Kanban.Get_Title())
+      self.File.Set_Name(active_id)
     for Column_Box in Content_Box.get_children():
       self.Connect_Column_Buttons(Column_Box)
 
@@ -633,7 +662,7 @@ class Handler():
 
     Column_Edit_Button.connect    ("clicked",
                                    self.On_Column_Edit_Clicked,
-                                   Column_Label)
+                                   P_Column_Box)
     Column_Add_Card_Button.connect("clicked",
                                    self.On_Column_Add_Card_Clicked,
                                    P_Column_Box)
@@ -673,15 +702,18 @@ class Handler():
 #--  -
 #---------------------------------------------------------------------------
 
-  def On_Column_Edit_Clicked(self, P_Edit_Button, P_Column_Label):
-    Dialog       = self.Builder.get_object("Rename_Dialog")
-    Rename_Entry = self.Builder.get_object("Rename_Dialog_Entry")
+  def On_Column_Edit_Clicked(self, P_Edit_Button, P_Column_Box):
+    Dialog        = self.Builder.get_object("Rename_Dialog")
+    Rename_Entry  = self.Builder.get_object("Rename_Dialog_Entry")
+    Column_Header = P_Column_Box.get_children()[1]
+    Header_Items  = Column_Header.get_children()
+    Column_Label  = Header_Items[0]
 
-    Rename_Entry.set_text(P_Column_Label.get_text())
+    Rename_Entry.set_text(Column_Label.get_text())
 
     Dialog.show()
     self.action_flag           = "Rename_Column"
-    self.Temp_Widget_Reference = P_Column_Label
+    self.Temp_Widget_Reference = P_Column_Box
 
 
 #---------------------------------------------------------------------------

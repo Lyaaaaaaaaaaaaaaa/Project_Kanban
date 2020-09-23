@@ -41,6 +41,13 @@
 #--     - Updated Generate_Columns to adapt the "for" to the dictionnary.
 #--     - Updated Add_Card to set the name of the Card_Box widget to the
 #--         card's title.
+#--
+#--   23/09/2020 Lyaaaaa
+#--     - Updated Generate_Cards to adapt he "for" to the cards dictionnary.
+#--     - Updated Add_Column to edit the Column_Label.set_markup to remove
+#--         whitespace between <b> and <big> which was creating whitespace
+#--         in the label, therefore making errors later when using the label
+#--         as a key to retrieve the column object.
 #---------------------------------------------------------------------------
 import gi
 
@@ -149,7 +156,7 @@ class Graphical_Kanban():
 #---------------------------------------------------------------------------
 
   def Generate_Cards(self, P_Cards, P_List_Box):
-    for Card in P_Cards:
+    for Card in P_Cards.values():
       card_title       = Card.Get_Title()
       card_description = Card.Get_Description()
       Card_Box         = self.Add_Card(card_title, card_description)
@@ -200,7 +207,7 @@ class Graphical_Kanban():
     Scrolled_Window.add(Viewport)
     Scrolled_Window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
-    Column_Label.set_markup("<b> <big>"+ P_Title + "</big> </b>")
+    Column_Label.set_markup("<b><big>"+ P_Title + "</big></b>")
     Column_Header.add(Column_Label)
     Column_Header.add(Edit_Button)
     Column_Header.add(Add_Button)

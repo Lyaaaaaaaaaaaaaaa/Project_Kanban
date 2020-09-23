@@ -39,6 +39,8 @@
 #--           wans't set to True.
 #--       - Write_Save now return True if everything is good.
 #--
+#--   23/09/2020 Lyaaaaa
+#--     - Removed a useless comment and edited an incorrect one.
 #---------------------------------------------------------------------------
 
 from file import File
@@ -115,7 +117,7 @@ class Save():
 #--  -
 #--
 #-- Implementation Notes:
-#--  - It's recommended not to use this classe directly. Instead, use Write_Save
+#--  - It's recommended not to use this method directly. Instead, use Write_Save
 #--
 #-- Anticipated Changes:
 #--  -
@@ -183,7 +185,7 @@ class Save():
 #--  - Correctly parse the file depending of the futur format.
 #---------------------------------------------------------------------------
 
-  def Read_Save(self): #TODO Parse data from save or send it into a function.
+  def Read_Save(self):
 
     path        =        self.File.Get_Path()
     path        = path + self.File.Get_Name()

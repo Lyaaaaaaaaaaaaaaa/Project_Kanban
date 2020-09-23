@@ -32,6 +32,11 @@
 #--         dictionnary.
 #--     - Added the Get_Column method used to return a single column if you
 #--         give it a valid column key (title).
+#--
+#--   23/09/2020 Lyaaaaa
+#--     - Added Set_Column_Title.
+#--     - Updated the "for" in Set_Columns to use .values to move through the
+#--         values of the dictionnary.
 #---------------------------------------------------------------------------
 
 from column import Column
@@ -95,8 +100,8 @@ class Kanban():
 #--  - TODO Control P_Columns type. Must be type Column
 #---------------------------------------------------------------------------
 
-  def Set_Columns(self, P_Columns): #TODO
-    for Column in P_Columns:
+  def Set_Columns(self, P_Columns):
+    for Column in P_Columns.values():
       key = Column.Get_Title()
       self.Columns[key] = Column
 
@@ -200,3 +205,28 @@ class Kanban():
     return True
 
 
+#---------------------------------------------------------------------------
+#-- Set_Column_Title
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Update a column and update the dictionnary of column at the same time.
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Set_Column_Title(self, P_Key, P_New_Title):
+    if P_Key in self.Columns:
+      Column = self.Columns[P_Key]
+
+      Column.Set_Title(P_New_Title)
+      self.Columns.update({P_New_Title : Column})
+      del self.Columns[P_Key]
+
+      return True
+
+    else:
+      return False
