@@ -21,6 +21,12 @@
 #--     - Splitted Create_File into two functions
 #--       - Create_Directory, which try to create the directory
 #--       - Create_File, which call Create_Directory then try to create the file.
+#--
+#--   24/09/2020 Lyaaaaa
+#--     - Added Delete_File method.
+#--     - Updated Create_Directory and Create_File methods to return True if
+#--         success and false if failure.
+#--     - Added Rename_File method to rename the save file and self.name.
 #---------------------------------------------------------------------------
 
 import os
@@ -146,6 +152,7 @@ class File():
     try:
       open(path, "x")
       return True
+
     except FileExistsError:
       print("File ", self.name , "already exists")
       return False
@@ -167,5 +174,57 @@ class File():
   def Create_Directory(self):
     try:
       os.mkdir(self.path)
+      return True
+
     except FileExistsError:
-      print("Directory ", self.path , "already exists")
+      print("Directory", self.path , "already exists")
+      return False
+
+#---------------------------------------------------------------------------
+#-- Delete_File
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Delete_File(self):
+    try:
+      os.remove(self.path + self.name)
+      return True
+
+    except OSError:
+      print ("Error while trying to delete", self.path + self.name)
+      return False
+
+
+#---------------------------------------------------------------------------
+#-- Rename_File
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Rename the actual file and call Set_Name to update self.name.
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Rename_File(self, P_New_Name):
+    try:
+      old_name = self.name
+      print (self.path + old_name)
+      print (self.path + P_New_Name)
+      os.rename(self.path + old_name, self.path + P_New_Name + ".yaml")
+      self.Set_Name(P_New_Name)
+      return True
+
+    except OSError:
+      print ("Error while trying to rename", self.path + old_name)
+      return False
