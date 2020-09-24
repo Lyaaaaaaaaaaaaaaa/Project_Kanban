@@ -37,6 +37,7 @@
 #--     - Added Set_Column_Title.
 #--     - Updated the "for" in Set_Columns to use .values to move through the
 #--         values of the dictionnary.
+#--     - Added Edit_Card to find a card in the columns by its key then edit it.
 #---------------------------------------------------------------------------
 
 from column import Column
@@ -230,3 +231,28 @@ class Kanban():
 
     else:
       return False
+
+
+#---------------------------------------------------------------------------
+#-- Edit_Card
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Update a card and update the dictionnary of card at the same time.
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Edit_Card(self, P_Key, P_New_Title , P_New_Description):
+    for Column in self.Columns.values():
+      if (Column.Edit_Card(P_Key,
+                           P_New_Title,
+                           P_New_Description)
+                           == True):
+        return True
+
+    return False
+    

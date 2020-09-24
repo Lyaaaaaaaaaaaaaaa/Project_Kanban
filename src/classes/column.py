@@ -37,6 +37,9 @@
 #--     - Updated Set_Cards, Delete_Card, Add_Card to now use the dictionnary.
 #--     - Added the Get_Card method used to return a single card if you give
 #--         it a valid key (title)
+#--
+#--   23/09/2020 Lyaaaaa
+#--     - Added Edit_Card to find a card in the Cards dictionnary then edit it.
 #---------------------------------------------------------------------------
 
 from card import Card
@@ -233,6 +236,7 @@ class Column():
 #--
 #-- Anticipated Changes:
 #--  - TODO Control the creation of the Card.
+#--    - Be sure no card is already named like this one.
 #---------------------------------------------------------------------------
 
   def Add_Card(self,
@@ -245,3 +249,30 @@ class Column():
     self.Update_Cards_Number()
 
     return True
+
+#---------------------------------------------------------------------------
+#-- Set_Card
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Update a card and update the dictionnary of card at the same time.
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Edit_Card(self, P_Key, P_New_Title, P_New_Description):
+    if P_Key in self.Cards:
+      Card = self.Cards[P_Key]
+
+      Card.Set_Title(P_New_Title)
+      Card.Set_Description(P_New_Description)
+      self.Cards.update({P_New_Title : Card})
+      del self.Cards[P_Key]
+
+      return True
+
+    else:
+      return False

@@ -122,6 +122,8 @@
 #--         On_Column_Edit_Clicked instead of a column_label.
 #--     - Updated On_Column_Edit_Clicked to use the column_box instead of the
 #--         column_label
+#--     - Updated On_Edit_Card_Dialog_Save_Clicked and the "Edit_Card" case to
+#--         edit the card object and its graphical element.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -335,7 +337,7 @@ class Handler():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Call the methods to edit the Kanban object and save the edited data.
+#--  -
 #---------------------------------------------------------------------------
 
   def On_Edit_Card_Dialog_Save_Clicked(self, *args):
@@ -366,14 +368,19 @@ class Handler():
       Column.Add_Card(title, description)
 
     elif self.action_flag == "Edit_Card":
-      Card_Header    = self.Temp_Widget_Reference.get_children()[0]
+      Card_Box       = self.Temp_Widget_Reference
+      Card_Header    = Card_Box.get_children()[0]
       Card_Label     = Card_Header.get_children()[0]
-      Card_View_Text = self.Temp_Widget_Reference.get_children()[1]
+      Card_View_Text = Card_Box.get_children()[1]
       Card_Buffer    = Card_View_Text.get_buffer()
+      Old_Card_Title = Card_Box.get_name()
 
       Card_Label.set_text(title)
       Card_Buffer.set_text(description)
-      #TODO edit the card object and save
+      Card_Box.set_name(title)
+      self.Kanban.Edit_Card(P_Key             = Old_Card_Title,
+                            P_New_Title       = title,
+                            P_New_Description = description)
 
     self.Save.Write_Save(self.Kanban, P_Overwrite = True)
     Buffer.set_text("")
