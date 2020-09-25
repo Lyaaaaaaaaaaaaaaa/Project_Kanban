@@ -9,7 +9,7 @@ This project is a lightweight user-friendly desktop software to create and manag
 - [x] Create your columns.
 - [x] Create your cards.
 - [ ] Drag and drop your cards from one column to another. *Not connected with the interface*
-- [x] Auto save on your computer. *Not connected with the interface*
+- [x] Auto save on your computer.
 - [x] No account.
 - [x] self-sufficient (It only needs GTK, no internet or other softwares needed).
 
