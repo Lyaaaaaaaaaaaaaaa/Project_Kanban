@@ -28,7 +28,7 @@ If you really want to try it I recommend taking a look at [Class' diagram](https
 The classes are in `src/classes/`.
 
 The Handler branch is advanced enough to test it 
-(it's still WIP! Many signals or features aren't implemented yet!).
+(it's still WIP! some signals are not done yet and the drag and drop feature isn't implemented yet!).
 If you want to test it download the project and use the Handler branch,
 then create a main.py in the `src/classes/` folder (the file name is not important)
 and simply write the following lines
