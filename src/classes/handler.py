@@ -124,6 +124,17 @@
 #--         column_label
 #--     - Updated On_Edit_Card_Dialog_Save_Clicked and the "Edit_Card" case to
 #--         edit the card object and its graphical element.
+#--
+#--   25/09/2020 Lyaaaaa
+#--   - Added Add_Combo_Box_Element method (not implemented yet).
+#--   - Updated On_Rename_Dialog_Save_Clicked method and the "Edit_Kanban" case
+#--       to rename the save name.
+#--   - Replaced the "Rename_Column" action_flag value into "Edit_Column".
+#--   - Added the On_Rename_Dialog_Delete_Clicked signal.
+#--   - Added the On_Edit_Card_Dialog_Delete_Clicked signal.
+#--   - Fixed an error in On_Overwrite_Dialog_Cancel_Clicked, it wasn't closing.
+#--   - Implemented On_Delete_Dialog_Yes_Clicked to delete the Card, Column
+#--       or Kanban when needed.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -247,6 +258,26 @@ class Handler():
   def Refresh_Interface(self):
     Interface = self.Builder.get_object("Application_Window")
     Interface.show_all()
+
+
+#---------------------------------------------------------------------------
+#-- Clear_Combo_Box
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Empties the Kanban_Combo_Box element
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Clear_Combo_Box(self):
+    pass
+    #Combo_Box = self.Builder.get_object("Kanban_Combo_Box")
+    #Combo_List = Combo_Box.get_model()
+    #Combo_List.clear()
 
   #---------------------------------
   #--          Signals            --
@@ -445,7 +476,7 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Overwrite_Dialog_Cancel_Clicked(self, *args):
-    Dialog = self.Builder.get_object("Overwrite_Dialog_Cancel")
+    Dialog = self.Builder.get_object("Overwrite_Dialog")
     Dialog.hide()
 
 
@@ -474,14 +505,54 @@ class Handler():
 #--  -
 #--
 #-- Implementation Notes:
-#--  -
+#--  - Delete_Kanban case:
+#--    - Delete the kanban object and its save file then its graphical elements
+#--        then set the kanban combo box to the placeholder.
+#--  - Delete_Column case:
+#--    - Remove the column object then its graphical elements.
+#--  - Delete_Card case:
+#--    - Same than Delete_Column but with the card.
 #--
 #-- Anticipated Changes:
 #--  -
 #---------------------------------------------------------------------------
 
   def On_Delete_Dialog_Yes_Clicked(self, *args):
-    pass#TODO
+    Dialog = self.Builder.get_object("Delete_Dialog")
+
+    if   self.action_flag == "Delete_Kanban":
+      Kanban_Header = self.Builder.get_object("Kanban_Header_Bar")
+      Content_Box   = self.Builder.get_object("Content_Box")
+      Columns_Grid  = Content_Box.get_children()[0]
+      Combo_Box     = self.Builder.get_object("Kanban_Combo_Box")
+
+      del (self.Kanban)
+      self.File.Delete_File()
+
+      Kanban_Header.set_title("")
+      Columns_Grid.destroy()
+      Combo_Box.set_active(0)
+      #TODO Update the kanban combo box (delete the entry of the deleted kanban
+        # or refresh the whole combo box.
+
+    elif self.action_flag == "Delete_Column":
+      Column_Box  = self.Temp_Widget_Reference
+      Column_Name = Column_Box.get_name()
+
+      self.Kanban.Delete_Column(Column_Name)
+      Column_Box.destroy()
+      self.Save.Write_Save(self.Kanban, P_Overwrite= True)
+
+    elif self.action_flag == "Delete_Card":
+      Card_Box  = self.Temp_Widget_Reference
+      Card_Name = Card_Box.get_name()
+
+      self.Kanban.Delete_Card(Card_Name)
+      Card_Box.destroy()
+      self.Save.Write_Save(self.Kanban, P_Overwrite= True)
+
+
+    Dialog.hide()
 
 
 #---------------------------------------------------------------------------
@@ -494,7 +565,7 @@ class Handler():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Call the methods to edit the Kanban object and save the edited data.
+#--  - Update the Kanban_Combo_Box and select the good element.
 #---------------------------------------------------------------------------
 
   def On_Rename_Dialog_Save_Clicked(self, *args):
@@ -509,7 +580,11 @@ class Handler():
 
     elif self.action_flag == "Edit_Kanban":
       self.Kanban.Set_Title(new_name)
+      self.File.Rename_File(new_name)
       Header_Bar.set_title(new_name)
+      #self.Clear_Combo_Box()
+      #self.Load.Scan_Saves()
+      #self.Display_Saves()
 
     elif self.action_flag == "Rename_Column":
       Column_Box      = self.Temp_Widget_Reference
@@ -536,6 +611,7 @@ class Handler():
     self.Save.Write_Save(self.Kanban, P_Overwrite= True)
     Rename_Entry.set_text("")
     Dialog.hide()
+
 
 #---------------------------------------------------------------------------
 #-- On_Rename_Dialog_Cancel_Clicked
@@ -719,7 +795,7 @@ class Handler():
     Rename_Entry.set_text(Column_Label.get_text())
 
     Dialog.show()
-    self.action_flag           = "Rename_Column"
+    self.action_flag           = "Edit_Column"
     self.Temp_Widget_Reference = P_Column_Box
 
 
@@ -796,3 +872,54 @@ class Handler():
 
     self.Temp_Widget_Reference = P_Card_Box
     Edit_Dialog.show()
+
+
+#---------------------------------------------------------------------------
+#-- On_Edit_Card_Dialog_Delete_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  - #TODO Edit the action flag and self.Temp_Widget_Reference
+#---------------------------------------------------------------------------
+
+  def On_Edit_Card_Dialog_Delete_Clicked(self, *args):
+    Delete_Dialog    = self.Builder.get_object("Delete_Dialog")
+    Edit_Card_Dialog = self.Builder.get_object("Edit_Card_Dialog")
+    self.action_flag = "Delete_Card"
+
+    Delete_Dialog.show()
+    Edit_Card_Dialog.hide()
+
+#---------------------------------------------------------------------------
+#-- On_Rename_Dialog_Delete_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def On_Rename_Dialog_Delete_Clicked(self, *args):
+    Delete_Dialog = self.Builder.get_object("Delete_Dialog")
+    Rename_Dialog = self.Builder.get_object("Rename_Dialog")
+
+    if self.action_flag == "Edit_Column":
+      self.action_flag = "Delete_Column"
+
+    elif self.action_flag == "Edit_Kanban":
+      self.action_flag = "Delete_Kanban"
+
+    Delete_Dialog.show()
+    Rename_Dialog.hide()
+
+
+

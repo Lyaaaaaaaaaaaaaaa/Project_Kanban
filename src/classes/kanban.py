@@ -38,6 +38,10 @@
 #--     - Updated the "for" in Set_Columns to use .values to move through the
 #--         values of the dictionnary.
 #--     - Added Edit_Card to find a card in the columns by its key then edit it.
+#--
+#--   25/09/2020 Lyaaaaa
+#--     - Added Delete_Card method. It looks for a card by its key in the
+#--         columns then delete it if it exists.
 #---------------------------------------------------------------------------
 
 from column import Column
@@ -254,5 +258,25 @@ class Kanban():
                            == True):
         return True
 
+    return False
+    
+#---------------------------------------------------------------------------
+#-- Delete_Card
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Look for a card in the columns then delete it.
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Delete_Card(self, P_Key):
+    for Column in self.Columns.values():
+      if P_Key in Column.Get_Cards():
+        Column.Delete_Card(P_Key)
+        return True
     return False
     
