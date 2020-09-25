@@ -27,6 +27,9 @@
 #--     - Updated Create_Directory and Create_File methods to return True if
 #--         success and false if failure.
 #--     - Added Rename_File method to rename the save file and self.name.
+#--
+#--   25/09/2020 Lyaaaaa
+#--     - Removed some debug prints
 #---------------------------------------------------------------------------
 
 import os
@@ -219,8 +222,6 @@ class File():
   def Rename_File(self, P_New_Name):
     try:
       old_name = self.name
-      print (self.path + old_name)
-      print (self.path + P_New_Name)
       os.rename(self.path + old_name, self.path + P_New_Name + ".yaml")
       self.Set_Name(P_New_Name)
       return True
