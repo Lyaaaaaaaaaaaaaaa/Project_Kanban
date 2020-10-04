@@ -228,6 +228,7 @@
               <object class="GtkEntry" id="Edit_Card_Dialog_Title_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="is_focus">True</property>
                 <property name="tooltip_text" translatable="yes">Enter the name of your card here.</property>
                 <property name="max_length">254</property>
                 <property name="placeholder_text" translatable="yes">Task number 521</property>
@@ -577,6 +578,7 @@
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
+        <property name="is_focus">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">15</property>
         <child internal-child="action_area">
