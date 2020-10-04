@@ -143,7 +143,9 @@
     </child>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can_focus">False</property>
+        <property name="can_focus">True</property>
+        <property name="has_focus">True</property>
+        <property name="is_focus">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">15</property>
         <child internal-child="action_area">
@@ -228,6 +230,7 @@
               <object class="GtkEntry" id="Edit_Card_Dialog_Title_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
                 <property name="is_focus">True</property>
                 <property name="tooltip_text" translatable="yes">Enter the name of your card here.</property>
                 <property name="max_length">254</property>
@@ -567,7 +570,9 @@
     </child>
   </object>
   <object class="GtkDialog" id="Rename_Dialog">
-    <property name="can_focus">False</property>
+    <property name="can_focus">True</property>
+    <property name="has_focus">True</property>
+    <property name="is_focus">True</property>
     <property name="title" translatable="yes">Choose a name</property>
     <property name="default_width">320</property>
     <property name="type_hint">dialog</property>
@@ -663,6 +668,8 @@
               <object class="GtkEntry" id="Rename_Dialog_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="is_focus">True</property>
                 <property name="tooltip_text" translatable="yes">Enter the name of your kanban or column here.</property>
                 <property name="max_length">80</property>
                 <property name="placeholder_text" translatable="yes">My project's name</property>
