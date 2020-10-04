@@ -126,15 +126,22 @@
 #--         edit the card object and its graphical element.
 #--
 #--   25/09/2020 Lyaaaaa
-#--   - Added Add_Combo_Box_Element method (not implemented yet).
-#--   - Updated On_Rename_Dialog_Save_Clicked method and the "Edit_Kanban" case
-#--       to rename the save name.
-#--   - Replaced the "Rename_Column" action_flag value into "Edit_Column".
-#--   - Added the On_Rename_Dialog_Delete_Clicked signal.
-#--   - Added the On_Edit_Card_Dialog_Delete_Clicked signal.
-#--   - Fixed an error in On_Overwrite_Dialog_Cancel_Clicked, it wasn't closing.
-#--   - Implemented On_Delete_Dialog_Yes_Clicked to delete the Card, Column
-#--       or Kanban when needed.
+#--     - Added Add_Combo_Box_Element method (not implemented yet).
+#--     - Updated On_Rename_Dialog_Save_Clicked method and the "Edit_Kanban" case
+#--         to rename the save name.
+#--     - Replaced the "Rename_Column" action_flag value into "Edit_Column".
+#--     - Added the On_Rename_Dialog_Delete_Clicked signal.
+#--     - Added the On_Edit_Card_Dialog_Delete_Clicked signal.
+#--     - Fixed an error in On_Overwrite_Dialog_Cancel_Clicked, it wasn't closing.
+#--     - Implemented On_Delete_Dialog_Yes_Clicked to delete the Card, Column
+#--         or Kanban when needed.
+#--
+#--   04/10/2020 Lyaaaaa
+#--     - Updated On_Card_Edit_Clicked, On_Add_Column_Button_Clicked,
+#--         On_Column_Add_Card_Clicked, On_Column_Edit_Clicked,
+#--         On_Application_Window_Edit_Kanban_Clicked and
+#--         On_Application_Window_Add_Kanban_Clicked to show or hide the
+#--         delete button of their dialog as they need.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -313,8 +320,10 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Application_Window_Add_Kanban_Clicked(self, *args):
-    Dialog = self.Builder.get_object("Rename_Dialog")
+    Dialog        = self.Builder.get_object("Rename_Dialog")
+    Delete_Button = self.Builder.get_object("Rename_Dialog_Delete_Button")
 
+    Delete_Button.hide()
     Dialog.show()
     self.action_flag = "Add_Kanban"
 
@@ -333,9 +342,11 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Application_Window_Edit_Kanban_Clicked(self, *args):
-    Dialog = self.Builder.get_object("Rename_Dialog")
-    Entry   = self.Builder.get_object("Rename_Dialog_Entry")
+    Dialog        = self.Builder.get_object("Rename_Dialog")
+    Entry         = self.Builder.get_object("Rename_Dialog_Entry")
+    Delete_Button = self.Builder.get_object("Rename_Dialog_Delete_Button")
 
+    Delete_Button.show()
     Entry.set_text(self.Kanban.Get_Title())
     Dialog.show()
     self.action_flag = "Edit_Kanban"
@@ -791,10 +802,12 @@ class Handler():
     Column_Header = P_Column_Box.get_children()[1]
     Header_Items  = Column_Header.get_children()
     Column_Label  = Header_Items[0]
+    Delete_Button = self.Builder.get_object("Rename_Dialog_Delete_Button")
 
     Rename_Entry.set_text(Column_Label.get_text())
-
+    Delete_Button.show()
     Dialog.show()
+
     self.action_flag           = "Edit_Column"
     self.Temp_Widget_Reference = P_Column_Box
 
@@ -813,8 +826,10 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Column_Add_Card_Clicked(self, P_Add_Button, P_Column_Box):
-    Dialog = self.Builder.get_object("Edit_Card_Dialog")
+    Dialog        = self.Builder.get_object("Edit_Card_Dialog")
+    Delete_Button = self.Builder.get_object("Edit_Card_Dialog_Delete_Button")
 
+    Delete_Button.hide()
     Dialog.show()
     self.action_flag = "Add_Card"
     self.Temp_Widget_Reference = P_Column_Box
@@ -835,8 +850,10 @@ class Handler():
 
   def On_Add_Column_Button_Clicked(self, *args):
     Rename_Dialog    = self.Builder.get_object("Rename_Dialog")
+    Delete_Button    = self.Builder.get_object("Rename_Dialog_Delete_Button")
     self.action_flag = "Add_Column"
 
+    Delete_Button.hide()
     Rename_Dialog.show()
 
 
@@ -854,10 +871,10 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Card_Edit_Clicked(self, P_Edit_Button, P_Card_Box):
-    Edit_Dialog = self.Builder.get_object("Edit_Card_Dialog")
-    Title_Entry = self.Builder.get_object("Edit_Card_Dialog_Title_Entry")
-    Buffer      = self.Builder.get_object ("Edit_Card_Dialog_Description_Buffer")
-
+    Edit_Dialog   = self.Builder.get_object("Edit_Card_Dialog")
+    Title_Entry   = self.Builder.get_object("Edit_Card_Dialog_Title_Entry")
+    Buffer        = self.Builder.get_object("Edit_Card_Dialog_Description_Buffer")
+    Delete_Button = self.Builder.get_object("Edit_Card_Dialog_Delete_Button")
 
     self.action_flag = "Edit_Card"
     Card_Header      = P_Card_Box.get_children()[0]
@@ -871,6 +888,7 @@ class Handler():
     Buffer.set_text(Card_Buffer.get_text(start, end, False))
 
     self.Temp_Widget_Reference = P_Card_Box
+    Delete_Button.show()
     Edit_Dialog.show()
 
 
