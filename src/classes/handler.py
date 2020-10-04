@@ -142,6 +142,7 @@
 #--         On_Application_Window_Edit_Kanban_Clicked and
 #--         On_Application_Window_Add_Kanban_Clicked to show or hide the
 #--         delete button of their dialog as they need.
+#--     - Updated Add_Combo_Box_Element to make it select the last added element.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -245,8 +246,10 @@ class Handler():
 #--  -
 #---------------------------------------------------------------------------
   def Add_Combo_Box_Element(self, P_Element_Text, P_Element_Id):
-    Combo_Box   = self.Builder.get_object("Kanban_Combo_Box")
+    Combo_Box = self.Builder.get_object("Kanban_Combo_Box")
+
     Combo_Box.append(P_Element_Text, P_Element_Id)
+    Combo_Box.set_active_id(P_Element_Id)
 
 
 #---------------------------------------------------------------------------
