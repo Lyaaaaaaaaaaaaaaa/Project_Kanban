@@ -143,6 +143,8 @@
 #--         On_Application_Window_Add_Kanban_Clicked to show or hide the
 #--         delete button of their dialog as they need.
 #--     - Updated Add_Combo_Box_Element to make it select the last added element.
+#--     - Renamed Clear_Combo_Box into Remove_Combo_Box_Element as its function
+#--         changed. It now remove an element (actually only the active one).
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -271,23 +273,25 @@ class Handler():
 
 
 #---------------------------------------------------------------------------
-#-- Clear_Combo_Box
+#-- Remove_Combo_Box_Element
 #--
 #-- Portability Issues:
 #--  -
 #--
 #-- Implementation Notes:
-#--  - Empties the Kanban_Combo_Box element
+#--  - Removes an element of the combobox
 #--
 #-- Anticipated Changes:
-#--  -
+#--  - Add more possible arguments to delete other elements than active.
 #---------------------------------------------------------------------------
 
-  def Clear_Combo_Box(self):
-    pass
-    #Combo_Box = self.Builder.get_object("Kanban_Combo_Box")
-    #Combo_List = Combo_Box.get_model()
-    #Combo_List.clear()
+  def Remove_Combo_Box_Element(self, P_Argument):
+    Combo_Box = self.Builder.get_object("Kanban_Combo_Box")
+
+    if P_Argument == "active":
+      Element = Combo_Box.get_active()
+      Combo_Box.set_active(0)
+      Combo_Box.remove(Element)
 
   #---------------------------------
   #--          Signals            --
@@ -538,16 +542,13 @@ class Handler():
       Kanban_Header = self.Builder.get_object("Kanban_Header_Bar")
       Content_Box   = self.Builder.get_object("Content_Box")
       Columns_Grid  = Content_Box.get_children()[0]
-      Combo_Box     = self.Builder.get_object("Kanban_Combo_Box")
 
       del (self.Kanban)
       self.File.Delete_File()
 
       Kanban_Header.set_title("")
       Columns_Grid.destroy()
-      Combo_Box.set_active(0)
-      #TODO Update the kanban combo box (delete the entry of the deleted kanban
-        # or refresh the whole combo box.
+      self.Remove_Combo_Box_Element("active")
 
     elif self.action_flag == "Delete_Column":
       Column_Box  = self.Temp_Widget_Reference
