@@ -150,6 +150,8 @@
 #--    - Edited On_Delete_Dialog_Yes_Clicked and the "delete_kanban" case to
 #--        put the code deletings the column in a "try" to avoid any error if
 #--        the kanban has no column.
+#--    - Updated On_Rename_Dialog_Save_Clicked in "Edit_Kanban" case to remove
+#--        the selected combo box element and add a new one with the right name.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -591,7 +593,8 @@ class Handler():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Update the Kanban_Combo_Box and select the good element.
+#--  - Find another way to update the combo box as it reload the already loaded
+#--      kanban.
 #---------------------------------------------------------------------------
 
   def On_Rename_Dialog_Save_Clicked(self, *args):
@@ -608,9 +611,9 @@ class Handler():
       self.Kanban.Set_Title(new_name)
       self.File.Rename_File(new_name)
       Header_Bar.set_title(new_name)
-      #self.Clear_Combo_Box()
-      #self.Load.Scan_Saves()
-      #self.Display_Saves()
+
+      self.Remove_Combo_Box_Element("active")
+      self.Add_Combo_Box_Element(new_name, new_name)
 
     elif self.action_flag == "Rename_Column":
       Column_Box      = self.Temp_Widget_Reference
