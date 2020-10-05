@@ -145,6 +145,11 @@
 #--     - Updated Add_Combo_Box_Element to make it select the last added element.
 #--     - Renamed Clear_Combo_Box into Remove_Combo_Box_Element as its function
 #--         changed. It now remove an element (actually only the active one).
+#--
+#--   05/10/2020 Lyaaaaa
+#--    - Edited On_Delete_Dialog_Yes_Clicked and the "delete_kanban" case to
+#--        put the code deletings the column in a "try" to avoid any error if
+#--        the kanban has no column.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk
@@ -530,6 +535,8 @@ class Handler():
 #--    - Remove the column object then its graphical elements.
 #--  - Delete_Card case:
 #--    - Same than Delete_Column but with the card.
+#--  - The deletion of the columns is in a try because the user could want to
+#--      delete a kanban with no column in it.
 #--
 #-- Anticipated Changes:
 #--  -
@@ -541,14 +548,18 @@ class Handler():
     if   self.action_flag == "Delete_Kanban":
       Kanban_Header = self.Builder.get_object("Kanban_Header_Bar")
       Content_Box   = self.Builder.get_object("Content_Box")
-      Columns_Grid  = Content_Box.get_children()[0]
 
       del (self.Kanban)
-      self.File.Delete_File()
-
       Kanban_Header.set_title("")
-      Columns_Grid.destroy()
+
+      self.File.Delete_File()
       self.Remove_Combo_Box_Element("active")
+
+      try:
+        Columns_Grid  = Content_Box.get_children()[0]
+        Columns_Grid.destroy()
+      except IndexError:
+        pass
 
     elif self.action_flag == "Delete_Column":
       Column_Box  = self.Temp_Widget_Reference
