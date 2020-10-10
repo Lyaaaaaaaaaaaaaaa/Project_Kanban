@@ -8,7 +8,7 @@ This project is a lightweight user-friendly desktop software to create and manag
 - [x] Create your kanban in one click.
 - [x] Create your columns.
 - [x] Create your cards.
-- [ ] Drag and drop your cards from one column to another. *Not connected with the interface*
+- [x] Drag and drop your cards from one column to another.
 - [x] Auto save on your computer.
 - [x] No account.
 - [x] self-sufficient (It only needs GTK, no internet or other softwares needed).
@@ -23,13 +23,7 @@ That's why I'm making this project.
 
 ## How to test it?
 
-The classes are done but there is no interface connected (WIP in Handler branch) to use them.
-If you really want to try it I recommend taking a look at [Class' diagram](https://raw.githubusercontent.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/master/management/uml/Class_Diagram.jpeg). 
-The classes are in `src/classes/`.
-
-The Handler branch is advanced enough to test it 
-(it's still WIP! some signals are not done yet and the drag and drop feature isn't implemented yet!).
-If you want to test it download the project and use the Handler branch,
+Download the Handler branch to use the software in its last version.
 then create a main.py in the `src/classes/` folder (the file name is not important)
 and simply write the following lines
 ```
@@ -41,6 +35,7 @@ Interface.Connect_Signals()
 Interface.Start_Application()
 ```
 then run this file. 
+The software is not yet finished. Some improvement are needed!
 
 ## More information:
 
