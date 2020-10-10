@@ -42,6 +42,9 @@
 #--   25/09/2020 Lyaaaaa
 #--     - Added Delete_Card method. It looks for a card by its key in the
 #--         columns then delete it if it exists.
+#--
+#--   10/10/2020 Lyaaaaa
+#--     - Added Add_Card method to directly add a card from the Kanban class.
 #---------------------------------------------------------------------------
 
 from column import Column
@@ -279,4 +282,21 @@ class Kanban():
         Column.Delete_Card(P_Key)
         return True
     return False
-    
+
+
+#---------------------------------------------------------------------------
+#-- Add_Card
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Add a card in a column by calling Column::Add_Card method
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Add_Card(self, P_Column_Key, P_Title , P_Description):
+    self.Columns[P_Column_Key].Add_Card(P_Title, P_Description)
+
