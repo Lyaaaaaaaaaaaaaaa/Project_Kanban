@@ -40,6 +40,9 @@
 #--
 #--   23/09/2020 Lyaaaaa
 #--     - Added Edit_Card to find a card in the Cards dictionnary then edit it.
+#--
+#--   12/10/2020 Lyaaaaa
+#--     - Updated Delete_Card to call Update_Cards_Number after deleting a card.
 #---------------------------------------------------------------------------
 
 from card import Card
@@ -223,6 +226,7 @@ class Column():
 
     if P_Key  in self.Cards:
       del self.Cards[P_Key]
+      self.Update_Cards_Number()
 
 
 #---------------------------------------------------------------------------
