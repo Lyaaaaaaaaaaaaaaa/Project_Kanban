@@ -48,6 +48,12 @@
 #--         whitespace between <b> and <big> which was creating whitespace
 #--         in the label, therefore making errors later when using the label
 #--         as a key to retrieve the column object.
+#--
+#--   12/10/2020 Lyaaaaa
+#--     - Updated Add_Card to add a third element to the cards header.
+#--         This new button is used for dragging the card. And added a margin
+#--         between the label and the buttons.
+#--
 #---------------------------------------------------------------------------
 import gi
 
@@ -249,12 +255,19 @@ class Graphical_Kanban():
     Label         = Gtk.Label()
     Edit_Image    = Gtk.Image()
     Edit_Button   = Gtk.Button()
+    Drag_Image    = Gtk.Image()
+    Drag_Button   = Gtk.Button()
 
     Edit_Image.set_from_icon_name("gtk-edit", 1)
     Edit_Button.set_image(Edit_Image)
     Edit_Button.set_relief(Gtk.ReliefStyle.NONE)
 
+    Drag_Image.set_from_icon_name("gtk-index", 1)
+    Drag_Button.set_image(Drag_Image)
+    Drag_Button.set_relief(Gtk.ReliefStyle.NONE)
+
     Label.set_markup("<b>" + P_Title + "</b>")
+    Label.set_margin_right(10)
 
     Buffer.set_text(P_Description)
     Text_View.set_buffer(Buffer)
@@ -264,6 +277,7 @@ class Graphical_Kanban():
 
     Card_Header.add(Label)
     Card_Header.add(Edit_Button)
+    Card_Header.add(Drag_Button)
 
     Card_Box.set_name(P_Title)
     Card_Box.add(Card_Header)

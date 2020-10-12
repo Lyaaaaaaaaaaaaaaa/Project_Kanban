@@ -165,6 +165,10 @@
 #--    - Added On_Drag_Date_Get and On_Drag_Drop signals handlers.
 #--    - Moved Connect_Column_Buttons and Connect_Card_Buttons methods out of
 #--        the signals section of the file.
+#--
+#--   12/10/2020 Lyaaaaa
+#--     - Updated Connect_Card_Buttons to set the newly added button as the
+#--         drag source (third element of the cards header).
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -357,11 +361,12 @@ class Handler():
   def Connect_Card_Buttons(self, P_Card_Box):
     Card_Header      = P_Card_Box.get_children()[0]
     Card_Edit_Button = Card_Header.get_children()[1]
+    Card_Drag_Button = Card_Header.get_children()[2]
 
     Card_Edit_Button.connect("clicked",
                              self.On_Card_Edit_Clicked,
                              P_Card_Box)
-    self.Set_Drag_Source(Card_Edit_Button)
+    self.Set_Drag_Source(Card_Drag_Button)
 
 
 
