@@ -11,4 +11,5 @@
 /src/interface.ui~
 /src/#interface.ui#
 /src/window_test.ui
-
+/src/__pycache__/
+/src/saves/
