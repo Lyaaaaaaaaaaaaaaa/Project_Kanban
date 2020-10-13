@@ -24,18 +24,9 @@ That's why I'm making this project.
 ## How to test it?
 
 Download the Handler branch to use the software in its last version.
-then create a main.py in the `src/classes/` folder (the file name is not important)
-and simply write the following lines
-```
-from interface import Interface
-
-Interface = Interface()
-Interface.Connect_Interface()
-Interface.Connect_Signals()
-Interface.Start_Application()
-```
-then run this file. 
-The software is not yet finished. Some improvement are needed!
+then run main.py.
+To run it type `python main.py` in a terminal. 
+The software is not yet finished. Some improvement are needed but it's usable.
 
 ## More information:
 
