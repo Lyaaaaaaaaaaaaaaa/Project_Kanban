@@ -54,6 +54,8 @@
 #--         This new button is used for dragging the card. And added a margin
 #--         between the label and the buttons.
 #--
+#--   13/10/2020 Lyaaaaa
+#--     - Updated Add_Card to edit Drag_Image's image. It now use a custom icon.
 #---------------------------------------------------------------------------
 import gi
 
@@ -262,7 +264,7 @@ class Graphical_Kanban():
     Edit_Button.set_image(Edit_Image)
     Edit_Button.set_relief(Gtk.ReliefStyle.NONE)
 
-    Drag_Image.set_from_icon_name("gtk-index", 1)
+    Drag_Image.set_from_file("ui_ressources/grab24.png")
     Drag_Button.set_image(Drag_Image)
     Drag_Button.set_relief(Gtk.ReliefStyle.NONE)
 

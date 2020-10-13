@@ -26,6 +26,10 @@
 #--   31/08/2020 Lyaaaaa
 #--     - In Start_Application Handler.Scan_Saves becomes Handler.Display_Saves
 #--         because the name of the method changed in the Hlandler class.
+#--
+#--   13/10/2020 Lyaaaaa
+#--     - Updated Connect_Interface to update the path to interface.ui as the
+#--         source files changed of directory.
 #---------------------------------------------------------------------------
 
 import gi
@@ -68,7 +72,7 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def Connect_Interface(self):
-    self.Builder.add_from_file("../interface.ui")
+    self.Builder.add_from_file("interface.ui")
 
 #---------------------------------------------------------------------------
 #-- Connect_Signals
