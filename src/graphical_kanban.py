@@ -56,6 +56,8 @@
 #--
 #--   13/10/2020 Lyaaaaa
 #--     - Updated Add_Card to edit Drag_Image's image. It now use a custom icon.
+#--     - Updated Add_Column to give a shadow to each column.
+#--     - Updated Add_Card to add a bottom margin.
 #---------------------------------------------------------------------------
 import gi
 
@@ -214,6 +216,7 @@ class Graphical_Kanban():
 
     Scrolled_Window.add(Viewport)
     Scrolled_Window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+    Scrolled_Window.set_shadow_type(Gtk.ShadowType.ETCHED_OUT)
 
     Column_Label.set_markup("<b><big>"+ P_Title + "</big></b>")
     Column_Header.add(Column_Label)
@@ -284,6 +287,7 @@ class Graphical_Kanban():
     Card_Box.set_name(P_Title)
     Card_Box.add(Card_Header)
     Card_Box.add(Text_View)
+    Card_Box.set_margin_bottom(5)
 
 
     return Card_Box
