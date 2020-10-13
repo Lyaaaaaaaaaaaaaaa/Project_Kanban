@@ -550,6 +550,7 @@
                   <object class="GtkBox" id="Content_Box">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="spacing">10</property>
                     <property name="homogeneous">True</property>
                     <child>
                       <placeholder/>
