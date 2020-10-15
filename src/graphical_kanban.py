@@ -58,6 +58,13 @@
 #--     - Updated Add_Card to edit Drag_Image's image. It now use a custom icon.
 #--     - Updated Add_Column to give a shadow to each column.
 #--     - Updated Add_Card to add a bottom margin.
+#--
+#--    15/10/2020 Lyaaaaa
+#--     - Updated Generate_Kanban to use the new Get_Columns_By_Id method to
+#--         get the columns ordered by id. It solve the problem of the columns
+#--         reordering themselves by alphabetical order.
+#--     - Updated Generate_Columns to adapt to this change, the Columns given in
+#--         parameters are now stored in a list instead of a dict.
 #---------------------------------------------------------------------------
 import gi
 
@@ -121,7 +128,7 @@ class Graphical_Kanban():
 #---------------------------------------------------------------------------
 
   def Generate_Kanban(self):
-    Columns = self.Kanban.Get_Columns()
+    Columns = self.Kanban.Get_Columns_By_Id()
 
     self.Generate_Columns(Columns)
     self.Gtk_Box.show_all()
@@ -141,7 +148,7 @@ class Graphical_Kanban():
 #---------------------------------------------------------------------------
 
   def Generate_Columns(self, P_Columns):
-    for Column in P_Columns.values():
+    for Column in P_Columns:
       column_title    = Column.Get_Title()
       Cards           = Column.Get_Cards()
       Column_Box      = self.Add_Column(column_title)

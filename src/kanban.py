@@ -45,13 +45,16 @@
 #--
 #--   10/10/2020 Lyaaaaa
 #--     - Added Add_Card method to directly add a card from the Kanban class.
+#--
+#--    15/10/2020 Lyaaaaa
+#--     - Added Get_Columns_By_Id to return the columns ordered by their id
+#--         (Ascending).
+#--     - Updated the Add_Column method to give an id to the newly created
+#--         column.
 #---------------------------------------------------------------------------
 
 from column import Column
 
-  #-------------------------------------
-  #--        class declaration        --
-  #-------------------------------------
 
 class Kanban():
   """Represent the kanban board"""
@@ -169,12 +172,40 @@ class Kanban():
     return self.Columns[P_Key]
 
 
+
+#---------------------------------------------------------------------------
+#-- Get_Columns_By_Id
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - Returns the columns ordered by ids
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Get_Columns_By_Id(self):
+    Columns = []
+    for Column in self.Columns.values():
+      Columns.append(Column)
+
+    length  = len (Columns)
+    for i in range(length -1):
+      for y in range(0, length - i - 1):
+
+        if Columns[y].Get_Id() > Columns[y + 1].Get_Id():
+          Columns[y], Columns[y+1] = Columns[y + 1], Columns[y]
+
+    return Columns
+
   #-----------------------------
   #--       Functions         --
   #-----------------------------
 
 #---------------------------------------------------------------------------
-#-- Get_Columns
+#-- Delete_Column
 #--
 #-- Portability Issues:
 #--  -
@@ -208,7 +239,8 @@ class Kanban():
 #---------------------------------------------------------------------------
 
   def Add_Column(self, P_Title = "Column's title"):
-    New_Column = Column(P_Title)
+    columns_number = len(self.Columns)
+    New_Column     = Column(P_Title, columns_number)
     self.Columns.update({P_Title : New_Column})
     return True
 

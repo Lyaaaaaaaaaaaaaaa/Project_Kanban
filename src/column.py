@@ -43,6 +43,11 @@
 #--
 #--   12/10/2020 Lyaaaaa
 #--     - Updated Delete_Card to call Update_Cards_Number after deleting a card.
+#--
+#--    15/10/2020 Lyaaaaa
+#--     - Added an id attribute to the columns. Init at 0 by default.
+#--     - Added a method to return the id and another one to change it.
+#--         the Set_Id method isn't used for now.
 #---------------------------------------------------------------------------
 
 from card import Card
@@ -68,8 +73,9 @@ class Column():
 #--  - Make Cards an array of cards.
 #---------------------------------------------------------------------------
 
-  def __init__(self, P_Title = "Column's title"):
+  def __init__(self, P_Title = "Column's title", P_Id = 0):
     self.title        = P_Title
+    self.id           = P_Id
     self.cards_number = 0
     self.Cards        = {}
 
@@ -117,6 +123,23 @@ class Column():
     return True
 
 
+#---------------------------------------------------------------------------
+#-- Set_Id
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Set_Id(self, P_Id):
+    self.id = P_Id
+
+
   #---------------------------------
   #--       Functions Get         --
   #---------------------------------
@@ -136,6 +159,24 @@ class Column():
 
   def Get_Title(self):
     return self.title
+
+
+#---------------------------------------------------------------------------
+#-- Get_Id
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def Get_Id(self):
+    return self.id
+
 
 #---------------------------------------------------------------------------
 #-- Get_Cards
