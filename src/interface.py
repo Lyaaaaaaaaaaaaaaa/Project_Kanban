@@ -30,6 +30,12 @@
 #--   13/10/2020 Lyaaaaa
 #--     - Updated Connect_Interface to update the path to interface.ui as the
 #--         source files changed of directory.
+#--
+#--    15/10/2020 Lyaaaaa
+#--     - Updated Start_Application, removed the Handler.Display_Saves() call.
+#--     - Updated Connect_Signals to call Handler.Display_Saves() and
+#--         Handler.Set_Active_Combo_Box_Element before to connect the signals
+#--         to avoid triggering useless loading of a Graphical_Kanban.
 #---------------------------------------------------------------------------
 
 import gi
@@ -88,6 +94,8 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def Connect_Signals(self):
+    self.Handler.Display_Saves()
+    self.Handler.Set_Active_Combo_Box_Element(0)
     self.Builder.connect_signals(self.Handler)
 
 #---------------------------------------------------------------------------
@@ -104,7 +112,6 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def Start_Application(self):
-    self.Handler.Display_Saves()
     Application_Window = self.Builder.get_object("Application_Window")
     Application_Window.show_all()
     Gtk.main()

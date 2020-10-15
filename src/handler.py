@@ -169,6 +169,9 @@
 #--   12/10/2020 Lyaaaaa
 #--     - Updated Connect_Card_Buttons to set the newly added button as the
 #--         drag source (third element of the cards header).
+#--
+#--   15/10/2020 Lyaaaaa
+#--     - Added Set_Active_Combo_Box_Element method.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -410,6 +413,23 @@ class Handler():
     Widget.drag_dest_set_target_list(None)
     Widget.drag_dest_add_text_targets()
 
+
+
+#---------------------------------------------------------------------------
+#-- Set_Active_Combo_Box_Element
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  - By default if none parameters given it will set the placeholder as active.
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+  def Set_Active_Combo_Box_Element(self, P_Element_Id = 0):
+    Combo_Box = self.Builder.get_object("Kanban_Combo_Box")
+    Combo_Box.set_active(P_Element_Id)
 
 
   #---------------------------------
