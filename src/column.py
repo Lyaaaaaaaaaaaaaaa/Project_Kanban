@@ -48,6 +48,13 @@
 #--     - Added an id attribute to the columns. Init at 0 by default.
 #--     - Added a method to return the id and another one to change it.
 #--         the Set_Id method isn't used for now.
+#--
+#--   17/10/2020 Lyaaaaa
+#--     - Updated Edit_Card to add a condition. It will now verify if the
+#--         title of the card changed (because the title is used as key) and it
+#--         won't delete anymore the key if the title isn't changed (Fixes the
+#--         error making cards disappear if you don't edit the title while
+#--         editing a card).
 #---------------------------------------------------------------------------
 
 from card import Card
@@ -296,7 +303,7 @@ class Column():
     return True
 
 #---------------------------------------------------------------------------
-#-- Set_Card
+#-- Edit_Card
 #--
 #-- Portability Issues:
 #--  -
@@ -315,7 +322,9 @@ class Column():
       Card.Set_Title(P_New_Title)
       Card.Set_Description(P_New_Description)
       self.Cards.update({P_New_Title : Card})
-      del self.Cards[P_Key]
+
+      if P_Key != P_New_Title:
+        del self.Cards[P_Key]
 
       return True
 
