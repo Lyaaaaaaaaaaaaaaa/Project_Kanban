@@ -65,6 +65,10 @@
 #--         reordering themselves by alphabetical order.
 #--     - Updated Generate_Columns to adapt to this change, the Columns given in
 #--         parameters are now stored in a list instead of a dict.
+#--
+#--   17/10/2020 Lyaaaaa
+#--     - Updated Add_Column and Add_Card to add tooltips to their buttons.
+
 #---------------------------------------------------------------------------
 import gi
 
@@ -273,10 +277,13 @@ class Graphical_Kanban():
     Edit_Image.set_from_icon_name("gtk-edit", 1)
     Edit_Button.set_image(Edit_Image)
     Edit_Button.set_relief(Gtk.ReliefStyle.NONE)
+    Edit_Button.set_tooltip_markup("Click to edit this card.")
 
     Drag_Image.set_from_file("ui_ressources/grab24.png")
     Drag_Button.set_image(Drag_Image)
     Drag_Button.set_relief(Gtk.ReliefStyle.NONE)
+    Drag_Button.set_tooltip_markup(  "Hold the left click to drag this card "
+                                   + "into another column.")
 
     Label.set_markup("<b>" + P_Title + "</b>")
     Label.set_margin_right(10)
