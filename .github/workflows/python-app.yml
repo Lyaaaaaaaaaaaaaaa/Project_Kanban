@@ -47,5 +47,4 @@ jobs:
     steps:
       - name: Run main.py
         run: |
-          cd src/
           python main.py
