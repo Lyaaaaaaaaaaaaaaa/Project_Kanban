@@ -172,6 +172,20 @@
 #--
 #--   15/10/2020 Lyaaaaa
 #--     - Added Set_Active_Combo_Box_Element method.
+#--
+#--   18/10/2020 Lyaaaaa
+#--     - Updated On_Kanban_Combo_Box_Changed to disable the button to add a
+#--         column and edit a kanban if no kanban is selected. It also now hides
+#--         the content of the previously selected kanban and removes its title
+#--         from the header bar.
+#--         This prevent some errors.
+#--         Removed Header_Bar.set_title as the kanban is reloaded anyway.
+#--     - Updated On_Rename_Dialog_Save_Clicked to overwrite the save before
+#--         renaming the save file.
+#--     - Implemented On_Popover_Menu_Help_Clicked.
+#--     - Added the following signals On_Help_Dialog_Close_Clicked,
+#--         On_Help_Dialog_Apply_Clicked, On_Help_Dialog_Cancel_Clicked.
+#--
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -727,6 +741,8 @@ class Handler():
 #-- Anticipated Changes:
 #--  - Find another way to update the combo box as it reload the already loaded
 #--      kanban.
+#--    TODO inspect the reason why saving after renaming the save file doesn't
+#--      work.
 #---------------------------------------------------------------------------
 
   def On_Rename_Dialog_Save_Clicked(self, *args):
@@ -741,8 +757,8 @@ class Handler():
 
     elif self.action_flag == "Edit_Kanban":
       self.Kanban.Set_Title(new_name)
+      self.Save.Write_Save(self.Kanban, P_Overwrite = True)
       self.File.Rename_File(new_name)
-      Header_Bar.set_title(new_name)
 
       self.Remove_Combo_Box_Element("active")
       self.Add_Combo_Box_Element(new_name, new_name)
@@ -812,7 +828,9 @@ class Handler():
 #---------------------------------------------------------------------------
 
   def On_Popover_Menu_Help_Clicked(self, *args):
-    pass#TODO
+    Dialog = self.Builder.get_object("Help_Dialog")
+
+    Dialog.show()
 
 #---------------------------------------------------------------------------
 #-- On_Popover_Menu_Preferences_Clicked
@@ -869,6 +887,9 @@ class Handler():
     Header_Bar  = self.Builder.get_object("Kanban_Header_Bar")
     active_id   = Combo_Box.get_active_id()
 
+    Edit_Kanban_Button = self.Builder.get_object("Application_Window_Edit_Kanban_Button")
+    Add_Column_Button  = self.Builder.get_object("Add_Column_Button")
+
     if active_id != "placeholder":
       del (self.Graphical_Kanban)
       self.Kanban           = self.Load.Load_Save_File(active_id)
@@ -876,6 +897,17 @@ class Handler():
 
       Header_Bar.set_title(self.Kanban.Get_Title())
       self.File.Set_Name(active_id)
+
+      Edit_Kanban_Button.set_sensitive(True)
+      Add_Column_Button.set_sensitive(True)
+
+
+    else:
+      Edit_Kanban_Button.set_sensitive(False)
+      Add_Column_Button.set_sensitive(False)
+      Content_Box.hide()
+      Header_Bar.set_title("")
+
 
     for Column_Box in Content_Box.get_children():
       self.Connect_Column_Buttons(Column_Box)
@@ -1126,3 +1158,58 @@ class Handler():
       self.Set_Drag_Source(Edit_Button)
 
       self.Save.Write_Save(self.Kanban, P_Overwrite = True)
+
+#---------------------------------------------------------------------------
+#-- On_Help_Dialog_Cancel_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def On_Help_Dialog_Cancel_Clicked(self, *args):
+    Dialog = self.Builder.get_object("Help_Dialog")
+
+    Dialog.hide()
+
+
+#---------------------------------------------------------------------------
+#-- On_Help_Dialog_Apply_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def On_Help_Dialog_Apply_Clicked(self, *args):
+    Dialog = self.Builder.get_object("Help_Dialog")
+
+    Dialog.hide()
+
+
+#---------------------------------------------------------------------------
+#-- On_Help_Dialog_Close_Clicked
+#--
+#-- Portability Issues:
+#--  -
+#--
+#-- Implementation Notes:
+#--  -
+#--
+#-- Anticipated Changes:
+#--  -
+#---------------------------------------------------------------------------
+
+  def On_Help_Dialog_Close_Clicked(self, *args):
+    pass
+

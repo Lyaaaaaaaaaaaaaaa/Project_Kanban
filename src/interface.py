@@ -36,6 +36,10 @@
 #--     - Updated Connect_Signals to call Handler.Display_Saves() and
 #--         Handler.Set_Active_Combo_Box_Element before to connect the signals
 #--         to avoid triggering useless loading of a Graphical_Kanban.
+#--
+#--   18/10/2020 Lyaaaaa
+#--     - Updated Start_Application to disable the button to add a column and
+#--         edit a kanban if no kanban is selected. This prevent some errors.
 #---------------------------------------------------------------------------
 
 import gi
@@ -113,6 +117,13 @@ class Interface():
 
   def Start_Application(self):
     Application_Window = self.Builder.get_object("Application_Window")
+    Add_Column_Button  = self.Builder.get_object("Add_Column_Button")
+    Edit_Kanban_Button = self.Builder.get_object(
+        "Application_Window_Edit_Kanban_Button")
+
+    Edit_Kanban_Button.set_sensitive(False)
+    Add_Column_Button.set_sensitive(False)
+
     Application_Window.show_all()
     Gtk.main()
 
