@@ -5,13 +5,13 @@
 
 This project is a lightweight user-friendly desktop software to create and manage basic [kanbans boards](#https://en.wikipedia.org/wiki/Kanban) for your personal use.
 
-- [x] Create your kanban in one click.
-- [x] Create your columns.
-- [x] Create your cards.
-- [x] Drag and drop your cards from one column to another.
-- [x] Auto save on your computer.
-- [x] No account.
-- [x] self-sufficient (It only needs GTK, no internet or other softwares needed).
+- Create your kanban in one click.
+- Create your columns.
+- Create your cards.
+- Drag and drop your cards from one column to another.
+- Auto save on your computer.
+- No account.
+- self-sufficient (It only needs GTK, no internet or other softwares needed).
 
 ## Why is this project useful?
 
@@ -21,12 +21,30 @@ Otherwise, open source softwares were fine but far too heavy for my humble use. 
 
 That's why I'm making this project.
 
-## How to test it?
+## How to install and run it 
+*Only works for the Script release*
 
-Download the Handler branch to use the software in its last version.
-then run main.py.
-To run it type `python main.py` in a terminal. 
-The software is not yet finished. Some improvement are needed but it's usable.
+### Installation
+
+1. Download the last [release](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/releases).
+2. Unzip the release. 
+3. Give  executable permission to the install.sh file
+ 
+  `chmod +x install.sh `.
+
+4. Run install.sh
+
+  `./install.sh`.
+
+### Starting the software
+
+1. Give executable permission to the start.sh file
+
+  `chmod +x start.sh`.
+
+2. Run the start.sh script
+
+  `./start.sh`.
 
 ## More information:
 

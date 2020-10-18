@@ -6,10 +6,14 @@
 /src/classes/test.py
 /src/classes/saves/*
 /src/classes/saves/
+<<<<<<< HEAD
 /src/interface_exemple.ui~
 /src/#interface_exemple.ui#
 /src/interface.ui~
 /src/#interface.ui#
+=======
+/src/classes/ui_tester.py
 /src/window_test.ui
-/src/__pycache__/
-/src/saves/
+/src/window.ui
+
+>>>>>>> Hotfix
