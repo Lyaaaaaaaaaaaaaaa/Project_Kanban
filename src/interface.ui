@@ -7,7 +7,7 @@
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
     <property name="program_name">Project Kanban</property>
-    <property name="version">X.X.X</property>
+    <property name="version">1.0.0</property>
     <property name="copyright" translatable="yes">Copyright (c) 2020 Lyaaaaaaaaaaaaaaa</property>
     <property name="website">https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban</property>
     <property name="authors">Lyaaaaa</property>
@@ -279,6 +279,156 @@
           </packing>
         </child>
       </object>
+    </child>
+  </object>
+  <object class="GtkAssistant" id="Help_Dialog">
+    <property name="can_focus">False</property>
+    <property name="use_header_bar">1</property>
+    <signal name="apply" handler="On_Help_Dialog_Apply_Clicked" swapped="no"/>
+    <signal name="cancel" handler="On_Help_Dialog_Cancel_Clicked" swapped="no"/>
+    <signal name="close" handler="On_Help_Dialog_Close_Clicked" swapped="no"/>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Hello, I will show you how to use this software.</property>
+      </object>
+      <packing>
+        <property name="page_type">intro</property>
+        <property name="title" translatable="yes">Introduction</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">You first have to create a new Kanban.
+To add a Kanban, click on the button on the most top left.
+Then type the name of your Kanban.</property>
+      </object>
+      <packing>
+        <property name="page_type">progress</property>
+        <property name="title" translatable="yes">Create a kanban</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Now you have to add columns to your Kanban.
+To do you have to click on the button at the top right named "Add a column".
+Then type the name of your column.
+You can add multiple columns.</property>
+      </object>
+      <packing>
+        <property name="page_type">progress</property>
+        <property name="title" translatable="yes">Create a column</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Now you can add cards to your column.
+To do, simply click on the button at the top right of your column.
+Then type the title of your card and its description.
+You can add as many cards as you want in a single column.</property>
+      </object>
+      <packing>
+        <property name="page_type">progress</property>
+        <property name="title" translatable="yes">Add a card</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_top">70</property>
+            <property name="label" translatable="yes">To drag a card from a column to another you have to 
+click on the hand icon on the left of your card's title and hold it,
+then drag it to a column.</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">ui_ressources/grab24.png</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="page_type">progress</property>
+        <property name="title" translatable="yes">Drag a card</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">To rename or delete your Kanban you have to click on
+ the edit button on the top left next the button to add a Kanban.</property>
+      </object>
+      <packing>
+        <property name="page_type">progress</property>
+        <property name="title" translatable="yes">Edit your kanban</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">The software automatically saves at each of your modification.
+The saves are located in the software folder.</property>
+      </object>
+      <packing>
+        <property name="page_type">progress</property>
+        <property name="title" translatable="yes">Saves</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">I hope you enjoy this software!
+You can report bugs, give suggestions or just discuss
+with me on my discord:  
+- https://discord.gg/hSey9Bv</property>
+      </object>
+      <packing>
+        <property name="page_type">confirm</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
     </child>
   </object>
   <object class="GtkImage" id="Image_Add">
