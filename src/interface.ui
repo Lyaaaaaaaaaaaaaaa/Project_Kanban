@@ -545,21 +545,7 @@ with me on my discord:
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="Popover_Menu_Preferences_Button">
-            <property name="label">gtk-preferences</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Click to open the preferences menu.</property>
-            <property name="relief">none</property>
-            <property name="use_stock">True</property>
-            <signal name="clicked" handler="On_Popover_Menu_Preferences_Clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
           <object class="GtkButton" id="Popover_Menu_About_Button">
