@@ -21,6 +21,31 @@ Otherwise, open source softwares were fine but far too heavy for my humble use. 
 
 That's why I'm making this project.
 
+## How to install and run it 
+*Only works for the Script release*
+
+### Installation
+
+1. Download the last [release](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/releases).
+2. Unzip the release. 
+3. Give  executable permission to the install.sh file
+ 
+  `chmod +x install.sh `.
+
+4. Run install.sh
+
+  `./install.sh`.
+
+### Starting the software
+
+1. Give executable permission to the start.sh file
+
+  `chmod +x start.sh`.
+
+2. Run the start.sh script
+
+  `./start.sh`.
+
 ## More information:
 
 
