@@ -40,11 +40,3 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-  test:
-    name: Try to run the main.py on ubuntu-latest
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Run main.py
-        run: |
-          python main.py
