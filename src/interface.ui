@@ -263,6 +263,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="tooltip_text" translatable="yes">Type the description of your card here.</property>
+                <property name="wrap_mode">word</property>
                 <property name="buffer">Edit_Card_Dialog_Description_Buffer</property>
               </object>
               <packing>
