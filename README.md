@@ -13,6 +13,16 @@ This project is a lightweight user-friendly desktop software to create and manag
 - No account.
 - self-sufficient (It only needs GTK, no internet or other softwares needed).
 
+## Preview
+*The theme depends of your desktop theme.*
+
+![](images/preview_1.png)
+![](images/preview_2.png)
+![](images/preview_3.png)
+![](images/preview_4.png)
+
+
+
 ## Why is this project useful?
 
 I personally got disappointed by kanban softwares. You either had to pay for it or have to sign dark contracts and hope your information would stay yours...
