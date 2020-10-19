@@ -9,9 +9,30 @@ Go in **issues**, then click on **new issue** and select **bug report**
 Go in **issues**, then click on **new issue** and select **Feature request**. Any suggestion is welcome! Of course, everything isn't possible, but giving your opinion or thought about improving this project is good.
 
 ## How to set up your environment and run tests?
-In the actual state of the project it's not really testable. But if you really want...
-You will need Python installed and the yaml package. Otherwise, you can use any text editor. I personally use the Gnome Builder.
-To run the interface you will require GTK.
+
+1. Be sure Python is installed on your system
+2. Install Python-Pip (to install the dependancies of the software)
+3. Download either the Master or the Develop branch
+4. Run install.sh or `pip install -r requirements.txt`
+5. Open the src folder with your favorite IDE.
+
+*You now should be able to edit the source and test your modification*.
+
+You can take a look at the [class diagram]
+(https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/blob/master/management/uml/Class_Diagram.png)
+to understand what the classes do.
+
+### How to edit the interface?
+
+You can edit the major part of the software with Glade by opening `interface.ui`
+ in the src folder
+
+#### How to edit the cards and columns?
+
+The cards and columns are dynamically generated. You will have to use python to
+ edit them.
+You can edit them by editing the Graphical_Kanban class in the file of the same
+ name.
 
 
 ## The types of contributions I'm looking for
