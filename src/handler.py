@@ -186,6 +186,11 @@
 #--     - Added the following signals On_Help_Dialog_Close_Clicked,
 #--         On_Help_Dialog_Apply_Clicked, On_Help_Dialog_Cancel_Clicked.
 #--
+#--   19/10/2020 Lyaaaaa
+#--     - Updated On_Edit_Card_Dialog_Save_Clicked and "Edit_Card" case.
+#--         Card_Label.set_text is replaced by set_markup to make the title
+#--         of the card bold again. (This avoid the card's title lossing it's
+#--         bold attribut at each edit).
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -577,7 +582,7 @@ class Handler():
       Card_Buffer    = Card_View_Text.get_buffer()
       Old_Card_Title = Card_Box.get_name()
 
-      Card_Label.set_text(title)
+      Card_Label.set_markup("<b>" + title + "</b>")
       Card_Buffer.set_text(description)
       Card_Box.set_name(title)
       self.Kanban.Edit_Card(P_Key             = Old_Card_Title,
