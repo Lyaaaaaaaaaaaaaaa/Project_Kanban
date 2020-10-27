@@ -191,6 +191,14 @@
 #--         Card_Label.set_text is replaced by set_markup to make the title
 #--         of the card bold again. (This avoid the card's title lossing it's
 #--         bold attribut at each edit).
+#--
+#--    27/10/2020 Lyaaaaa
+#--      - Updated On_Card_Edit_Clicked and On_Column_Add_Card_Clicked to edit
+#--          the Edit_Card_Dialog's title before showing the dialog.
+#--      - Updated On_Add_Column_Button_Clicked, On_Column_Edit_Clicked
+#--          On_Application_Window_Edit_Kanban_Clicked  and
+#--          On_Application_Window_Add_Kanban_Clicked to edit the Rename_Dialog's
+#--          title before showing the dialog.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -489,6 +497,7 @@ class Handler():
     Delete_Button = self.Builder.get_object("Rename_Dialog_Delete_Button")
 
     Delete_Button.hide()
+    Dialog.set_title("Create your Kanban")
     Dialog.show()
     self.action_flag = "Add_Kanban"
 
@@ -513,6 +522,7 @@ class Handler():
 
     Delete_Button.show()
     Entry.set_text(self.Kanban.Get_Title())
+    Dialog.set_title("Edit your Kanban")
     Dialog.show()
     self.action_flag = "Edit_Kanban"
 
@@ -954,6 +964,7 @@ class Handler():
 
     Rename_Entry.set_text(Column_Label.get_text())
     Delete_Button.show()
+    Dialog.set_title("Edit your column")
     Dialog.show()
 
     self.action_flag           = "Edit_Column"
@@ -978,6 +989,7 @@ class Handler():
     Delete_Button = self.Builder.get_object("Edit_Card_Dialog_Delete_Button")
 
     Delete_Button.hide()
+    Dialog.set_title("Add your card")
     Dialog.show()
     self.action_flag = "Add_Card"
     self.Temp_Widget_Reference = P_Column_Box
@@ -1002,6 +1014,7 @@ class Handler():
     self.action_flag = "Add_Column"
 
     Delete_Button.hide()
+    Rename_Dialog.set_title("Add your column")
     Rename_Dialog.show()
 
 
@@ -1037,6 +1050,7 @@ class Handler():
 
     self.Temp_Widget_Reference = P_Card_Box
     Delete_Button.show()
+    Edit_Dialog.set_title("Edit your card")
     Edit_Dialog.show()
 
 
