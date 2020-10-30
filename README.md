@@ -81,6 +81,13 @@ Project Kanban.
 
   `./start.sh`.
 
+## Building the Flatpak release from source
+
+1. Download the [Flatpak branch](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/tree/Flatpak)
+    1. Either open the downloaded branch with [Gnome Builder](https://wiki.gnome.org/Apps/Builder)
+    2. Or [build it yourself](https://docs.flatpak.org/en/latest/building-introduction.html)
+
+
 ## More information:
 
 
