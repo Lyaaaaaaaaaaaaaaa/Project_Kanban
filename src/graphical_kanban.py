@@ -68,7 +68,13 @@
 #--
 #--   17/10/2020 Lyaaaaa
 #--     - Updated Add_Column and Add_Card to add tooltips to their buttons.
-
+#--
+#--   26/10/2020 Lyaaaaa
+#--     - Updated Add_Card to edit the card's style.
+#--       - Set a line wrap to the card's title
+#--       - Set a size request of 200 to the card's title
+#--       - Set a xalign so all the titles are aligned
+#--       - Doubled the bottom margin of the cards.
 #---------------------------------------------------------------------------
 import gi
 
@@ -287,6 +293,9 @@ class Graphical_Kanban():
 
     Label.set_markup("<b>" + P_Title + "</b>")
     Label.set_margin_right(10)
+    Label.set_line_wrap(True)
+    Label.set_size_request(200, -1)
+    Label.set_xalign(0)
 
     Buffer.set_text(P_Description)
     Text_View.set_buffer(Buffer)
@@ -301,7 +310,7 @@ class Graphical_Kanban():
     Card_Box.set_name(P_Title)
     Card_Box.add(Card_Header)
     Card_Box.add(Text_View)
-    Card_Box.set_margin_bottom(5)
+    Card_Box.set_margin_bottom(10)
 
 
     return Card_Box
