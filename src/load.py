@@ -71,7 +71,9 @@ class Load():
 #--  - Load the file named like P_File_Name with a .yaml at the end.
 #--
 #-- Anticipated Changes:
-#--  -
+#--  - Return value directly because it seems like for some pyyaml version it
+#--      is the Kanban object and not the date of the object.
+#--      See the Flatpak branch for more details.
 #---------------------------------------------------------------------------
 
   def Load_Save_File(self, P_File_Name):
