@@ -31,14 +31,39 @@ Otherwise, open source softwares were fine but far too heavy for my humble use. 
 
 That's why I'm making this project.
 
-## How to install and run it 
-*Only works for the Script release*
+## How to install and run it *[Flatpak Release*]
+
+### Installation
+
+1. Make sure Flatpak is installed on your computer
+    - [How to install Flatpak](https://flatpak.org/setup/)
+2. Download the last [release](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/releases) of Project Kanban.
+3. Unzip the release.
+4. Open a terminal in the folder and install it with Flatpak:
+
+  `flatpak install io.github.Project_Kanban.flatpak`.
+  
+### Starting the software
+
+- You can now use your application finder to launch the software. Just search for
+Project Kanban.
+- Or you can run the following command in a terminal:
+
+  `flatpak run io.github.Project_Kanban`.
+
+### Uninstalling
+
+1. Run the following command in a terminal
+
+  `flatpak remove io.github.Project_Kanban`
+
+## How to install and run it *[Script Release]*
 
 ### Installation
 
 1. Download the last [release](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/releases).
 2. Unzip the release. 
-3. Give  executable permission to the install.sh file
+3. Give executable permission to the install.sh file
  
   `chmod +x install.sh `.
 
