@@ -1,3 +1,5 @@
+# Project Kanban
+
 ## Features
 
 - Create your Kanban.
@@ -30,8 +32,13 @@ Here are reasons to use this software:
 5. You work on personnal project and don't need to share it with a team
 6. You like the auto saving applications :).
 
-## How to install and run it 
-WIP
+## [Download](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/releases)
+
+
+Need help with the installation? Check this 
+[link](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban#how-to-install-and-run-it-flatpak-release)
+
+---
 
 ## Contact and support 
 
