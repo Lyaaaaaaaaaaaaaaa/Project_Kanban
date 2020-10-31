@@ -1,37 +1,47 @@
-## Welcome to GitHub Pages
+# Project Kanban
+*A lightweight desktop software, under the MIT licence to create and manage your Kanbans boards for your personal projects*
 
-You can use the [editor on GitHub](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Features
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- Create your Kanban.
+- Create your columns.
+- Create your cards.
+- Drag and drop your cards from one column to another.
+- Auto save on your computer.
+- No account.
+- Self-sufficient (It only needs GTK, no internet or other softwares needed).
 
-### Markdown
+## Preview
+*The theme may changes depending of your desktop theme.*
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Dark
+![](images/preview_1.png)
+![](images/preview_2.png)
 
-```markdown
-Syntax highlighted code block
+### Light
+![](images/preview_3.png)
+![](images/preview_4.png)
 
-# Header 1
-## Header 2
-### Header 3
+## Why use Project Kanban and not another application?
+Here are reasons to use this software:
 
-- Bulleted
-- List
+**You**
+1. Don't want an unnecessarily complicated and heavy application.
+2. You don't like mandatory Agile methodology
+3. You want a desktop application and not a server architecture or web app
+4. You don't like accepting '*Use policy*'
+5. You work on personnal project and don't need to share it with a team
+6. You like the auto saving applications :).
 
-1. Numbered
-2. List
+## How to install and run it 
+WIP
 
-**Bold** and _Italic_ and `Code` text
+## Contact and support 
 
-[Link](url) and ![Image](src)
-```
+### Contact
+You can get in touch with me on Discord.
+You just have to join my [server](https://discord.gg/hSey9Bv)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Support
+Read the [How to contribute](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/blob/master/CONTRIBUTING.md)
+if you need to report errors, ask suggestions or help this project.
