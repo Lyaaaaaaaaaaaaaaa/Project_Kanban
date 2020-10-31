@@ -32,10 +32,21 @@
 #--     - Get_Files_Names now return the names without the .yaml.
 #--     - Load_Save_File now loads the file named after the parameter given but
 #--         manually adds .yaml at the end of the name given.
+#--
+#--   30/10/2020 Lyaaaaa
+#--     - Updated Load_Save_File to directly return yaml.load as it is the
+#--         Kanban object already.
+#--
+#--   31/10/2020 Lyaaaaa
+#--     - Added expanduser module to use the home path.
+#--     - Updated Load_Save_File and Scan_Saves to use the home.
+#--     - Updated the saves location, saves are now located at
+#--         `home`/project_kanban_saves/
 #---------------------------------------------------------------------------
 
-from kanban import Kanban
-from file   import File
+from .kanban import Kanban
+from .file   import File
+from os.path import expanduser
 
 import yaml
 import os
@@ -77,14 +88,11 @@ class Load():
   def Load_Save_File(self, P_File_Name):
     yaml.add_constructor(u'tag:yaml.org,2002:python/object:kanban.Kanban',
                          self.Yaml_Object_Constructor)
-
-    with open("saves/" + P_File_Name + ".yaml", 'r') as stream:
+    home = expanduser("~")
+    with open( home + "/project_kanban_saves/" + P_File_Name + ".yaml", 'r') as stream:
       try:
-        value         = (yaml.load(stream, Loader=yaml.Loader))
-        Loaded_Kanban = Kanban(value['title'])
-
-        Loaded_Kanban.Set_Columns(value['Columns'])
-        return Loaded_Kanban
+        Kanban = (yaml.load(stream, Loader=yaml.Loader))
+        return Kanban
 
       except yaml.YAMLError as error_message:
         print(error_message)
@@ -104,7 +112,9 @@ class Load():
 #---------------------------------------------------------------------------
 
   def Scan_Saves(self):
-    for file in os.listdir("saves"):
+    home = expanduser("~")
+
+    for file in os.listdir(home + "/project_kanban_saves"):
       if file.endswith(".yaml"):
         self.Files_Names.append(file)
 
@@ -146,7 +156,7 @@ class Load():
   def Yaml_Object_Constructor(self, P_Loader, P_Node):
     value = P_Loader.construct_mapping(P_Node)
     return value
-    
+
 #---------------------------------------------------------------------------
 #-- Create_Directory
 #--

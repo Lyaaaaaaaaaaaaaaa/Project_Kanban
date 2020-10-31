@@ -68,14 +68,24 @@
 #--
 #--   17/10/2020 Lyaaaaa
 #--     - Updated Add_Column and Add_Card to add tooltips to their buttons.
-
+#--
+#--   26/10/2020 Lyaaaaa
+#--     - Updated Add_Card to edit the card's style.
+#--       - Set a line wrap to the card's title
+#--       - Set a size request of 200 to the card's title
+#--       - Set a xalign so all the titles are aligned
+#--       - Doubled the bottom margin of the cards.
+#--
+#--   30/10/2020 Lyaaaaa
+#--     - Updated Add_Card to replace the custom drag24.png icon to the
+#--         gtk-index icon which looks more like drag than gtk-dnd
 #---------------------------------------------------------------------------
 import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-from kanban import Kanban
+from .kanban import Kanban
 
 class Graphical_Kanban():
   """This class will create the GTK widgets for a kanban"""
@@ -279,7 +289,7 @@ class Graphical_Kanban():
     Edit_Button.set_relief(Gtk.ReliefStyle.NONE)
     Edit_Button.set_tooltip_markup("Click to edit this card.")
 
-    Drag_Image.set_from_file("ui_ressources/grab24.png")
+    Drag_Image.set_from_icon_name("gtk-index", 1)
     Drag_Button.set_image(Drag_Image)
     Drag_Button.set_relief(Gtk.ReliefStyle.NONE)
     Drag_Button.set_tooltip_markup(  "Hold the left click to drag this card "
@@ -287,6 +297,9 @@ class Graphical_Kanban():
 
     Label.set_markup("<b>" + P_Title + "</b>")
     Label.set_margin_right(10)
+    Label.set_line_wrap(True)
+    Label.set_size_request(200, -1)
+    Label.set_xalign(0)
 
     Buffer.set_text(P_Description)
     Text_View.set_buffer(Buffer)
@@ -301,7 +314,7 @@ class Graphical_Kanban():
     Card_Box.set_name(P_Title)
     Card_Box.add(Card_Header)
     Card_Box.add(Text_View)
-    Card_Box.set_margin_bottom(5)
+    Card_Box.set_margin_bottom(10)
 
 
     return Card_Box

@@ -46,7 +46,7 @@ import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-from handler       import Handler
+from .handler       import Handler
 
 class Interface():
   """Represent the graphical elements"""
@@ -82,7 +82,7 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def Connect_Interface(self):
-    self.Builder.add_from_file("interface.ui")
+    self.Builder.add_from_resource("/io/github/lyaaaaaaaaaaaaaaa/Project_Kanban/interface.ui")
 
 #---------------------------------------------------------------------------
 #-- Connect_Signals

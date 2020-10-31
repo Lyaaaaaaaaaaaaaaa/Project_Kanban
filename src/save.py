@@ -43,7 +43,7 @@
 #--     - Removed a useless comment and edited an incorrect one.
 #---------------------------------------------------------------------------
 
-from file import File
+from .file import File
 import yaml
 
 class Save():

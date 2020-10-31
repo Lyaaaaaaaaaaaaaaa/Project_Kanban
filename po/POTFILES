@@ -1,0 +1,7 @@
+data/io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.desktop.in
+data/io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.appdata.xml.in
+data/io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.gschema.xml
+src/window.ui
+src/main.py
+src/window.py
+

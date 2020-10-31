@@ -53,7 +53,7 @@
 #--         column.
 #---------------------------------------------------------------------------
 
-from column import Column
+from .column import Column
 
 
 class Kanban():
@@ -294,7 +294,7 @@ class Kanban():
         return True
 
     return False
-    
+
 #---------------------------------------------------------------------------
 #-- Delete_Card
 #--

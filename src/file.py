@@ -30,9 +30,16 @@
 #--
 #--   25/09/2020 Lyaaaaa
 #--     - Removed some debug prints
+#--
+#--    31/10/2020 Lyaaaaa
+#--      - Added expanduser module to use the home path.
+#--      - Updated __init__ and set_path to use the home.
+#--      - Updated the file location, files are now located at
+#--         `home`/project_kanban_saves/
 #---------------------------------------------------------------------------
 
 import os
+from os.path import expanduser
 
 class File():
   """Represent the save file"""
@@ -52,7 +59,8 @@ class File():
 #---------------------------------------------------------------------------
 
   def __init__(self, P_Name = "save"):
-    self.path = "saves/"
+    home = expanduser("~")
+    self.path = home + "/project_kanban_saves/"
     self.name = P_Name + ".yaml"
 
   #---------------------------------
@@ -74,7 +82,8 @@ class File():
 #---------------------------------------------------------------------------
 
   def Set_Path(self, P_Path):
-    self.path = P_Path
+    home = expanduser("~")
+    self.path = home + P_Path
     return True
 
 #---------------------------------------------------------------------------

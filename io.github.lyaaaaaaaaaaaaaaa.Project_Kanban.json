@@ -1,0 +1,47 @@
+{
+    "app-id" : "io.github.lyaaaaaaaaaaaaaaa.Project_Kanban",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "3.38",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "project_kanban",
+    "finish-args" : [
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--filesystem=/home"
+    ],
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "*.la",
+        "*.a"
+    ],
+    "modules" : [
+        {
+            "name" : "project_kanban",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/releases/download/v1.0.2.F/Project_Kanban_1.0.2_Flatpak_release.zip"
+                }
+            ],
+            "name": "pyyaml",
+            "buildsystem": "simple",
+            "build-options": {
+            	"build-args":[
+            	    "--share=network"
+            	]
+            },
+	    "build-commands": [
+	    	"pip3 install --prefix=/app --no-deps pyyaml"
+	    ]
+        }
+    ]
+}

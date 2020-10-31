@@ -57,7 +57,7 @@
 #--         editing a card).
 #---------------------------------------------------------------------------
 
-from card import Card
+from .card import Card
 
   #-------------------------------------
   #--        class declaration        --
