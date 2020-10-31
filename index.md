@@ -1,6 +1,3 @@
-# Project Kanban
-*A lightweight desktop software, under the MIT licence to create and manage your Kanbans boards for your personal projects*
-
 ## Features
 
 - Create your Kanban.
