@@ -36,7 +36,7 @@ Here are reasons to use this software:
 
 
 Need help with the installation? Check this 
-[link](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban#how-to-install-and-run-it-flatpak-release)
+[link](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban#how-to-install-and-run-it-flatpak-release).
 
 ---
 
@@ -44,7 +44,7 @@ Need help with the installation? Check this
 
 ### Contact
 You can get in touch with me on Discord.
-You just have to join my [server](https://discord.gg/hSey9Bv)
+You just have to join my [server](https://discord.gg/hSey9Bv).
 
 ### Support
 Read the [How to contribute](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/blob/master/CONTRIBUTING.md)
