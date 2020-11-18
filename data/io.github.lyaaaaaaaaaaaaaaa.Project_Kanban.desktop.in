@@ -3,6 +3,6 @@ Name=Project Kanban
 Exec=project_kanban
 Terminal=false
 Type=Application
-Categories=GTK;Management;Project;Kanban
+Categories=GTK;Utility;
 StartupNotify=false
 
