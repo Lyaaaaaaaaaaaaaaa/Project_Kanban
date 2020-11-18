@@ -41,7 +41,7 @@ That's why I'm making this project.
 3. Unzip the release.
 4. Open a terminal in the folder and install it with Flatpak:
 
-  `flatpak install io.github.Project_Kanban.flatpak`.
+  `flatpak install io.github.lyaaaaaaaaaaaaaaa.Project_Kanban`.
   
 ### Starting the software
 
@@ -49,13 +49,13 @@ That's why I'm making this project.
 Project Kanban.
 - Or you can run the following command in a terminal:
 
-  `flatpak run io.github.Project_Kanban`.
+  `flatpak run io.github.lyaaaaaaaaaaaaaaa.Project_Kanban`.
 
 ### Uninstalling
 
 1. Run the following command in a terminal
 
-  `flatpak remove io.github.Project_Kanban`
+  `flatpak remove io.github.lyaaaaaaaaaaaaaaa.Project_Kanban`
 
 ## How to install and run it *[Script Release]*
 
