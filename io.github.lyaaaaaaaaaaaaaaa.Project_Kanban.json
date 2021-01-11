@@ -29,7 +29,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/releases/download/v1.0.2.F/Project_Kanban_1.0.2_Flatpak_release.zip"
+                    "url" : "ssh://git@github.com:Lyaaaaaaaaaaaaaaa/Project_Kanban.git",
+		    "branch" : "Flatpak"
                 }
             ],
             "name": "pyyaml",
