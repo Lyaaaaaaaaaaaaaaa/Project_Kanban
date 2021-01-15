@@ -13,3 +13,7 @@
 /src/window_test.ui
 /src/__pycache__/
 /src/saves/
+/.flatpak-builder*
+/.repo*
+/.build*
+/.bundle*
