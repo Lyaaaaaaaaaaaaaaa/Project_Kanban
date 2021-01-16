@@ -41,7 +41,7 @@ That's why I'm making this project.
 3. Unzip the release.
 4. Open a terminal in the folder and install it with Flatpak:
 
-  `flatpak install io.github.lyaaaaaaaaaaaaaaa.Project_Kanban`.
+  `flatpak install io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.flatpak`.
   
 ### Starting the software
 
@@ -84,9 +84,10 @@ Project Kanban.
 ## Building the Flatpak release from source
 
 1. Download the [Flatpak branch](https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban/tree/Flatpak)
-    1. Either open the downloaded branch with [Gnome Builder](https://wiki.gnome.org/Apps/Builder)
-    2. Or [build it yourself](https://docs.flatpak.org/en/latest/building-introduction.html)
-
+2. Open a terminal inside the downloaded folder
+3. Give execute permission to build_application.sh `chmod +x build_application.sh`
+4. Run build_application.sh `./build_application.sh`
+5. The bundled application will be inside the .bundle folder.
 
 ## More information:
 
