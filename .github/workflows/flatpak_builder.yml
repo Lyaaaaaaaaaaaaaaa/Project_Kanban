@@ -27,4 +27,3 @@ jobs:
       with :
         bundle        : "io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.flatpak"
         manifest-path : "io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.yml"
-        branch        : "Flatpak"
