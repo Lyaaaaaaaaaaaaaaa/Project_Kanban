@@ -40,6 +40,9 @@
 #--   18/10/2020 Lyaaaaa
 #--     - Updated Start_Application to disable the button to add a column and
 #--         edit a kanban if no kanban is selected. This prevent some errors.
+#--
+#--   18/01/2021 Lyaaaaa
+#--     - Changed the resources path in Connect_Interface.
 #---------------------------------------------------------------------------
 
 import gi
@@ -82,7 +85,7 @@ class Interface():
 #---------------------------------------------------------------------------
 
   def Connect_Interface(self):
-    self.Builder.add_from_resource("/io/github/lyaaaaaaaaaaaaaaa/Project_Kanban/interface.ui")
+    self.Builder.add_from_resource("/resources/interface.ui")
 
 #---------------------------------------------------------------------------
 #-- Connect_Signals

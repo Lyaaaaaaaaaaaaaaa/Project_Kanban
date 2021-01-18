@@ -79,6 +79,10 @@
 #--   30/10/2020 Lyaaaaa
 #--     - Updated Add_Card to replace the custom drag24.png icon to the
 #--         gtk-index icon which looks more like drag than gtk-dnd
+#--
+#--   18/01/2021 Lyaaaaa
+#--     - Updated Add_Card to set the Drag_Image using set_from_resource and
+#--         to use drag24.png icon.
 #---------------------------------------------------------------------------
 import gi
 
@@ -289,7 +293,7 @@ class Graphical_Kanban():
     Edit_Button.set_relief(Gtk.ReliefStyle.NONE)
     Edit_Button.set_tooltip_markup("Click to edit this card.")
 
-    Drag_Image.set_from_icon_name("gtk-index", 1)
+    Drag_Image.set_from_resource("/resources/ui_resources/grab24.png")
     Drag_Button.set_image(Drag_Image)
     Drag_Button.set_relief(Gtk.ReliefStyle.NONE)
     Drag_Button.set_tooltip_markup(  "Hold the left click to drag this card "

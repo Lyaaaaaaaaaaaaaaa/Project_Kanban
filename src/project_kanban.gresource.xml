@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/io/github/lyaaaaaaaaaaaaaaa/Project_Kanban">
+  <gresource prefix="/resources">
     <file>interface.ui</file>
+    <file>ui_resources/grab24.png</file>
   </gresource>
 </gresources>
