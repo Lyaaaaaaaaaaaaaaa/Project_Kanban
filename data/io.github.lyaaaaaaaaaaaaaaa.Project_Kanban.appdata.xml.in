@@ -3,6 +3,5 @@
 	<id>io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.desktop</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>MIT</project_license>
-	<description>
-	</description>
+	<description><p>Kanban Board Application</p></description>
 </component>

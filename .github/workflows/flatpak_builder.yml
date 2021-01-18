@@ -25,6 +25,5 @@ jobs:
     - uses : actions/checkout@v2
     - uses : bilelmoussaoui/flatpak-github-actions@v2
       with :
-        bundle        : "Project Kanban"
-        manifest-path : "io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.json"
-        branch        : "Flatpak"
+        bundle        : "io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.flatpak"
+        manifest-path : "io.github.lyaaaaaaaaaaaaaaa.Project_Kanban.yml"
