@@ -75,6 +75,9 @@
 #--       - Set a size request of 200 to the card's title
 #--       - Set a xalign so all the titles are aligned
 #--       - Doubled the bottom margin of the cards.
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Removed outdated comments
 #---------------------------------------------------------------------------
 import gi
 
@@ -96,9 +99,7 @@ class Graphical_Kanban():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Create an array of columns to associate each column to its graphicals
-#--      widget.
-#--  - Do the same for the cards.
+#--  -
 #---------------------------------------------------------------------------
 
   def __init__(self, P_Kanban, P_Gtk_Box):
@@ -154,7 +155,7 @@ class Graphical_Kanban():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Insert into an array the Column_Box for later edits
+#--  -
 #---------------------------------------------------------------------------
 
   def Generate_Columns(self, P_Columns):
@@ -178,8 +179,7 @@ class Graphical_Kanban():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Insert into an array the Card_Frame for later edits
-#--  - Return the Column_Box ? Or maybe save it as an attribut?
+#--  -
 #---------------------------------------------------------------------------
 
   def Generate_Cards(self, P_Cards, P_List_Box):
@@ -203,7 +203,6 @@ class Graphical_Kanban():
 #--
 #-- Anticipated Changes:
 #--  - Add a counter displaying the number of card
-#--  - Set the drag and drop area
 #---------------------------------------------------------------------------
 
   def Add_Column(self, P_Title):
@@ -266,7 +265,6 @@ class Graphical_Kanban():
 #--
 #-- Anticipated Changes:
 #--  - Add a button to set a color
-#--  - Replace the Gtk.Frame by something else
 #---------------------------------------------------------------------------
 
   def Add_Card(self, P_Title, P_Description):

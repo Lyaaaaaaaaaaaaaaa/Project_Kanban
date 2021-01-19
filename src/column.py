@@ -55,6 +55,11 @@
 #--         won't delete anymore the key if the title isn't changed (Fixes the
 #--         error making cards disappear if you don't edit the title while
 #--         editing a card).
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Set methods no longer return a bool.
+#--      - Removed outdated comments.
+#--      - Add_Card no longer returns a bool.
 #---------------------------------------------------------------------------
 
 from card import Card
@@ -101,12 +106,11 @@ class Column():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - #TODO Control type and length of the title
+#--  -
 #---------------------------------------------------------------------------
 
   def Set_Title(self, P_Title):
     self.title = P_Title
-    return True
 
 #---------------------------------------------------------------------------
 #-- Set_Cards
@@ -118,7 +122,7 @@ class Column():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - TODO Control P_Cards type. Must be type Card
+#--  -
 #---------------------------------------------------------------------------
 
   def Set_Cards(self, P_Cards):
@@ -127,7 +131,6 @@ class Column():
       self.Cards[key] = Card
 
     self.Update_Cards_Number()
-    return True
 
 
 #---------------------------------------------------------------------------
@@ -299,8 +302,6 @@ class Column():
 
     self.Cards.update({P_Title : New_Card})
     self.Update_Cards_Number()
-
-    return True
 
 #---------------------------------------------------------------------------
 #-- Edit_Card

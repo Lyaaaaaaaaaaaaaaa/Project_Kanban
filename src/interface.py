@@ -40,6 +40,11 @@
 #--   18/10/2020 Lyaaaaa
 #--     - Updated Start_Application to disable the button to add a column and
 #--         edit a kanban if no kanban is selected. This prevent some errors.
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Updated Start_Interface header.
+#--      - Deleted Quit_Application and Get_Builder methods as they are never
+#--          used anywhere in the project.
 #---------------------------------------------------------------------------
 
 import gi
@@ -110,6 +115,7 @@ class Interface():
 #--
 #-- Implementation Notes:
 #--  - Be sure to call Connect_Interface and Connect_Signals before this method
+#--      in this order.
 #--
 #-- Anticipated Changes:
 #--  -
@@ -126,35 +132,3 @@ class Interface():
 
     Application_Window.show_all()
     Gtk.main()
-
-#---------------------------------------------------------------------------
-#-- Quit_Application
-#--
-#-- Portability Issues:
-#--  -
-#--
-#-- Implementation Notes:
-#--  -
-#--
-#-- Anticipated Changes:
-#--  - May be deleted, the handler now quit the application by itself
-#---------------------------------------------------------------------------
-
-  def Quit_Application(self):
-    Gtk.main_quit()
-
-#---------------------------------------------------------------------------
-#-- Get_Builder
-#--
-#-- Portability Issues:
-#--  -
-#--
-#-- Implementation Notes:
-#--  -
-#--
-#-- Anticipated Changes:
-#--  - May be deleted, not sure it will be used anymore
-#---------------------------------------------------------------------------
-
-  def Get_Builder(self):
-    return self.Builder

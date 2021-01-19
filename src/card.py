@@ -16,6 +16,10 @@
 #--   03/02/2020 Lyaaaaa
 #--     - Edited __init__, Added P_Title parameter with "Card's title" as
 #--         default value and P_Description with "Card's description"
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Removed outdated comments
+#--      - Set methods no longer returns a bool.
 #---------------------------------------------------------------------------
 
 class Card():
@@ -57,12 +61,11 @@ class Card():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - #TODO Add a check (like length check or type check)
+#--  -
 #---------------------------------------------------------------------------
 
   def Set_Title(self, P_Title):
     self.title = P_Title
-    return True
 
 #---------------------------------------------------------------------------
 #-- Set_Description
@@ -74,12 +77,11 @@ class Card():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - #TODO Add a check (like length check or type check)
+#--  -
 #---------------------------------------------------------------------------
 
   def Set_Description(self, P_Description):
     self.description = P_Description
-    return True
 
 
   #---------------------------------

@@ -30,6 +30,10 @@
 #--
 #--   25/09/2020 Lyaaaaa
 #--     - Removed some debug prints
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Removed outdated comments.
+#--      - Set_Path, Set_Name no longer return bool.
 #---------------------------------------------------------------------------
 
 import os
@@ -47,8 +51,7 @@ class File():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - TODO Name the file after the kanban. Exemple: Kanban's name is Shipping50
-#--      the save's name would be Shipping50_save.yaml
+#--  -
 #---------------------------------------------------------------------------
 
   def __init__(self, P_Name = "save"):
@@ -69,13 +72,12 @@ class File():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - #TODO Control P_Path to be a valid path before to edit the path attribut
+#--  - Control P_Path to be a valid path before to edit the path attribut
 #--    and return true if everything alright.
 #---------------------------------------------------------------------------
 
   def Set_Path(self, P_Path):
     self.path = P_Path
-    return True
 
 #---------------------------------------------------------------------------
 #-- Set_Name
@@ -87,13 +89,12 @@ class File():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - #TODO Control name, forbid whitespaces, special characters and length
+#--  - Control name, forbid whitespaces, special characters and length
 #---------------------------------------------------------------------------
 
   def Set_Name(self, P_Name):
     P_Name = P_Name + ".yaml"
     self.name = P_Name
-    return True
 
   #---------------------------------
   #--       Functions Get         --
