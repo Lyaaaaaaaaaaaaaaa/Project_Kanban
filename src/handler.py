@@ -199,6 +199,9 @@
 #--          On_Application_Window_Edit_Kanban_Clicked  and
 #--          On_Application_Window_Add_Kanban_Clicked to edit the Rename_Dialog's
 #--          title before showing the dialog.
+#--
+#--     19/01/2021 Lyaaaaa
+#--       - Updated some functions headers and removed outdated comments.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -756,8 +759,6 @@ class Handler():
 #-- Anticipated Changes:
 #--  - Find another way to update the combo box as it reload the already loaded
 #--      kanban.
-#--    TODO inspect the reason why saving after renaming the save file doesn't
-#--      work.
 #---------------------------------------------------------------------------
 
   def On_Rename_Dialog_Save_Clicked(self, *args):
@@ -1064,7 +1065,7 @@ class Handler():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - #TODO Edit the action flag and self.Temp_Widget_Reference
+#--  -
 #---------------------------------------------------------------------------
 
   def On_Edit_Card_Dialog_Delete_Clicked(self, *args):
@@ -1145,8 +1146,8 @@ class Handler():
 #--      because it deletes by searching for the title and having twice the same
 #--      title would have an unpredicted behavior (I didn't implemented any
 #--      control for this. 10/10/2020)
-#--  - It create a new card the delete the former one before to connect its
-#--      elements to the signals, then it saves.
+#--  - It deletes the former card then It creates a new card in the desired
+#--      column before to connect its elements to the signals, then it saves.
 #--
 #-- Anticipated Changes:
 #--  -

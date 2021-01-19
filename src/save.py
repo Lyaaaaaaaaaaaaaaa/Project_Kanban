@@ -41,6 +41,12 @@
 #--
 #--   23/09/2020 Lyaaaaa
 #--     - Removed a useless comment and edited an incorrect one.
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Removed outdated comments.
+#--      - Set_File no longer returns bool.
+#--      - Deleted Read_Save (never used, Moreover, Save class is here to save
+#--          not read).
 #---------------------------------------------------------------------------
 
 from file import File
@@ -49,7 +55,7 @@ import yaml
 class Save():
   """Represent the save actions"""
 
-  #---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
 #-- __init__
 #--
 #-- Portability Issues:
@@ -79,12 +85,11 @@ class Save():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - TODO Remove the return True?
+#--  -
 #---------------------------------------------------------------------------
 
   def Set_File(self, P_File):
     self.File = P_File
-    return True
 
   #---------------------------------
   #--       Functions Get         --
@@ -143,7 +148,7 @@ class Save():
       return False
 
 #---------------------------------------------------------------------------
-#-- Write_Safe_Save
+#-- Write_Save
 #--
 #-- Portability Issues:
 #--  -
@@ -171,24 +176,3 @@ class Save():
                + self.File.Get_Name()
                + ". Overwrite not allowed.")
         return False
-
-#---------------------------------------------------------------------------
-#-- Read_Save
-#--
-#-- Portability Issues:
-#--  -
-#--
-#-- Implementation Notes:
-#--  -
-#--
-#-- Anticipated Changes:
-#--  - Correctly parse the file depending of the futur format.
-#---------------------------------------------------------------------------
-
-  def Read_Save(self):
-
-    path        =        self.File.Get_Path()
-    path        = path + self.File.Get_Name()
-    opened_file = open(path, "r")
-
-    print (opened_file.read())

@@ -32,6 +32,9 @@
 #--     - Get_Files_Names now return the names without the .yaml.
 #--     - Load_Save_File now loads the file named after the parameter given but
 #--         manually adds .yaml at the end of the name given.
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Updated the portability issues section of the Load_Save_File header.
 #---------------------------------------------------------------------------
 
 from kanban import Kanban
@@ -65,7 +68,7 @@ class Load():
 #-- Load_Save_File
 #--
 #-- Portability Issues:
-#--  -
+#--  - Depending of the pyyaml package version it might not work.
 #--
 #-- Implementation Notes:
 #--  - Load the file named like P_File_Name with a .yaml at the end.

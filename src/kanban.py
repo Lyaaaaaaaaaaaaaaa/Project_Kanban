@@ -51,6 +51,10 @@
 #--         (Ascending).
 #--     - Updated the Add_Column method to give an id to the newly created
 #--         column.
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Set_Columns, Add_Column and delete_Column no longer return bool.
+#--      - Deleted outdated comments.
 #---------------------------------------------------------------------------
 
 from column import Column
@@ -70,7 +74,7 @@ class Kanban():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Make Columns an array of column.
+#--  -
 #---------------------------------------------------------------------------
 
   def __init__(self, P_Title = "Project's name"):
@@ -108,15 +112,13 @@ class Kanban():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - TODO Control P_Columns type. Must be type Column
+#--  -
 #---------------------------------------------------------------------------
 
   def Set_Columns(self, P_Columns):
     for Column in P_Columns.values():
       key = Column.Get_Title()
       self.Columns[key] = Column
-
-    return True
 
   #---------------------------------
   #--       Functions Get         --
@@ -223,7 +225,6 @@ class Kanban():
     if P_Column_Key in self.Columns:
       del self.Columns[P_Column_Key]
 
-    return True
 
 #---------------------------------------------------------------------------
 #-- Add_Column
@@ -242,8 +243,6 @@ class Kanban():
     columns_number = len(self.Columns)
     New_Column     = Column(P_Title, columns_number)
     self.Columns.update({P_Title : New_Column})
-    return True
-
 
 #---------------------------------------------------------------------------
 #-- Set_Column_Title
