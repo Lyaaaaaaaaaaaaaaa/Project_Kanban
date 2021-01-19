@@ -79,6 +79,13 @@
 #--   30/10/2020 Lyaaaaa
 #--     - Updated Add_Card to replace the custom drag24.png icon to the
 #--         gtk-index icon which looks more like drag than gtk-dnd
+#--
+#--   18/01/2021 Lyaaaaa
+#--     - Updated Add_Card to set the Drag_Image using set_from_resource and
+#--         to use drag24.png icon.
+
+#--    19/01/2021 Lyaaaaa
+#--      - Removed outdated comments
 #---------------------------------------------------------------------------
 import gi
 
@@ -100,9 +107,7 @@ class Graphical_Kanban():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Create an array of columns to associate each column to its graphicals
-#--      widget.
-#--  - Do the same for the cards.
+#--  -
 #---------------------------------------------------------------------------
 
   def __init__(self, P_Kanban, P_Gtk_Box):
@@ -158,7 +163,7 @@ class Graphical_Kanban():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Insert into an array the Column_Box for later edits
+#--  -
 #---------------------------------------------------------------------------
 
   def Generate_Columns(self, P_Columns):
@@ -182,8 +187,7 @@ class Graphical_Kanban():
 #--  -
 #--
 #-- Anticipated Changes:
-#--  - Insert into an array the Card_Frame for later edits
-#--  - Return the Column_Box ? Or maybe save it as an attribut?
+#--  -
 #---------------------------------------------------------------------------
 
   def Generate_Cards(self, P_Cards, P_List_Box):
@@ -207,7 +211,6 @@ class Graphical_Kanban():
 #--
 #-- Anticipated Changes:
 #--  - Add a counter displaying the number of card
-#--  - Set the drag and drop area
 #---------------------------------------------------------------------------
 
   def Add_Column(self, P_Title):
@@ -270,7 +273,6 @@ class Graphical_Kanban():
 #--
 #-- Anticipated Changes:
 #--  - Add a button to set a color
-#--  - Replace the Gtk.Frame by something else
 #---------------------------------------------------------------------------
 
   def Add_Card(self, P_Title, P_Description):
@@ -289,7 +291,7 @@ class Graphical_Kanban():
     Edit_Button.set_relief(Gtk.ReliefStyle.NONE)
     Edit_Button.set_tooltip_markup("Click to edit this card.")
 
-    Drag_Image.set_from_icon_name("gtk-index", 1)
+    Drag_Image.set_from_resource("/resources/ui_resources/grab24.png")
     Drag_Button.set_image(Drag_Image)
     Drag_Button.set_relief(Gtk.ReliefStyle.NONE)
     Drag_Button.set_tooltip_markup(  "Hold the left click to drag this card "

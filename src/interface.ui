@@ -359,16 +359,7 @@ then drag it to a column.</property>
           </packing>
         </child>
         <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="stock">gtk-index</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
+          <placeholder/>
         </child>
       </object>
       <packing>
@@ -397,7 +388,7 @@ then drag it to a column.</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="label" translatable="yes">The software automatically saves at each of your modification.
-The saves are located in your home folder at ~/project_kanban_saves/.</property>
+The saves are located in your home folder at ~/.var/app/io.github.lyaaaaaaaaaaaaaaa.Project_Kanban/data/saves.</property>
       </object>
       <packing>
         <property name="page-type">progress</property>
