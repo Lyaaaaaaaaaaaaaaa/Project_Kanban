@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkAboutDialog" id="About_Dialog">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
     <property name="deletable">False</property>
-    <property name="program_name">Project Kanban</property>
-    <property name="version">1.0.2</property>
+    <property name="program-name">Project Kanban</property>
+    <property name="version">1.0.3</property>
     <property name="copyright" translatable="yes">Copyright (c) 2020 Lyaaaaaaaaaaaaaaa</property>
     <property name="website">https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban</property>
     <property name="authors">Lyaaaaa</property>
     <property name="logo">ui_ressources/about.jpg</property>
-    <property name="license_type">mit-x11</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
+    <property name="license-type">mit-x11</property>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <placeholder/>
             </child>
@@ -32,9 +29,9 @@
               <object class="GtkButton" id="About_Dialog_Close_Button">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_About_Dialog_Close_Button_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -57,30 +54,27 @@
     </child>
   </object>
   <object class="GtkDialog" id="Delete_Dialog">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Delete confirmation</property>
-    <property name="default_width">320</property>
-    <property name="type_hint">dialog</property>
+    <property name="default-width">320</property>
+    <property name="type-hint">dialog</property>
     <property name="deletable">False</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="Delete_Dialog_Yes_Button">
                 <property name="label">gtk-yes</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Delete_Dialog_Yes_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -93,9 +87,9 @@
               <object class="GtkButton" id="Delete_Dialog_Cancel_Button">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Delete_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -114,7 +108,7 @@
         <child>
           <object class="GtkLabel" id="Delete_Dialog_Label">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="label" translatable="yes">Are you sure you want to delete this element?</property>
             <property name="justify">center</property>
             <attributes>
@@ -132,33 +126,30 @@
   </object>
   <object class="GtkTextBuffer" id="Edit_Card_Dialog_Description_Buffer"/>
   <object class="GtkDialog" id="Edit_Card_Dialog">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Edit your card</property>
-    <property name="default_width">400</property>
-    <property name="default_height">300</property>
-    <property name="type_hint">dialog</property>
+    <property name="default-width">400</property>
+    <property name="default-height">300</property>
+    <property name="type-hint">dialog</property>
     <property name="deletable">False</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can_focus">True</property>
-        <property name="has_focus">True</property>
-        <property name="is_focus">True</property>
+        <property name="can-focus">True</property>
+        <property name="has-focus">True</property>
+        <property name="is-focus">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">15</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="Edit_Card_Dialog_Save_Button">
                 <property name="label">gtk-save</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Edit_Card_Dialog_Save_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -171,9 +162,9 @@
               <object class="GtkButton" id="Edit_Card_Dialog_Cancel_Button">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Edit_Card_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -186,9 +177,9 @@
               <object class="GtkButton" id="Edit_Card_Dialog_Delete_Button">
                 <property name="label">gtk-delete</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Edit_Card_Dialog_Delete_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -207,13 +198,13 @@
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_left">6</property>
+            <property name="can-focus">False</property>
+            <property name="margin-left">6</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="Edit_Card_Dialog_Title_Label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Card's title</property>
                 <property name="xalign">0</property>
                 <attributes>
@@ -229,11 +220,11 @@
             <child>
               <object class="GtkEntry" id="Edit_Card_Dialog_Title_Entry">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="is_focus">True</property>
-                <property name="tooltip_text" translatable="yes">Enter the name of your card here.</property>
-                <property name="max_length">254</property>
-                <property name="placeholder_text" translatable="yes">Task number 521</property>
+                <property name="can-focus">True</property>
+                <property name="is-focus">True</property>
+                <property name="tooltip-text" translatable="yes">Enter the name of your card here.</property>
+                <property name="max-length">254</property>
+                <property name="placeholder-text" translatable="yes">Task number 521</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -244,8 +235,8 @@
             <child>
               <object class="GtkLabel" id="Edit_Card_Dialog_Description_Label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">12</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">12</property>
                 <property name="label" translatable="yes">Card's description</property>
                 <property name="xalign">0</property>
                 <attributes>
@@ -261,9 +252,9 @@
             <child>
               <object class="GtkTextView" id="Edit_Card_Dialog_Description_Text_View">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="tooltip_text" translatable="yes">Type the description of your card here.</property>
-                <property name="wrap_mode">word</property>
+                <property name="can-focus">True</property>
+                <property name="tooltip-text" translatable="yes">Type the description of your card here.</property>
+                <property name="wrap-mode">word</property>
                 <property name="buffer">Edit_Card_Dialog_Description_Buffer</property>
               </object>
               <packing>
@@ -283,81 +274,80 @@
     </child>
   </object>
   <object class="GtkAssistant" id="Help_Dialog">
-    <property name="can_focus">False</property>
-    <property name="use_header_bar">1</property>
+    <property name="can-focus">False</property>
     <signal name="apply" handler="On_Help_Dialog_Apply_Clicked" swapped="no"/>
     <signal name="cancel" handler="On_Help_Dialog_Cancel_Clicked" swapped="no"/>
     <signal name="close" handler="On_Help_Dialog_Close_Clicked" swapped="no"/>
     <child>
       <object class="GtkLabel">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="label" translatable="yes">Hello, I will show you how to use this software.</property>
       </object>
       <packing>
-        <property name="page_type">intro</property>
+        <property name="page-type">intro</property>
         <property name="title" translatable="yes">Introduction</property>
         <property name="complete">True</property>
-        <property name="has_padding">False</property>
+        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="label" translatable="yes">You first have to create a new Kanban.
 To add a Kanban, click on the button on the most top left.
 Then type the name of your Kanban.</property>
       </object>
       <packing>
-        <property name="page_type">progress</property>
+        <property name="page-type">progress</property>
         <property name="title" translatable="yes">Create a kanban</property>
         <property name="complete">True</property>
-        <property name="has_padding">False</property>
+        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="label" translatable="yes">Now you have to add columns to your Kanban.
 To do you have to click on the button at the top right named "Add a column".
 Then type the name of your column.
 You can add multiple columns.</property>
       </object>
       <packing>
-        <property name="page_type">progress</property>
+        <property name="page-type">progress</property>
         <property name="title" translatable="yes">Create a column</property>
         <property name="complete">True</property>
-        <property name="has_padding">False</property>
+        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="label" translatable="yes">Now you can add cards to your column.
 To do, simply click on the button at the top right of your column.
 Then type the title of your card and its description.
 You can add as many cards as you want in a single column.</property>
       </object>
       <packing>
-        <property name="page_type">progress</property>
+        <property name="page-type">progress</property>
         <property name="title" translatable="yes">Add a card</property>
         <property name="complete">True</property>
-        <property name="has_padding">False</property>
+        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_top">70</property>
+            <property name="can-focus">False</property>
+            <property name="margin-top">70</property>
             <property name="label" translatable="yes">To drag a card from a column to another you have to 
 click on the hand icon on the left of your card's title and hold it,
 then drag it to a column.</property>
@@ -371,7 +361,7 @@ then drag it to a column.</property>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="pixbuf">ui_ressources/grab24.png</property>
           </object>
           <packing>
@@ -382,95 +372,100 @@ then drag it to a column.</property>
         </child>
       </object>
       <packing>
-        <property name="page_type">progress</property>
+        <property name="page-type">progress</property>
         <property name="title" translatable="yes">Drag a card</property>
         <property name="complete">True</property>
-        <property name="has_padding">False</property>
+        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="label" translatable="yes">To rename or delete your Kanban you have to click on
  the edit button on the top left next the button to add a Kanban.</property>
       </object>
       <packing>
-        <property name="page_type">progress</property>
+        <property name="page-type">progress</property>
         <property name="title" translatable="yes">Edit your kanban</property>
         <property name="complete">True</property>
-        <property name="has_padding">False</property>
+        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="label" translatable="yes">The software automatically saves at each of your modification.
 The saves are located in the software folder.</property>
       </object>
       <packing>
-        <property name="page_type">progress</property>
+        <property name="page-type">progress</property>
         <property name="title" translatable="yes">Saves</property>
         <property name="complete">True</property>
-        <property name="has_padding">False</property>
+        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="label" translatable="yes">I hope you enjoy this software!
 You can report bugs, give suggestions or just discuss
 with me on my discord:  
 - https://discord.gg/hSey9Bv</property>
       </object>
       <packing>
-        <property name="page_type">confirm</property>
+        <property name="page-type">confirm</property>
         <property name="complete">True</property>
-        <property name="has_padding">False</property>
+        <property name="has-padding">False</property>
+      </packing>
+    </child>
+    <child internal-child="action_area">
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+      </object>
+      <packing>
+        <property name="has-padding">False</property>
       </packing>
     </child>
   </object>
   <object class="GtkImage" id="Image_Add">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="stock">gtk-add</property>
   </object>
   <object class="GtkImage" id="Image_Add_Column">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="stock">gtk-add</property>
   </object>
   <object class="GtkImage" id="Image_Edit">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="stock">gtk-edit</property>
   </object>
   <object class="GtkDialog" id="Overwrite_Dialog">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Overwrite confirmation</property>
-    <property name="type_hint">dialog</property>
+    <property name="type-hint">dialog</property>
     <property name="deletable">False</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="Overwrite_Dailog_Yes_Button">
                 <property name="label">gtk-yes</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Overwrite_Dialog_Yes_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -483,9 +478,9 @@ with me on my discord:
               <object class="GtkButton" id="Overwrite_Dialog_Cancel_Button">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Overwrite_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -504,7 +499,7 @@ with me on my discord:
         <child>
           <object class="GtkLabel" id="Overwrite_Dialog_Label">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="label" translatable="yes">Are you sure you want to overwrite this element? There is no coming back.</property>
             <property name="justify">center</property>
             <attributes>
@@ -521,22 +516,22 @@ with me on my discord:
     </child>
   </object>
   <object class="GtkPopover" id="Popover_Menu">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <child>
       <object class="GtkButtonBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
-        <property name="layout_style">start</property>
+        <property name="layout-style">start</property>
         <child>
           <object class="GtkButton" id="Popover_Menu_Help_Button">
             <property name="label">gtk-help</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Click to display help.</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Click to display help.</property>
             <property name="relief">none</property>
-            <property name="use_stock">True</property>
+            <property name="use-stock">True</property>
             <signal name="clicked" handler="On_Popover_Menu_Help_Clicked" swapped="no"/>
           </object>
           <packing>
@@ -552,11 +547,11 @@ with me on my discord:
           <object class="GtkButton" id="Popover_Menu_About_Button">
             <property name="label">gtk-about</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Click to open the software informations.</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Click to open the software informations.</property>
             <property name="relief">none</property>
-            <property name="use_stock">True</property>
+            <property name="use-stock">True</property>
             <signal name="clicked" handler="On_Popover_Menu_About_Clicked" swapped="no"/>
           </object>
           <packing>
@@ -569,101 +564,34 @@ with me on my discord:
     </child>
   </object>
   <object class="GtkApplicationWindow" id="Application_Window">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Project Kanban</property>
-    <property name="default_width">600</property>
-    <property name="default_height">400</property>
-    <property name="startup_id">Project Kanban</property>
+    <property name="default-width">600</property>
+    <property name="default-height">400</property>
+    <property name="startup-id">Project Kanban</property>
     <signal name="destroy" handler="On_Application_Window_Destroy" swapped="no"/>
-    <child type="titlebar">
-      <object class="GtkHeaderBar" id="Window_Header_Bar">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="title" translatable="yes">Project Kanban</property>
-        <property name="show_close_button">True</property>
-        <child>
-          <object class="GtkButton" id="Application_Window_Add_Kanban_Button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Click to create a new kanban.</property>
-            <property name="image">Image_Add</property>
-            <property name="always_show_image">True</property>
-            <signal name="clicked" handler="On_Application_Window_Add_Kanban_Clicked" swapped="no"/>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="Application_Window_Edit_Kanban_Button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Click to edit the selected kanban.</property>
-            <property name="image">Image_Edit</property>
-            <signal name="clicked" handler="On_Application_Window_Edit_Kanban_Clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkComboBoxText" id="Kanban_Combo_Box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="tooltip_text" translatable="yes">Click to select a kanban in this menu.</property>
-            <property name="active_id">placeholder</property>
-            <items>
-              <item id="placeholder" translatable="yes">Choose a kanban</item>
-            </items>
-            <signal name="changed" handler="On_Kanban_Combo_Box_Changed" object="Application_Window" swapped="no"/>
-          </object>
-          <packing>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkMenuButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Click to open the preferences, help or about menu.</property>
-            <property name="popover">Popover_Menu</property>
-            <child>
-              <object class="GtkImage" id="Image_Menu">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="stock">gtk-justify-fill</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkHeaderBar" id="Kanban_Header_Bar">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkButton" id="Add_Column_Button">
                 <property name="label" translatable="yes">Add a column</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Click to add a new column to your kanban.</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="tooltip-text" translatable="yes">Click to add a new column to your kanban.</property>
                 <property name="image">Image_Add_Column</property>
-                <property name="always_show_image">True</property>
+                <property name="always-show-image">True</property>
                 <signal name="clicked" handler="On_Add_Column_Button_Clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="pack_type">end</property>
+                <property name="pack-type">end</property>
               </packing>
             </child>
           </object>
@@ -676,17 +604,17 @@ with me on my discord:
         <child>
           <object class="GtkScrolledWindow" id="Scrolled_Window">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="vscrollbar_policy">never</property>
-            <property name="shadow_type">in</property>
+            <property name="can-focus">True</property>
+            <property name="vscrollbar-policy">never</property>
+            <property name="shadow-type">in</property>
             <child>
               <object class="GtkViewport" id="Scrolled_Window_Viewport">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <child>
                   <object class="GtkBox" id="Content_Box">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="spacing">10</property>
                     <property name="homogeneous">True</property>
                     <child>
@@ -705,33 +633,97 @@ with me on my discord:
         </child>
       </object>
     </child>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="Window_Header_Bar">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="title" translatable="yes">Project Kanban</property>
+        <property name="show-close-button">True</property>
+        <child>
+          <object class="GtkButton" id="Application_Window_Add_Kanban_Button">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Click to create a new kanban.</property>
+            <property name="image">Image_Add</property>
+            <property name="always-show-image">True</property>
+            <signal name="clicked" handler="On_Application_Window_Add_Kanban_Clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="Application_Window_Edit_Kanban_Button">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Click to edit the selected kanban.</property>
+            <property name="image">Image_Edit</property>
+            <signal name="clicked" handler="On_Application_Window_Edit_Kanban_Clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBoxText" id="Kanban_Combo_Box">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="tooltip-text" translatable="yes">Click to select a kanban in this menu.</property>
+            <property name="active-id">placeholder</property>
+            <items>
+              <item id="placeholder" translatable="yes">Choose a kanban</item>
+            </items>
+            <signal name="changed" handler="On_Kanban_Combo_Box_Changed" object="Application_Window" swapped="no"/>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkMenuButton">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Click to open the preferences, help or about menu.</property>
+            <property name="popover">Popover_Menu</property>
+            <child>
+              <object class="GtkImage" id="Image_Menu">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="stock">gtk-justify-fill</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
   </object>
   <object class="GtkDialog" id="Rename_Dialog">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Choose a name</property>
-    <property name="default_width">320</property>
-    <property name="type_hint">dialog</property>
+    <property name="default-width">320</property>
+    <property name="type-hint">dialog</property>
     <property name="deletable">False</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can_focus">False</property>
-        <property name="is_focus">True</property>
+        <property name="can-focus">False</property>
+        <property name="is-focus">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">15</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="Rename_Dialog_Save_Button">
                 <property name="label">gtk-save</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Rename_Dialog_Save_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -744,9 +736,9 @@ with me on my discord:
               <object class="GtkButton" id="Rename_Dialog_Cancel_Button">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Rename_Dialog_Cancel_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -759,9 +751,9 @@ with me on my discord:
               <object class="GtkButton" id="Rename_Dialog_Delete_Button">
                 <property name="label">gtk-delete</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="On_Rename_Dialog_Delete_Clicked" swapped="no"/>
               </object>
               <packing>
@@ -780,13 +772,13 @@ with me on my discord:
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_left">6</property>
+            <property name="can-focus">False</property>
+            <property name="margin-left">6</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="Rename_Dialog_Label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Title</property>
                 <property name="xalign">0</property>
                 <attributes>
@@ -802,11 +794,11 @@ with me on my discord:
             <child>
               <object class="GtkEntry" id="Rename_Dialog_Entry">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="is_focus">True</property>
-                <property name="tooltip_text" translatable="yes">Enter the name of your kanban or column here.</property>
-                <property name="max_length">80</property>
-                <property name="placeholder_text" translatable="yes">My project's name</property>
+                <property name="can-focus">True</property>
+                <property name="is-focus">True</property>
+                <property name="tooltip-text" translatable="yes">Enter the name of your kanban or column here.</property>
+                <property name="max-length">80</property>
+                <property name="placeholder-text" translatable="yes">My project's name</property>
               </object>
               <packing>
                 <property name="expand">False</property>
