@@ -45,6 +45,7 @@
 #--
 #--    19/01/2021 Lyaaaaa
 #--      - Updated Scan_Saves and Load_Save_File to change the saves path.
+#--      - Updated the portability issues section of the Load_Save_File header.
 #---------------------------------------------------------------------------
 
 from .kanban import Kanban
@@ -79,13 +80,15 @@ class Load():
 #-- Load_Save_File
 #--
 #-- Portability Issues:
-#--  -
+#--  - Depending of the pyyaml package version it might not work.
 #--
 #-- Implementation Notes:
 #--  - Load the file named like P_File_Name with a .yaml at the end.
 #--
 #-- Anticipated Changes:
-#--  -
+#--  - Return value directly because it seems like for some pyyaml version it
+#--      is the Kanban object and not the date of the object.
+#--      See the Flatpak branch for more details.
 #---------------------------------------------------------------------------
 
   def Load_Save_File(self, P_File_Name):
@@ -162,7 +165,7 @@ class Load():
   def Yaml_Object_Constructor(self, P_Loader, P_Node):
     value = P_Loader.construct_mapping(P_Node)
     return value
-
+    
 #---------------------------------------------------------------------------
 #-- Create_Directory
 #--
