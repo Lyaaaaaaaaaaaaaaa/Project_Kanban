@@ -42,6 +42,9 @@
 #--     - Updated Load_Save_File and Scan_Saves to use the home.
 #--     - Updated the saves location, saves are now located at
 #--         `home`/project_kanban_saves/
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Updated Scan_Saves and Load_Save_File to change the saves path.
 #---------------------------------------------------------------------------
 
 from .kanban import Kanban
@@ -89,7 +92,9 @@ class Load():
     yaml.add_constructor(u'tag:yaml.org,2002:python/object:kanban.Kanban',
                          self.Yaml_Object_Constructor)
     home = expanduser("~")
-    with open( home + "/project_kanban_saves/" + P_File_Name + ".yaml", 'r') as stream:
+    data = home + "/.var/app/io.github.lyaaaaaaaaaaaaaaa.Project_Kanban/data"
+
+    with open( data + "/saves/" + P_File_Name + ".yaml", 'r') as stream:
       try:
         Kanban = (yaml.load(stream, Loader=yaml.Loader))
         return Kanban
@@ -113,8 +118,9 @@ class Load():
 
   def Scan_Saves(self):
     home = expanduser("~")
+    data = home + "/.var/app/io.github.lyaaaaaaaaaaaaaaa.Project_Kanban/data"
 
-    for file in os.listdir(home + "/project_kanban_saves"):
+    for file in os.listdir(data + "/saves"):
       if file.endswith(".yaml"):
         self.Files_Names.append(file)
 

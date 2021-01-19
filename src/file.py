@@ -36,6 +36,9 @@
 #--      - Updated __init__ and set_path to use the home.
 #--      - Updated the file location, files are now located at
 #--         `home`/project_kanban_saves/
+#--
+#--    19/01/2021 Lyaaaaa
+#--      - Updated __init__ to change the saves path.
 #---------------------------------------------------------------------------
 
 import os
@@ -60,7 +63,8 @@ class File():
 
   def __init__(self, P_Name = "save"):
     home = expanduser("~")
-    self.path = home + "/project_kanban_saves/"
+    data = home + "/.var/app/io.github.lyaaaaaaaaaaaaaaa.Project_Kanban/data"
+    self.path = data + "/saves/"
     self.name = P_Name + ".yaml"
 
   #---------------------------------
