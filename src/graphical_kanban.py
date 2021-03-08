@@ -162,7 +162,7 @@ class Graphical_Kanban():
     for Column in P_Columns:
       column_title    = Column.Get_Title()
       Cards           = Column.Get_Cards()
-      Column_Box      = self.Add_Column(column_title)
+      Column_Box      = self.Add_Column(column_title, len(Cards))
       Scrolled_Window = Column_Box.get_children()[0]
       Viewport        = Scrolled_Window.get_child()
       List_Box        = Viewport.get_child()
@@ -205,7 +205,7 @@ class Graphical_Kanban():
 #--  - Add a counter displaying the number of card
 #---------------------------------------------------------------------------
 
-  def Add_Column(self, P_Title):
+  def Add_Column(self, P_Title, P_Cards_Number):
 
     Column_Grid     = Gtk.Grid()
     Column_Header   = Gtk.HBox()
@@ -217,7 +217,9 @@ class Graphical_Kanban():
     Edit_Button     = Gtk.Button()
     Add_Button      = Gtk.Button()
     Add_Image       = Gtk.Image()
+    Card_Counter    = Gtk.Label()
 
+    Card_Counter.set_markup("<b>"+ str(P_Cards_Number) +"</b>")
 
     Edit_Image.set_from_icon_name("gtk-edit", 1)
     Edit_Button.set_image(Edit_Image)
@@ -236,8 +238,10 @@ class Graphical_Kanban():
 
     Column_Label.set_markup("<b><big>"+ P_Title + "</big></b>")
     Column_Header.add(Column_Label)
+    Column_Header.add(Card_Counter)
     Column_Header.add(Edit_Button)
     Column_Header.add(Add_Button)
+
 
     Column_Grid.set_name(P_Title)
     Column_Grid.set_column_homogeneous(True)
