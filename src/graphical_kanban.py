@@ -78,6 +78,12 @@
 #--
 #--    19/01/2021 Lyaaaaa
 #--      - Removed outdated comments
+#--
+#--    09/03/2021 Lyaaaaa
+#--      - Added enable_counter as class attribute.
+#--      - Updated the __init__ method to setup enable_counter.
+#--      - Updated Add_Column to move the code related to the counter creation
+#--          in a if testing enable_counter's value.
 #---------------------------------------------------------------------------
 import gi
 
@@ -102,9 +108,10 @@ class Graphical_Kanban():
 #--  -
 #---------------------------------------------------------------------------
 
-  def __init__(self, P_Kanban, P_Gtk_Box):
-    self.Kanban  = P_Kanban
-    self.Gtk_Box = P_Gtk_Box
+  def __init__(self, P_Kanban, P_Gtk_Box, P_Enable_Counter = False):
+    self.Kanban         = P_Kanban
+    self.Gtk_Box        = P_Gtk_Box
+    self.enable_counter = P_Enable_Counter
 
     self.Generate_Kanban()
 
@@ -217,9 +224,7 @@ class Graphical_Kanban():
     Edit_Button     = Gtk.Button()
     Add_Button      = Gtk.Button()
     Add_Image       = Gtk.Image()
-    Card_Counter    = Gtk.Label()
 
-    Card_Counter.set_markup("<b>"+ str(P_Cards_Number) +"</b>")
 
     Edit_Image.set_from_icon_name("gtk-edit", 1)
     Edit_Button.set_image(Edit_Image)
@@ -238,10 +243,13 @@ class Graphical_Kanban():
 
     Column_Label.set_markup("<b><big>"+ P_Title + "</big></b>")
     Column_Header.add(Column_Label)
-    Column_Header.add(Card_Counter)
     Column_Header.add(Edit_Button)
     Column_Header.add(Add_Button)
 
+    if (self.enable_counter == True):
+      Card_Counter = Gtk.Label()
+      Card_Counter.set_markup("<b>"+ str(P_Cards_Number) +"</b>")
+      Column_Header.add(Card_Counter)
 
     Column_Grid.set_name(P_Title)
     Column_Grid.set_column_homogeneous(True)
