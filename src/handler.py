@@ -203,9 +203,6 @@
 #--     19/01/2021 Lyaaaaa
 #--       - Updated some functions headers and removed outdated comments.
 #--
-#--     09/03/2021 Lyaaaaa
-#--       - Updated Connect_Column_Buttons because the indexing of Header_Items
-#--           changed by adding a label in the column header.
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -372,8 +369,8 @@ class Handler():
     Column_Header           = P_Column_Box.get_children()[1]
     Header_Items            = Column_Header.get_children()
     Column_Label            = Header_Items[0]
-    Column_Edit_Button      = Header_Items[2]
-    Column_Add_Card_Button  = Header_Items[3]
+    Column_Edit_Button      = Header_Items[1]
+    Column_Add_Card_Button  = Header_Items[2]
 
     Column_Edit_Button.connect    ("clicked",
                                    self.On_Column_Edit_Clicked,
