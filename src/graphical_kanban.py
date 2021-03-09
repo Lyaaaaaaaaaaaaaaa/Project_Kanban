@@ -202,7 +202,7 @@ class Graphical_Kanban():
 #--      - then a scrolled window to display the cards.
 #--
 #-- Anticipated Changes:
-#--  - Add a counter displaying the number of card
+#--  -
 #---------------------------------------------------------------------------
 
   def Add_Column(self, P_Title, P_Cards_Number):
