@@ -84,6 +84,13 @@
 #--      - Updated the __init__ method to setup enable_counter.
 #--      - Updated Add_Column to move the code related to the counter creation
 #--          in a if testing enable_counter's value.
+#--
+#--    10/03/2021 Lyaaaaa
+#--      - Updated __init__. The class now receives a GTK_Builder as parameter.
+#--          This Builder is shared with Handler and used to expose the new
+#--          GTK objects created in this class. It shall make it more explicit
+#--          in Handler.
+#--      - Updated Add_Card and Add_Column to use expose the GTK objects.
 #---------------------------------------------------------------------------
 import gi
 
@@ -108,10 +115,11 @@ class Graphical_Kanban():
 #--  -
 #---------------------------------------------------------------------------
 
-  def __init__(self, P_Kanban, P_Gtk_Box, P_Enable_Counter = False):
+  def __init__(self, P_Kanban, P_Gtk_Box, P_Builder, P_Enable_Counter = False):
     self.Kanban         = P_Kanban
     self.Gtk_Box        = P_Gtk_Box
     self.enable_counter = P_Enable_Counter
+    self.Builder        = P_Builder
 
     self.Generate_Kanban()
 
@@ -225,6 +233,10 @@ class Graphical_Kanban():
     Add_Button      = Gtk.Button()
     Add_Image       = Gtk.Image()
 
+    self.Builder.expose_object(P_Title + "_Edit_Button", Edit_Button)
+    self.Builder.expose_object(P_Title + "_Add_Button", Add_Button)
+    self.Builder.expose_object(P_Title + "_Label", Column_Label)
+    self.Builder.expose_object(P_Title + "_List_Box", List_Box)
 
     Edit_Image.set_from_icon_name("gtk-edit", 1)
     Edit_Button.set_image(Edit_Image)
@@ -250,6 +262,7 @@ class Graphical_Kanban():
       Card_Counter = Gtk.Label()
       Card_Counter.set_markup("<b>"+ str(P_Cards_Number) +"</b>")
       Column_Header.add(Card_Counter)
+      self.Builder.expose_object(P_Title + "_Counter", Card_Counter)
 
     Column_Grid.set_name(P_Title)
     Column_Grid.set_column_homogeneous(True)
@@ -289,6 +302,12 @@ class Graphical_Kanban():
     Edit_Button   = Gtk.Button()
     Drag_Image    = Gtk.Image()
     Drag_Button   = Gtk.Button()
+
+    self.Builder.expose_object(P_Title + "_Card_Box", Card_Box)
+    self.Builder.expose_object(P_Title + "_Edit_Button", Edit_Button)
+    self.Builder.expose_object(P_Title + "_Drag_Button", Drag_Button)
+    self.Builder.expose_object(P_Title + "_Label", Label)
+    self.Builder.expose_object(P_Title + "_Buffer", Buffer)
 
     Edit_Image.set_from_icon_name("gtk-edit", 1)
     Edit_Button.set_image(Edit_Image)
