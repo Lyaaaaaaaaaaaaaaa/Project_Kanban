@@ -45,6 +45,7 @@
 #--      - Updated Start_Interface header.
 #--      - Deleted Quit_Application and Get_Builder methods as they are never
 #--          used anywhere in the project.
+#--
 #---------------------------------------------------------------------------
 
 import gi
