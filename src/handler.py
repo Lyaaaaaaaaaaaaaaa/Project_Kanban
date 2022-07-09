@@ -202,6 +202,15 @@
 #--
 #--     19/01/2021 Lyaaaaa
 #--       - Updated some functions headers and removed outdated comments.
+#--
+#--     27/06/2022 Tommy Sandanasamy
+#--       -Updated On_Edit_Card_Dialog_Save_Clicked both Add and Edit Card section
+#--        with a conditional to hide the textbox when there is no description and
+#--        show a textbox if a description is added
+#--       -Updated On_Kanban_Combo_Box_Changed so that cards without a description 
+#--        will not display a textbox after being loaded
+#--       -set_no_show_all is also used in all cases to prevent new cards with no
+#--        description from showing old the description of cards with no description
 #---------------------------------------------------------------------------
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -577,8 +586,14 @@ class Handler():
       Card_List_Box   = Viewport.get_child()
       Column_Title    = Column_Box.get_name()
 
-      Card_List_Box.add(self.Graphical_Kanban.Add_Card(title, description))
+      Card_Box = self.Graphical_Kanban.Add_Card(title, description)
+
+      Card_List_Box.add(Card_Box)
       Card_List_Box.show_all()
+
+      if(description == ''):
+        Card_Box.get_children()[1].hide()
+        Card_Box.get_children()[1].set_no_show_all(True)
 
       List_Box_Last_Row = Card_List_Box.get_children()[-1]
       Card_Box          = List_Box_Last_Row.get_child()
@@ -594,7 +609,11 @@ class Handler():
       Card_View_Text = Card_Box.get_children()[1]
       Card_Buffer    = Card_View_Text.get_buffer()
       Old_Card_Title = Card_Box.get_name()
-
+      if(description == ''):
+        Card_Box.get_children()[1].hide()
+        Card_Box.get_children()[1].set_no_show_all(True)
+      elif (description != '' and not Card_View_Text.get_visible()):
+        Card_Box.get_children()[1].show()
       Card_Label.set_markup("<b>" + title + "</b>")
       Card_Buffer.set_text(description)
       Card_Box.set_name(title)
@@ -937,6 +956,14 @@ class Handler():
         Card_Header = Card_Box.get_children()[0]
         Edit_Button = Card_Header.get_children()[1]
 
+        Card_Text_View = Card_Box.get_children()[1]
+        Buffer = Card_Text_View.get_buffer()
+        start       = Buffer.get_start_iter()
+        end         = Buffer.get_end_iter()
+        description = Buffer.get_text(start, end, False)
+        if(description == ''):
+          Card_Box.get_children()[1].hide()
+          Card_Box.get_children()[1].set_no_show_all(True)
         self.Connect_Card_Buttons(Card_Box)
 
       self.Set_Drag_Destination(List_Box)
