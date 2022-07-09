@@ -7,7 +7,7 @@
     <property name="type-hint">dialog</property>
     <property name="deletable">False</property>
     <property name="program-name">Project Kanban</property>
-    <property name="version">1.0.3</property>
+    <property name="version">1.0.4</property>
     <property name="copyright" translatable="yes">Copyright (c) 2020 Lyaaaaaaaaaaaaaaa</property>
     <property name="website">https://github.com/Lyaaaaaaaaaaaaaaa/Project_Kanban</property>
     <property name="authors">Lyaaaaa</property>
