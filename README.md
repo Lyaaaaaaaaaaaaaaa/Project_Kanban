@@ -1,4 +1,4 @@
-# Project Kanban
+# Project Kanban (I'm not maintaining it anymore).
 ---
 
 ## What does this project do?
