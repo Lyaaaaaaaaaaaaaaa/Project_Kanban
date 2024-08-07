@@ -25,8 +25,9 @@ Edit whatever you want and run main.py to start the software.
 I'm looking for contributions of any type. As long as you feel useful to contribute, do so! You can contribute by making some doc (Once the project is advanced enough to have need of a doc), giving some design advice or even suggestions. Of course, someone with knowledge in Python programming or GTK is welcome too :).
 
 ## How can you get in touch with me?
-You can talk to me on discord. If you want to talk in private, join the server then send me a private message 
-[Server's link ](https://discord.gg/hSey9Bv).
+You can start a discussion in the **discussions** tab or you can join my 
+[Discord server](https://discord.gg/mJGSkJ3mgT).
+If you are more old school you can send me an email at lyaaaaa@lyaaaaagames.com :).
 
 ## Useful resources
 
